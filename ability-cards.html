@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ability Cards | Red Dead Online Guide</title>
+  <meta name="description" content="Dansk guide til de bedste ability card builds i Red Dead Online til PvE, PvP, sniper, tank, posse og dual-wield." />
+  <style>
+    :root {
+      --bg: #110b08;
+      --panel: #1d1510;
+      --text: #f6ead8;
+      --muted: #bca990;
+      --gold: #d9a13d;
+      --red: #8e2119;
+      --border: rgba(255,255,255,.13);
+      --shadow: 0 22px 70px rgba(0,0,0,.42);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      background:
+        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
+        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
+        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(17,11,8,.88); border-bottom: 1px solid var(--border); }
+    .nav { max-width: 1180px; margin: auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318); color: #190b04; box-shadow: 0 0 0 3px rgba(217,161,61,.18); }
+    .nav-links { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; font-family: Arial, sans-serif; font-size: 13px; }
+    .nav-links a { padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { border-color: rgba(217,161,61,.38); color: var(--text); background: rgba(217,161,61,.10); }
+    main { max-width: 1180px; margin: auto; padding: 56px 18px 76px; }
+    .hero { display: grid; grid-template-columns: 1fr .55fr; gap: 22px; align-items: stretch; margin-bottom: 34px; }
+    .box { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); box-shadow: var(--shadow); padding: 26px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(217,161,61,.12); border: 1px solid rgba(217,161,61,.30); color: #f5c876; font-family: Arial, sans-serif; font-size: 13px; margin-bottom: 18px; }
+    h1 { margin: 0 0 14px; font-size: clamp(42px, 6vw, 78px); line-height: .92; letter-spacing: -.055em; text-transform: uppercase; }
+    h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; text-transform: uppercase; }
+    h3 { margin: 0 0 8px; font-size: 24px; }
+    p, li, button, select { font-family: Arial, sans-serif; }
+    p, li { color: var(--muted); line-height: 1.65; }
+    .hero ul { margin: 10px 0 0; padding-left: 18px; }
+    .selector { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 18px 0 22px; }
+    .choice { border: 1px solid var(--border); background: rgba(0,0,0,.22); color: var(--muted); padding: 13px 12px; border-radius: 14px; cursor: pointer; font-weight: 800; }
+    .choice.active, .choice:hover { color: #ffe0a1; border-color: rgba(217,161,61,.42); background: rgba(217,161,61,.12); }
+    .build-output { border-left: 5px solid var(--gold); border-radius: 18px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(217,161,61,.09); padding: 18px; margin-bottom: 34px; }
+    .slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px; }
+    .slot { border-radius: 16px; border: 1px solid var(--border); background: rgba(0,0,0,.22); padding: 14px; font-family: Arial, sans-serif; }
+    .slot b { color: var(--gold); display: block; margin-bottom: 5px; }
+    .slot span { color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { min-height: 245px; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); padding: 20px; box-shadow: 0 10px 32px rgba(0,0,0,.20); }
+    .icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 14px; font-size: 25px; background: rgba(217,161,61,.13); border: 1px solid rgba(217,161,61,.22); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .tag { display: inline-flex; padding: 6px 9px; border-radius: 999px; background: rgba(217,161,61,.11); color: #f0c06f; border: 1px solid rgba(217,161,61,.20); font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; }
+    .tips { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 34px; }
+    .tip { border-radius: var(--radius); border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 20px; }
+    .tip p { margin: 0; }
+    .footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--border); color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.6; }
+    @media (max-width: 1040px) { .selector { grid-template-columns: repeat(3, 1fr); } .slots { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 940px) { .hero, .grid, .tips { grid-template-columns: 1fr; } .nav { align-items: flex-start; flex-direction: column; } .nav-links { justify-content: flex-start; } }
+    @media (max-width: 620px) { main { padding-top: 34px; } .selector, .slots { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
+      <div class="nav-links">
+        <a href="index.html">Start</a>
+        <a href="unlocks.html">Unlocks</a>
+        <a href="money-guide.html">Penge</a>
+        <a class="active" href="ability-cards.html">Ability Cards</a>
+        <a href="activities.html">Aktiviteter</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="box">
+        <div class="badge">Builds · PvE · PvP · Sniper · Tank · Posse</div>
+        <h1>Bedste ability cards i Red Dead Online</h1>
+        <p>Ability cards er noget af det vigtigste at investere i. Et godt build kan gøre dig mere præcis, mere tanky, bedre til headshots eller langt stærkere i posse og PvP.</p>
+      </div>
+      <aside class="box">
+        <h3>Husk dette</h3>
+        <ul>
+          <li>Opgrader få gode cards i stedet for at købe alt.</li>
+          <li>Vælg build efter våben og spillestil.</li>
+          <li>PvE og PvP kræver ikke altid samme setup.</li>
+          <li>Paint It Black er stærkt og nemt for mange spillere.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section>
+      <h2>Vælg spillestil</h2>
+      <p>Tryk på en spillestil for at få et anbefalet ability-card build.</p>
+      <div class="selector">
+        <button class="choice active" data-build="pve">Solo PvE</button>
+        <button class="choice" data-build="tank">Tank</button>
+        <button class="choice" data-build="pvp">PvP</button>
+        <button class="choice" data-build="sniper">Sniper</button>
+        <button class="choice" data-build="support">Posse</button>
+        <button class="choice" data-build="gunslinger">Dual-wield</button>
+      </div>
+      <div class="build-output" id="buildOutput"></div>
+    </section>
+
+    <section>
+      <h2>Forklaring af stærke cards</h2>
+      <div class="grid">
+        <article class="card"><div class="icon">🎯</div><h3>Paint It Black</h3><div class="tags"><span class="tag">Dead Eye</span><span class="tag">Præcision</span></div><p>Meget stærkt til headshots og hurtige kills. Godt til både begyndere og erfarne spillere.</p></article>
+        <article class="card"><div class="icon">🛡️</div><h3>Slow and Steady</h3><div class="tags"><span class="tag">Tank</span><span class="tag">Defense</span></div><p>Godt defensivt Dead Eye-card, især hvis du vil overleve hårdt pres i PvE eller posse-indhold.</p></article>
+        <article class="card"><div class="icon">💨</div><h3>Slippery Bastard</h3><div class="tags"><span class="tag">PvP</span><span class="tag">Sniper</span></div><p>Gør dig sværere at ramme i bestemte situationer. Kræver mere erfaring end Paint It Black.</p></article>
+        <article class="card"><div class="icon">💪</div><h3>Iron Lung</h3><div class="tags"><span class="tag">Defense</span><span class="tag">Allround</span></div><p>Et stabilt defensivt kort, der passer i mange builds. Godt når stamina holdes høj.</p></article>
+        <article class="card"><div class="icon">🩸</div><h3>Strange Medicine</h3><div class="tags"><span class="tag">PvE</span><span class="tag">Healing</span></div><p>Giver sustain, når du laver skade. Godt i missioner, bounties og længere kampe.</p></article>
+        <article class="card"><div class="icon">🤠</div><h3>Gunslinger’s Choice</h3><div class="tags"><span class="tag">Dual-wield</span><span class="tag">Damage</span></div><p>Relevant hvis du spiller med to revolvere/pistoler og vil have bedre skade og præcision.</p></article>
+      </div>
+    </section>
+
+    <section class="tips">
+      <article class="tip"><h3>Begynder-tip</h3><p>Start med Paint It Black, Iron Lung og et kort der passer til dit våben. Det er bedre end at sprede penge ud på for mange cards.</p></article>
+      <article class="tip"><h3>Penge-tip</h3><p>Ability cards kan være dyre at opgradere, men de er ofte bedre investering end kosmetik, ekstra våben du ikke bruger eller pynt til campen.</p></article>
+      <article class="tip"><h3>PvP-tip</h3><p>PvP handler også om tonics, ammo, movement, cover og våbenvalg. Cards alene vinder ikke kampen.</p></article>
+      <article class="tip"><h3>PvE-tip</h3><p>Til PvE er stabil overlevelse ofte vigtigere end maksimal skade. Headshots og god positionering sparer ammo og tonics.</p></article>
+    </section>
+
+    <footer class="footer">
+      Kort sagt: vælg ét build, opgrader det, og tilpas først senere. Et halvfærdigt dyrt build er dårligere end et simpelt build med opgraderede cards.
+    </footer>
+  </main>
+
+  <script>
+    const builds = {
+      pve: {
+        title: 'Solo PvE / missions',
+        text: 'Et stabilt build til missions, bounties, NPC-kampe og almindelig solo-progression.',
+        cards: [
+          ['Paint It Black', 'Nem præcision og headshots.'],
+          ['Eye for an Eye', 'Dead Eye tilbage ved headshots.'],
+          ['Iron Lung', 'Mindre skade når stamina er høj.'],
+          ['Strange Medicine', 'Healing når du laver skade.']
+        ]
+      },
+      tank: {
+        title: 'Tank / overlevelse',
+        text: 'Til spillere der vil kunne tage mange hits i Call to Arms, bounties og hårde PvE-kampe.',
+        cards: [
+          ['Slow and Steady', 'Mere robust Dead Eye-stil.'],
+          ['Iron Lung', 'Stamina-baseret defense.'],
+          ['Fool Me Once', 'God mod gentagne hits.'],
+          ['Strange Medicine', 'Sustain gennem skade.']
+        ]
+      },
+      pvp: {
+        title: 'PvP allround',
+        text: 'Et mere aggressivt build til showdowns og free roam-konflikter.',
+        cards: [
+          ['Paint It Black', 'Hurtig markering og præcision.'],
+          ['Winning Streak', 'Mere skade ved flere hits.'],
+          ['Iron Lung', 'Solid defensiv base.'],
+          ['Never Without One', 'Ekstra beskyttelse med hat.']
+        ]
+      },
+      sniper: {
+        title: 'Sniper / lang distance',
+        text: 'Til Carcano/Rolling Block-spillere der holder afstand og bruger scope.',
+        cards: [
+          ['Slippery Bastard', 'Gør dig sværere at ramme.'],
+          ['Sharpshooter', 'Stærkere med scope.'],
+          ['Peak Condition', 'Mere skade ved høj stamina.'],
+          ['Iron Lung', 'Defense via stamina.']
+        ]
+      },
+      support: {
+        title: 'Posse support',
+        text: 'Til holdspil, hvor du hjælper posse med healing og stabilitet.',
+        cards: [
+          ['Quite an Inspiration', 'Healer dig og posse i Dead Eye.'],
+          ['The Unblinking Eye', 'Dead Eye holder længere.'],
+          ['Eye for an Eye', 'Dead Eye tilbage ved headshots.'],
+          ['Iron Lung', 'Solid defense.']
+        ]
+      },
+      gunslinger: {
+        title: 'Dual-wield gunslinger',
+        text: 'Til spillere der vil bruge to revolvere/pistoler og spille aggressivt.',
+        cards: [
+          ['Paint It Black', 'Bedre træfsikkerhed.'],
+          ['Gunslinger’s Choice', 'Bedre dual-wield skade/præcision.'],
+          ['Winning Streak', 'Presser samme mål hårdt.'],
+          ['Iron Lung', 'Holder dig i live længere.']
+        ]
+      }
+    };
+
+    const buttons = document.querySelectorAll('.choice');
+    const output = document.getElementById('buildOutput');
+
+    function renderBuild(key) {
+      const build = builds[key];
+      output.innerHTML = `
+        <h3>${build.title}</h3>
+        <p>${build.text}</p>
+        <div class="slots">
+          ${build.cards.map(card => `<div class="slot"><b>${card[0]}</b><span>${card[1]}</span></div>`).join('')}
+        </div>
+      `;
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.build === key));
+    }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => renderBuild(btn.dataset.build)));
+    renderBuild('pve');
+  </script>
+</body>
+</html>
