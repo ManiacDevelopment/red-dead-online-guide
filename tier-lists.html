@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tier Lists | Red Dead Online Guide</title>
+  <meta name="description" content="Danske tier lists til Red Dead Online: våben, ability cards, roller og heste." />
+  <style>
+    :root {
+      --bg: #110b08;
+      --panel: #1d1510;
+      --text: #f6ead8;
+      --muted: #bca990;
+      --gold: #d9a13d;
+      --red: #8e2119;
+      --green: #5e8c4d;
+      --border: rgba(255,255,255,.13);
+      --shadow: 0 22px 70px rgba(0,0,0,.42);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      background:
+        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
+        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
+        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(17,11,8,.88); border-bottom: 1px solid var(--border); }
+    .nav { max-width: 1180px; margin: auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318); color: #190b04; box-shadow: 0 0 0 3px rgba(217,161,61,.18); }
+    .nav-links { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; font-family: Arial, sans-serif; font-size: 13px; }
+    .nav-links a { padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { border-color: rgba(217,161,61,.38); color: var(--text); background: rgba(217,161,61,.10); }
+
+    main { max-width: 1180px; margin: auto; padding: 56px 18px 76px; }
+    .hero { display: grid; grid-template-columns: 1fr .55fr; gap: 22px; align-items: stretch; margin-bottom: 34px; }
+    .box { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); box-shadow: var(--shadow); padding: 26px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(217,161,61,.12); border: 1px solid rgba(217,161,61,.30); color: #f5c876; font-family: Arial, sans-serif; font-size: 13px; margin-bottom: 18px; }
+    h1 { margin: 0 0 14px; font-size: clamp(42px, 6vw, 78px); line-height: .92; letter-spacing: -.055em; text-transform: uppercase; }
+    h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; text-transform: uppercase; }
+    h3 { margin: 0 0 8px; font-size: 24px; }
+    p, li, button { font-family: Arial, sans-serif; }
+    p, li { color: var(--muted); line-height: 1.65; }
+    .hero ul { margin: 10px 0 0; padding-left: 18px; }
+
+    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 22px; }
+    .filter { border: 1px solid var(--border); background: rgba(0,0,0,.22); color: var(--muted); padding: 12px 13px; border-radius: 14px; cursor: pointer; font-weight: 800; }
+    .filter.active, .filter:hover { color: #ffe0a1; border-color: rgba(217,161,61,.42); background: rgba(217,161,61,.12); }
+
+    .tier-board { display: grid; gap: 14px; }
+    .tier-row { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: stretch; }
+    .tier-label { border-radius: 18px; display: grid; place-items: center; font-family: Arial, sans-serif; font-size: 34px; font-weight: 900; border: 1px solid var(--border); color: #180d07; }
+    .tier-s { background: linear-gradient(180deg, #ffd37b, #d9a13d); }
+    .tier-a { background: linear-gradient(180deg, #d8bd7b, #a8782d); }
+    .tier-b { background: linear-gradient(180deg, #c4a58a, #74503b); color: #fff1df; }
+    .tier-c { background: linear-gradient(180deg, #6f5b4a, #302019); color: #f6ead8; }
+
+    .tier-items { border-radius: 18px; border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; min-height: 92px; }
+    .item { border-radius: 15px; border: 1px solid var(--border); background: var(--panel); padding: 14px; }
+    .item b { display: block; font-family: Arial, sans-serif; color: var(--text); margin-bottom: 5px; }
+    .item span { display: block; font-family: Arial, sans-serif; color: var(--muted); font-size: 13px; line-height: 1.45; }
+
+    .explain { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
+    .card { border-radius: var(--radius); border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 20px; }
+    .card p { margin: 0; }
+
+    .footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--border); color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.6; }
+
+    @media (max-width: 1000px) { .hero { grid-template-columns: 1fr; } .tier-items { grid-template-columns: repeat(2, 1fr); } .explain { grid-template-columns: 1fr; } .nav { align-items: flex-start; flex-direction: column; } .nav-links { justify-content: flex-start; } }
+    @media (max-width: 640px) { main { padding-top: 34px; } .tier-row { grid-template-columns: 1fr; } .tier-label { min-height: 70px; } .tier-items { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
+      <div class="nav-links">
+        <a href="index.html">Start</a>
+        <a href="unlocks.html">Unlocks</a>
+        <a href="money-guide.html">Penge</a>
+        <a href="ability-cards.html">Ability Cards</a>
+        <a href="activities.html">Aktiviteter</a>
+        <a href="weapons.html">Våben</a>
+        <a href="beginner-roadmap.html">Roadmap</a>
+        <a href="build-generator.html">Build Generator</a>
+        <a href="daily-tracker.html">Daily Tracker</a>
+        <a class="active" href="tier-lists.html">Tier Lists</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="box">
+        <div class="badge">Våben · Ability Cards · Roller · Heste</div>
+        <h1>Red Dead Online tier lists</h1>
+        <p>Hurtigt overblik over hvad der er stærkest, mest effektivt og bedst at bruge penge på. Tier lists er ikke absolutte — spillestil, rank og økonomi betyder stadig meget.</p>
+      </div>
+      <aside class="box">
+        <h3>Sådan læses tiers</h3>
+        <ul>
+          <li><b>S-tier:</b> Topvalg og næsten altid værd at prioritere.</li>
+          <li><b>A-tier:</b> Stærkt valg, men ikke altid bedst.</li>
+          <li><b>B-tier:</b> Brugbar, men mere situationsbestemt.</li>
+          <li><b>C-tier:</b> Mest for stil, niche eller senere køb.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section>
+      <h2>Vælg kategori</h2>
+      <div class="toolbar">
+        <button class="filter active" data-list="weapons">Våben</button>
+        <button class="filter" data-list="cards">Ability Cards</button>
+        <button class="filter" data-list="roles">Roller</button>
+        <button class="filter" data-list="horses">Heste/udstyr</button>
+      </div>
+
+      <div class="tier-board" id="tierBoard"></div>
+    </section>
+
+    <section class="explain">
+      <article class="card"><h3>Vigtigt</h3><p>En S-tier ting er ikke altid første køb. Rank, penge og din spillestil afgør rækkefølgen.</p></article>
+      <article class="card"><h3>Begyndere</h3><p>Start med få sikre valg: Lancaster, Bolt Action, Paint It Black og en rolle der passer til dit mål.</p></article>
+      <article class="card"><h3>Senere</h3><p>Når økonomien kører, kan du købe niche-våben, alternative cards og mere specialiserede builds.</p></article>
+    </section>
+
+    <footer class="footer">
+      Tier lists er lavet som praktisk guide, ikke som facitliste. Vælg det der passer til dig.
+    </footer>
+  </main>
+
+  <script>
+    const lists = {
+      weapons: {
+        S: [
+          ['Lancaster Repeater', 'Meget stærkt allround-valg.'],
+          ['Bolt Action Rifle', 'Fantastisk til jagt og PvE.'],
+          ['Carcano Rifle', 'Top sniper/range våben.']
+        ],
+        A: [
+          ['Pump Action Shotgun', 'Stærk tæt på og god værdi.'],
+          ['Varmint Rifle', 'Vigtig til smådyr og jagt.'],
+          ['LeMat Revolver', 'Fleksibel og populær sidearm.']
+        ],
+        B: [
+          ['Rolling Block Rifle', 'God før Carcano eller til sniper-stil.'],
+          ['Semi-Auto Shotgun', 'Stærk, men dyrere.'],
+          ['Schofield Revolver', 'Solid tidlig revolver.']
+        ],
+        C: [
+          ['Double-Action Revolver', 'Mest til bestemt dual-wield stil.'],
+          ['Machete', 'Sjov, men ikke vigtig.'],
+          ['Litchfield Repeater', 'Kan bruges, men Lancaster føles ofte bedre.']
+        ]
+      },
+      cards: {
+        S: [
+          ['Paint It Black', 'Stærkt, nemt og effektivt.'],
+          ['Iron Lung', 'Solid defensiv base.'],
+          ['Strange Medicine', 'God sustain i PvE.']
+        ],
+        A: [
+          ['Slow and Steady', 'Stærkt tank-card.'],
+          ['Winning Streak', 'Godt offensivt PvP/PvE card.'],
+          ['Eye for an Eye', 'God Dead Eye-økonomi ved headshots.']
+        ],
+        B: [
+          ['Sharpshooter', 'Stærkt til scope builds.'],
+          ['Quite an Inspiration', 'Godt support-card i posse.'],
+          ['Never Without One', 'PvP-beskyttelse med hat.']
+        ],
+        C: [
+          ['Horseman', 'Situationsbestemt fra hest.'],
+          ['The Unblinking Eye', 'Godt, men ikke altid prioritet.'],
+          ['Peak Condition', 'Kræver god stamina-styring.']
+        ]
+      },
+      roles: {
+        S: [
+          ['Collector', 'Bedst solo cash og XP.'],
+          ['Bounty Hunter', 'Bedst til gold og combat.']
+        ],
+        A: [
+          ['Trader', 'Stærk passiv cash og jagt-loop.'],
+          ['Moonshiner', 'God passiv cash når den er startet.']
+        ],
+        B: [
+          ['Naturalist', 'God variation og legendary animals.']
+        ],
+        C: [
+          ['Ingen rolle', 'Kan fungere kort tid, men begrænser progression.']
+        ]
+      },
+      horses: {
+        S: [
+          ['God saddle + stirrups', 'Ofte vigtigere end selve hesten.'],
+          ['Stabil allround-hest', 'Vælg stamina og håndtering frem for kun udseende.']
+        ],
+        A: [
+          ['Role horses', 'Gode valg når du har rollen låst op.'],
+          ['Fast travel post', 'Ikke hest, men enorm quality-of-life.']
+        ],
+        B: [
+          ['Billig midgame-hest', 'Fint indtil økonomien er stærk.'],
+          ['Kosmetisk flot hest', 'Okay når du har råd.']
+        ],
+        C: [
+          ['Dyr hest for tidligt', 'Spilder penge hvis resten af buildet er svagt.'],
+          ['Camp pynt før funktion', 'Lav prioritet tidligt.']
+        ]
+      }
+    };
+
+    const tierBoard = document.getElementById('tierBoard');
+    const buttons = document.querySelectorAll('.filter');
+
+    function render(type) {
+      const list = lists[type];
+      tierBoard.innerHTML = ['S', 'A', 'B', 'C'].map(tier => `
+        <div class="tier-row">
+          <div class="tier-label tier-${tier.toLowerCase()}">${tier}</div>
+          <div class="tier-items">
+            ${list[tier].map(item => `<div class="item"><b>${item[0]}</b><span>${item[1]}</span></div>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+        render(btn.dataset.list);
+      });
+    });
+
+    render('weapons');
+  </script>
+</body>
+</html>
