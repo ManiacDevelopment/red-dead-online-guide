@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Begynder Roadmap | Red Dead Online Guide</title>
+  <meta name="description" content="Dansk begynder-roadmap til Red Dead Online. Plan fra rank 1 til 50 med køb, roller, våben, XP, penge og gold." />
+  <style>
+    :root {
+      --bg: #110b08;
+      --panel: #1d1510;
+      --text: #f6ead8;
+      --muted: #bca990;
+      --gold: #d9a13d;
+      --red: #8e2119;
+      --green: #5e8c4d;
+      --border: rgba(255,255,255,.13);
+      --shadow: 0 22px 70px rgba(0,0,0,.42);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      background:
+        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
+        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
+        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(17,11,8,.88); border-bottom: 1px solid var(--border); }
+    .nav { max-width: 1180px; margin: auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318); color: #190b04; box-shadow: 0 0 0 3px rgba(217,161,61,.18); }
+    .nav-links { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; font-family: Arial, sans-serif; font-size: 13px; }
+    .nav-links a { padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { border-color: rgba(217,161,61,.38); color: var(--text); background: rgba(217,161,61,.10); }
+    main { max-width: 1180px; margin: auto; padding: 56px 18px 76px; }
+    .hero { display: grid; grid-template-columns: 1fr .55fr; gap: 22px; align-items: stretch; margin-bottom: 34px; }
+    .box { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); box-shadow: var(--shadow); padding: 26px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(217,161,61,.12); border: 1px solid rgba(217,161,61,.30); color: #f5c876; font-family: Arial, sans-serif; font-size: 13px; margin-bottom: 18px; }
+    h1 { margin: 0 0 14px; font-size: clamp(42px, 6vw, 78px); line-height: .92; letter-spacing: -.055em; text-transform: uppercase; }
+    h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; text-transform: uppercase; }
+    h3 { margin: 0 0 8px; font-size: 24px; }
+    p, li, td { font-family: Arial, sans-serif; }
+    p, li { color: var(--muted); line-height: 1.65; }
+    .hero ul { margin: 10px 0 0; padding-left: 18px; }
+    .timeline { display: grid; gap: 16px; margin-top: 18px; }
+    .phase { display: grid; grid-template-columns: 120px 1fr; gap: 18px; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); padding: 20px; box-shadow: 0 10px 32px rgba(0,0,0,.20); }
+    .rank { width: 94px; height: 94px; border-radius: 50%; display: grid; place-items: center; text-align: center; background: rgba(142,33,25,.9); color: white; font-family: Arial, sans-serif; font-weight: 900; line-height: 1.1; }
+    .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px; }
+    .mini { border-radius: 16px; border: 1px solid var(--border); background: rgba(0,0,0,.20); padding: 14px; }
+    .mini b { display: block; color: var(--gold); font-family: Arial, sans-serif; margin-bottom: 5px; }
+    .mini span { color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.45; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; }
+    .card { border-radius: var(--radius); border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 20px; }
+    .icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 14px; font-size: 25px; background: rgba(217,161,61,.13); border: 1px solid rgba(217,161,61,.22); }
+    .table-wrap { margin-top: 16px; overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel); }
+    table { width: 100%; min-width: 820px; border-collapse: collapse; }
+    th, td { padding: 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: rgba(142,33,25,.38); color: #f5c876; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
+    td { color: var(--muted); }
+    td b { color: var(--text); }
+    .footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--border); color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.6; }
+    @media (max-width: 940px) { .hero, .grid { grid-template-columns: 1fr; } .phase { grid-template-columns: 1fr; } .phase-grid { grid-template-columns: 1fr; } .nav { align-items: flex-start; flex-direction: column; } .nav-links { justify-content: flex-start; } }
+    @media (max-width: 620px) { main { padding-top: 34px; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
+      <div class="nav-links">
+        <a href="index.html">Start</a>
+        <a href="unlocks.html">Unlocks</a>
+        <a href="money-guide.html">Penge</a>
+        <a href="ability-cards.html">Ability Cards</a>
+        <a href="activities.html">Aktiviteter</a>
+        <a href="weapons.html">Våben</a>
+        <a class="active" href="beginner-roadmap.html">Roadmap</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="box">
+        <div class="badge">Rank 1–50 · Køb · Roller · Fejl du skal undgå</div>
+        <h1>Begynder-roadmap til Red Dead Online</h1>
+        <p>Her er en konkret plan for de første 50 ranks. Målet er at undgå spildkøb, få en stabil økonomi, vælge den rigtige første rolle og låse de vigtigste våben op.</p>
+      </div>
+      <aside class="box">
+        <h3>Grundregel</h3>
+        <ul>
+          <li>Køb funktion før kosmetik.</li>
+          <li>Lav dailies for gold.</li>
+          <li>Brug treasure maps.</li>
+          <li>Vælg én god rolle først.</li>
+          <li>Opgrader ability cards.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section>
+      <h2>Plan fra rank 1 til 50</h2>
+      <div class="timeline">
+        <article class="phase">
+          <div class="rank">Rank<br>1–10</div>
+          <div>
+            <h3>Kom i gang uden at spilde penge</h3>
+            <p>Fokuser på story missions, nemme dailies, looting, jagt og treasure maps. Køb ikke kosmetik endnu.</p>
+            <div class="phase-grid">
+              <div class="mini"><b>Køb</b><span>Kun nødvendige våben og ammo.</span></div>
+              <div class="mini"><b>Lav</b><span>Story missions, dailies og treasure maps.</span></div>
+              <div class="mini"><b>Undgå</b><span>Tøj, camp pynt og tilfældige våben.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="phase">
+          <div class="rank">Rank<br>10–20</div>
+          <div>
+            <h3>Få første rigtige allround-setup</h3>
+            <p>Gå efter Lancaster Repeater og begynd at tænke på første ability-card setup. Fishing Rod kan give rolig ekstra indkomst.</p>
+            <div class="phase-grid">
+              <div class="mini"><b>Køb</b><span>Lancaster Repeater, Varmint Rifle hvis du jager.</span></div>
+              <div class="mini"><b>Lav</b><span>Dailies, story, free roam og treasure maps.</span></div>
+              <div class="mini"><b>Mål</b><span>Spar gold til første specialistrolle.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="phase">
+          <div class="rank">20–30</div>
+          <div>
+            <h3>Vælg retning og køb Bolt Action Rifle</h3>
+            <p>Nu skal du begynde at spille mere målrettet. Bolt Action Rifle er et stærkt køb til jagt, PvE og range.</p>
+            <div class="phase-grid">
+              <div class="mini"><b>Køb</b><span>Bolt Action Rifle og evt. Pump Action Shotgun.</span></div>
+              <div class="mini"><b>Rolle</b><span>Bounty Hunter for gold eller Collector for cash/XP.</span></div>
+              <div class="mini"><b>Cards</b><span>Opgrader dine vigtigste ability cards.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="phase">
+          <div class="rank">30–40</div>
+          <div>
+            <h3>Byg økonomien</h3>
+            <p>Kombinér rolleaktivitet med dailies og collectibles. Nu bør du stoppe med impulskøb og fokusere på effektiv progression.</p>
+            <div class="phase-grid">
+              <div class="mini"><b>Køb</b><span>Kun våben/cards der passer til din stil.</span></div>
+              <div class="mini"><b>Lav</b><span>Collector-ruter, bounties, Trader/Moonshiner hvis låst op.</span></div>
+              <div class="mini"><b>Undgå</b><span>At starte for mange dyre projekter samtidigt.</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="phase">
+          <div class="rank">40–50</div>
+          <div>
+            <h3>Gør dit build stærkt</h3>
+            <p>Carcano Rifle bliver relevant, og dine ability cards bør have en klar retning: PvE, PvP, tank, sniper eller support.</p>
+            <div class="phase-grid">
+              <div class="mini"><b>Køb</b><span>Carcano hvis du vil spille sniper/range.</span></div>
+              <div class="mini"><b>Fokus</b><span>Max dine vigtigste cards før pynt.</span></div>
+              <div class="mini"><b>Næste mål</b><span>Flere roller og bedre passiv indkomst.</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Bedste første rolle</h2>
+      <div class="grid">
+        <article class="card"><div class="icon">🎯</div><h3>Bounty Hunter</h3><p>Vælg denne først hvis du mangler gold. Du får combat, XP, cash og gold i samme loop.</p></article>
+        <article class="card"><div class="icon">🧭</div><h3>Collector</h3><p>Vælg denne først hvis du vil have solo cash og XP. Meget effektiv, men mindre action.</p></article>
+        <article class="card"><div class="icon">🦌</div><h3>Trader</h3><p>God hvis du kan lide jagt og passiv produktion. Bedre når du har lidt mere stabil økonomi.</p></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Køb og undgå</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Køb tidligt</th><th>Hvorfor</th><th>Vent med</th><th>Hvorfor</th></tr></thead>
+          <tbody>
+            <tr><td><b>Lancaster Repeater</b></td><td>God i næsten alt indhold.</td><td>For mange sidearms</td><td>Du bruger sjældent alle.</td></tr>
+            <tr><td><b>Bolt Action Rifle</b></td><td>Stærk til jagt og PvE.</td><td>Kosmetisk tøj</td><td>Giver ingen progression.</td></tr>
+            <tr><td><b>Ability card upgrades</b></td><td>Gør dig markant stærkere.</td><td>Camp pynt</td><td>Vent til økonomien kører.</td></tr>
+            <tr><td><b>Første specialistrolle</b></td><td>Åbner rigtige money-loops.</td><td>Dyre heste for udseende</td><td>Saddle/stirrups betyder ofte mere.</td></tr>
+            <tr><td><b>Treasure maps</b></td><td>Cash og gold uden stor investering.</td><td>Special ammo for tidligt</td><td>Dyrt hvis du ikke har stabil økonomi.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Kort sagt: Rank 1–50 handler ikke om at eje alt. Det handler om at bygge en stabil økonomi, vælge en rolle, få få gode våben og opgradere dit build.
+    </footer>
+  </main>
+</body>
+</html>
