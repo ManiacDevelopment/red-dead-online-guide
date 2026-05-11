@@ -1,491 +1,165 @@
 <!doctype html>
-<html lang="da">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rank Unlocks | Red Dead Online Guide</title>
-  <meta name="description" content="Dansk oversigt over Red Dead Online rank unlocks: våben, ability cards, pamphlets, udstyr og vigtige levels." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Unlocks | Red Dead Online Guide</title>
+
   <style>
-    :root {
-      --bg: #110b08;
-      --panel: #1d1510;
-      --panel2: #281b13;
-      --text: #f6ead8;
-      --muted: #bca990;
-      --gold: #d9a13d;
-      --red: #8e2119;
-      --green: #5e8c4d;
-      --border: rgba(255,255,255,.13);
-      --shadow: 0 22px 70px rgba(0,0,0,.42);
-      --radius: 22px;
+    body{
+      background:#110b08;
+      color:#f6ead8;
+      font-family:Arial,sans-serif;
+      max-width:1000px;
+      margin:auto;
+      padding:30px;
+      line-height:1.7;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: Georgia, 'Times New Roman', serif;
-      background:
-        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
-        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
-        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    h1,h2{
+      color:#d9a13d;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(17, 11, 8, .88);
-      border-bottom: 1px solid var(--border);
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:20px;
     }
 
-    .nav {
-      max-width: 1180px;
-      margin: auto;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+    th,td{
+      border:1px solid rgba(255,255,255,.1);
+      padding:14px;
+      text-align:left;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: .05em;
-      text-transform: uppercase;
+    th{
+      background:#1d1510;
+      color:#f5c876;
     }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318);
-      color: #190b04;
-      box-shadow: 0 0 0 3px rgba(217,161,61,.18);
+    tr:nth-child(even){
+      background:#281b13;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
+    .section{
+      background:#1d1510;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:22px;
+      margin-bottom:24px;
     }
 
-    .nav-links a {
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--muted);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      border-color: rgba(217,161,61,.38);
-      color: var(--text);
-      background: rgba(217,161,61,.10);
-    }
-
-    main {
-      max-width: 1180px;
-      margin: auto;
-      padding: 56px 18px 76px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr .55fr;
-      gap: 22px;
-      align-items: stretch;
-      margin-bottom: 34px;
-    }
-
-    .hero-box, .side-box {
-      border-radius: 28px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel);
-      box-shadow: var(--shadow);
-      padding: 26px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(217,161,61,.12);
-      border: 1px solid rgba(217,161,61,.30);
-      color: #f5c876;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0 0 14px;
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: .92;
-      letter-spacing: -.055em;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 46px);
-      letter-spacing: -.035em;
-      text-transform: uppercase;
-    }
-
-    h3 { margin: 0 0 8px; font-size: 24px; }
-
-    p, li, td, input, select, button {
-      font-family: Arial, sans-serif;
-    }
-
-    p, li { color: var(--muted); line-height: 1.65; }
-
-    .side-box ul { margin: 10px 0 0; padding-left: 18px; }
-
-    .toolbar {
-      display: grid;
-      grid-template-columns: 1fr 220px 170px;
-      gap: 12px;
-      margin: 20px 0 16px;
-    }
-
-    input, select {
-      width: 100%;
-      min-height: 48px;
-      padding: 13px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.24);
-      color: var(--text);
-      outline: none;
-    }
-
-    select option { background: #1d1510; }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 18px;
-    }
-
-    .stat {
-      padding: 15px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-    }
-
-    .stat strong {
-      display: block;
-      color: var(--gold);
-      font-size: 28px;
-      font-family: Arial, sans-serif;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: var(--panel);
-    }
-
-    table {
-      width: 100%;
-      min-width: 860px;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 14px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-      vertical-align: top;
-      font-size: 14px;
-    }
-
-    th {
-      position: sticky;
-      top: 0;
-      background: rgba(142,33,25,.38);
-      color: #f5c876;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-size: 12px;
-    }
-
-    td { color: var(--muted); }
-    .rank { color: var(--text); font-weight: 900; white-space: nowrap; }
-
-    .tag {
-      display: inline-flex;
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: rgba(217,161,61,.11);
-      color: #f0c06f;
-      border: 1px solid rgba(217,161,61,.20);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .priority {
-      display: inline-flex;
-      padding: 6px 9px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 800;
-      border: 1px solid var(--border);
-    }
-
-    .high { color: #ffdf96; background: rgba(217,161,61,.13); }
-    .medium { color: #cce6bf; background: rgba(94,140,77,.15); }
-    .low { color: #ccbca9; background: rgba(255,255,255,.05); }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 36px;
-    }
-
-    .card {
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: var(--panel);
-      padding: 19px;
-    }
-
-    .card h3 { color: var(--text); }
-    .card p { margin: 0; }
-
-    .footer {
-      margin-top: 54px;
-      padding-top: 26px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 940px) {
-      .hero, .toolbar { grid-template-columns: 1fr; }
-      .stats, .cards { grid-template-columns: repeat(2, 1fr); }
-      .nav { align-items: flex-start; flex-direction: column; }
-      .nav-links { justify-content: flex-start; }
-    }
-
-    @media (max-width: 620px) {
-      main { padding-top: 34px; }
-      .stats, .cards { grid-template-columns: 1fr; }
+    ul{
+      padding-left:20px;
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <nav class="nav">
-      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
-      <div class="nav-links">
-        <a href="index.html">Start</a>
-        <a class="active" href="unlocks.html">Unlocks</a>
-        <a href="money-guide.html">Penge</a>
-        <a href="ability-cards.html">Ability Cards</a>
-        <a href="activities.html">Aktiviteter</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-box">
-        <div class="badge">Rank unlocks · Våben · Ability cards · Pamphlets</div>
-        <h1>Red Dead Online rank unlocks</h1>
-        <p>Brug denne side til hurtigt at se, hvilke levels der betyder noget. Tabellen fokuserer på de unlocks, der faktisk påvirker din progression: våben, fiskeri, ability slots, ammo, pamphlets og stærke købsmål.</p>
-      </div>
-      <aside class="side-box">
-        <h3>Hvad skal du prioritere?</h3>
-        <ul>
-          <li><b>Lancaster Repeater</b> tidligt, hvis du vil have et solidt allround-våben.</li>
-          <li><b>Fishing Rod</b> åbner en rolig ekstra indtægt.</li>
-          <li><b>Bolt Action Rifle</b> er vigtig til jagt og PvE.</li>
-          <li><b>Carcano Rifle</b> er et stort mål for sniper/PvP.</li>
-          <li><b>Pamphlets</b> og ability upgrades er vigtigere end kosmetik.</li>
-        </ul>
-      </aside>
-    </section>
+<h1>Level Unlocks</h1>
 
-    <section>
-      <div class="stats">
-        <div class="stat"><strong id="countAll">0</strong><span>Unlocks i listen</span></div>
-        <div class="stat"><strong>24</strong><span>Vigtig rank for Bolt Action</span></div>
-        <div class="stat"><strong>42</strong><span>Vigtig rank for Carcano</span></div>
-        <div class="stat"><strong>84+</strong><span>Endgame pamphlets</span></div>
-      </div>
+<p>
+This guide shows important unlocks in Red Dead Online including weapons,
+equipment, ammo and useful upgrades.
+</p>
 
-      <div class="toolbar">
-        <input id="searchInput" type="search" placeholder="Søg fx Lancaster, Bolt Action, ammo, fishing, ability...">
-        <select id="categoryFilter">
-          <option value="all">Alle kategorier</option>
-          <option value="weapon">Våben</option>
-          <option value="ability">Ability</option>
-          <option value="equipment">Udstyr</option>
-          <option value="pamphlet">Pamphlet/ammo</option>
-          <option value="horse">Hest/saddle</option>
-        </select>
-        <select id="priorityFilter">
-          <option value="all">Alle prioriteter</option>
-          <option value="high">Høj</option>
-          <option value="medium">Medium</option>
-          <option value="low">Lav</option>
-        </select>
-      </div>
+<div class="section">
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Kategori</th>
-              <th>Unlock</th>
-              <th>Prioritet</th>
-              <th>Hvorfor det betyder noget</th>
-              <th>Anbefaling</th>
-            </tr>
-          </thead>
-          <tbody id="unlockRows"></tbody>
-        </table>
-      </div>
-    </section>
+<h2>Important Early Unlocks</h2>
 
-    <section class="cards">
-      <article class="card">
-        <h3>Bedste tidlige køb</h3>
-        <p>Lancaster Repeater, Varmint Rifle, Bolt Action Rifle og en god saddle giver mere værdi end tøj og pynt.</p>
-      </article>
-      <article class="card">
-        <h3>Undgå spild</h3>
-        <p>Køb ikke alle våben med det samme. Vælg få stærke våben og brug resten på ability cards, role progression og ammunition.</p>
-      </article>
-      <article class="card">
-        <h3>Senere mål</h3>
-        <p>Carcano Rifle, explosive ammo pamphlets, bedre heste og maxede ability cards er stærke mål efter midgame.</p>
-      </article>
-    </section>
+<table>
+  <tr>
+    <th>Level</th>
+    <th>Unlock</th>
+    <th>Why It Matters</th>
+  </tr>
 
-    <footer class="footer">
-      Tip: Brug denne side sammen med pengeguiden. Et unlock er kun nyttigt, hvis du også har dollars nok til at købe det.
-    </footer>
-  </main>
+  <tr>
+    <td>8</td>
+    <td>Fishing Rod</td>
+    <td>Fishing becomes available.</td>
+  </tr>
 
-  <script>
-    const unlocks = [
-      { rank: 5, category: 'ability', name: 'Første passive Ability Card slot', priority: 'high', note: 'Ability cards ændrer din spillestil og overlevelse markant.', advice: 'Start med defensive kort eller kort der hjælper dig med headshots.' },
-      { rank: 8, category: 'weapon', name: 'Varmint Rifle', priority: 'high', note: 'Meget nyttig til smådyr, fugle og tidlig jagt.', advice: 'Køb tidligt hvis du vil jage og tjene penge på perfekte pelts.' },
-      { rank: 10, category: 'equipment', name: 'Treasure Map milestone', priority: 'high', note: 'Treasure maps giver cash og gold, som er vigtigt i starten.', advice: 'Brug maps løbende. Lad dem ikke bare ligge.' },
-      { rank: 12, category: 'weapon', name: 'Lancaster Repeater', priority: 'high', note: 'Et af de bedste allround-våben i Red Dead Online.', advice: 'Meget stærkt første større våbenkøb.' },
-      { rank: 14, category: 'equipment', name: 'Fishing Rod', priority: 'medium', note: 'Åbner fiskeri som afslappet aktivitet og ekstra indtægt.', advice: 'Godt hvis du vil spille roligt eller variere din grind.' },
-      { rank: 16, category: 'weapon', name: 'Schofield Revolver', priority: 'medium', note: 'Solid revolver med god skade og præcision.', advice: 'Køb hvis du mangler en bedre sidearm.' },
-      { rank: 18, category: 'weapon', name: 'Litchfield Repeater', priority: 'low', note: 'Høj skade, men lavere kontrol end Lancaster.', advice: 'Spring ofte over, hvis du allerede er glad for Lancaster.' },
-      { rank: 20, category: 'ability', name: 'Flere ability card muligheder', priority: 'high', note: 'På dette tidspunkt bør du begynde at forme dit build.', advice: 'Vælg én retning: PvE, PvP, tank, sniper eller support.' },
-      { rank: 21, category: 'weapon', name: 'Pump Action Shotgun', priority: 'high', note: 'Stærk tæt på i missions, bounties og defensive situationer.', advice: 'Godt køb hvis du ofte kæmper på kort afstand.' },
-      { rank: 24, category: 'weapon', name: 'Bolt Action Rifle', priority: 'high', note: 'Vigtig rifle til jagt, PvE og mellem/lang distance.', advice: 'Et af de bedste køb i mid-early game.' },
-      { rank: 25, category: 'pamphlet', name: 'Split Point Ammo pamphlet', priority: 'medium', note: 'Special ammo kan hjælpe med skade, præcision og XP-bonusser.', advice: 'Køb når du har styr på dine basisvåben.' },
-      { rank: 28, category: 'horse', name: 'Bedre heste begynder at blive relevante', priority: 'medium', note: 'Mobilitet betyder meget for Collector, Trader og generel grinding.', advice: 'Spar op til god saddle/stirrups før du køber hest kun for udseende.' },
-      { rank: 30, category: 'weapon', name: 'Machete', priority: 'low', note: 'Sjovt nærkampsvåben, men ikke vigtigt for progression.', advice: 'Køb kun hvis du vil have det for stil eller melee.' },
-      { rank: 31, category: 'weapon', name: 'Rolling Block Rifle', priority: 'medium', note: 'Tidlig sniper-rifle til langdistance.', advice: 'Relevant hvis du elsker scope gameplay før Carcano.' },
-      { rank: 34, category: 'weapon', name: 'Double-Action Revolver', priority: 'low', note: 'Hurtig revolver, men ikke nødvendig for alle.', advice: 'Vent med den medmindre du bygger dual-wield stil.' },
-      { rank: 36, category: 'weapon', name: 'Dynamite', priority: 'medium', note: 'Kraftigt værktøj til kaos, PvP og pressede situationer.', advice: 'Brug med omtanke. Dyrt og voldsomt.' },
-      { rank: 38, category: 'weapon', name: 'Semi-Auto Shotgun', priority: 'medium', note: 'Hurtig shotgun med høj fire rate.', advice: 'God, men dyr. Pump Action er ofte nok tidligere.' },
-      { rank: 40, category: 'ability', name: 'Ability cards bør opgraderes', priority: 'high', note: 'Opgraderede kort gør større forskel end mange nye våben.', advice: 'Brug penge på at få dine vigtigste kort til højere tier.' },
-      { rank: 42, category: 'weapon', name: 'Carcano Rifle', priority: 'high', note: 'En af de stærkeste sniper-rifles og vigtig i PvP/langdistance.', advice: 'Køb hvis du spiller PvP, sniper eller vil have stærk langdistance.' },
-      { rank: 46, category: 'weapon', name: 'LeMat Revolver', priority: 'medium', note: 'Populær revolver med ekstra shotgun-funktion.', advice: 'God sidearm, især hvis du kan lide fleksibilitet.' },
-      { rank: 50, category: 'ability', name: 'Stabil build-fase', priority: 'high', note: 'Ved rank 50 bør du have et klart ability-card build.', advice: 'Stop med tilfældige køb og optimer efter din spillestil.' },
-      { rank: 60, category: 'horse', name: 'Bedre heste, saddles og stirrups', priority: 'medium', note: 'Transport bliver vigtigere jo mere du grinder roller.', advice: 'Prioritér god saddle/stirrups over kosmetiske heste.' },
-      { rank: 65, category: 'pamphlet', name: 'Stærkere ammo/crafting muligheder', priority: 'medium', note: 'Pamphlets bliver mere relevante, når du har penge nok.', advice: 'Køb kun dem du faktisk bruger.' },
-      { rank: 70, category: 'equipment', name: 'Endgame preparation', priority: 'medium', note: 'Nu handler progression mere om builds, roller og effektiv grinding.', advice: 'Fokuser på maxede kort, roller og gode våben-loadouts.' },
-      { rank: 84, category: 'pamphlet', name: 'Explosive Express Ammo pamphlet', priority: 'high', note: 'Endgame-ammo med voldsom effekt i PvP/nødsituationer.', advice: 'Dyrt, men meget stærkt senere i spillet.' },
-      { rank: 90, category: 'pamphlet', name: 'Dynamite Arrow pamphlet', priority: 'high', note: 'Ekstrem skade og kaos. Mest relevant til endgame.', advice: 'Vent til du har økonomien til at bruge det.' },
-      { rank: 93, category: 'pamphlet', name: 'Incendiary Buckshot pamphlet', priority: 'medium', note: 'Special shotgun ammo med høj effekt tæt på.', advice: 'God til shotgun-spillere, men ikke første prioritet.' },
-      { rank: 96, category: 'pamphlet', name: 'Explosive Slug pamphlet', priority: 'medium', note: 'Kraftig shotgun special ammo.', advice: 'Endgame-køb for spillere der elsker shotguns.' },
-      { rank: 100, category: 'ability', name: 'Endgame build', priority: 'high', note: 'Ved rank 100 bør dine vigtigste våben og cards være optimeret.', advice: 'Lav flere builds: PvE, PvP, sniper og support.' }
-    ];
+  <tr>
+    <td>10</td>
+    <td>Off-Hand Holster</td>
+    <td>Allows dual wielding.</td>
+  </tr>
 
-    const searchInput = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
-    const priorityFilter = document.getElementById('priorityFilter');
-    const rows = document.getElementById('unlockRows');
-    const countAll = document.getElementById('countAll');
+  <tr>
+    <td>12</td>
+    <td>Varmint Rifle</td>
+    <td>Important for hunting small animals.</td>
+  </tr>
 
-    function categoryLabel(category) {
-      return {
-        weapon: 'Våben',
-        ability: 'Ability',
-        equipment: 'Udstyr',
-        pamphlet: 'Pamphlet/ammo',
-        horse: 'Hest/saddle'
-      }[category] || category;
-    }
+  <tr>
+    <td>14</td>
+    <td>Lancaster Repeater</td>
+    <td>One of the best weapons in the game.</td>
+  </tr>
 
-    function priorityLabel(priority) {
-      return {
-        high: 'Høj',
-        medium: 'Medium',
-        low: 'Lav'
-      }[priority] || priority;
-    }
+  <tr>
+    <td>21</td>
+    <td>Bolt Action Rifle</td>
+    <td>Excellent hunting and combat weapon.</td>
+  </tr>
 
-    function render() {
-      const q = searchInput.value.trim().toLowerCase();
-      const category = categoryFilter.value;
-      const priority = priorityFilter.value;
+  <tr>
+    <td>22</td>
+    <td>Pump Action Shotgun</td>
+    <td>Very strong close-range weapon.</td>
+  </tr>
 
-      const filtered = unlocks.filter(item => {
-        const text = `${item.rank} ${item.category} ${item.name} ${item.note} ${item.advice}`.toLowerCase();
-        const matchSearch = !q || text.includes(q);
-        const matchCategory = category === 'all' || item.category === category;
-        const matchPriority = priority === 'all' || item.priority === priority;
-        return matchSearch && matchCategory && matchPriority;
-      });
+  <tr>
+    <td>50</td>
+    <td>Carcano Rifle</td>
+    <td>One of the strongest sniper rifles.</td>
+  </tr>
+</table>
 
-      countAll.textContent = unlocks.length;
+</div>
 
-      rows.innerHTML = filtered.map(item => `
-        <tr>
-          <td class="rank">Rank ${item.rank}</td>
-          <td><span class="tag">${categoryLabel(item.category)}</span></td>
-          <td><b>${item.name}</b></td>
-          <td><span class="priority ${item.priority}">${priorityLabel(item.priority)}</span></td>
-          <td>${item.note}</td>
-          <td>${item.advice}</td>
-        </tr>
-      `).join('');
-    }
+<div class="section">
 
-    searchInput.addEventListener('input', render);
-    categoryFilter.addEventListener('change', render);
-    priorityFilter.addEventListener('change', render);
-    render();
-  </script>
+<h2>Recommended Unlock Priorities</h2>
+
+<ul>
+  <li>Lancaster Repeater</li>
+  <li>Bolt Action Rifle</li>
+  <li>Good saddle and stirrups</li>
+  <li>Important ability cards</li>
+  <li>Role unlocks</li>
+</ul>
+
+</div>
+
+<div class="section">
+
+<h2>What To Avoid Buying Early</h2>
+
+<ul>
+  <li>Expensive cosmetic outfits</li>
+  <li>Weapon skins and variants</li>
+  <li>Too many sidearms</li>
+  <li>Late-game ammo types</li>
+</ul>
+
+</div>
+
+<div class="section">
+
+<h2>Best Early Game Setup</h2>
+
+<ul>
+  <li>Lancaster Repeater</li>
+  <li>Bolt Action Rifle</li>
+  <li>Pump Action Shotgun</li>
+  <li>Paint It Black</li>
+  <li>Bounty Hunter role</li>
+</ul>
+
+</div>
+
 </body>
 </html>
