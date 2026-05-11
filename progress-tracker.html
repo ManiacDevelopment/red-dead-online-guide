@@ -1,256 +1,237 @@
 <!doctype html>
-<html lang="da">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Progress Tracker | Red Dead Online Guide</title>
-  <meta name="description" content="Progress tracker til Red Dead Online. Hold styr på våben, roller, ability cards og vigtige unlocks." />
+
   <style>
-    :root {
-      --bg: #110b08;
-      --panel: #1d1510;
-      --text: #f6ead8;
-      --muted: #bca990;
-      --gold: #d9a13d;
-      --red: #8e2119;
-      --border: rgba(255,255,255,.13);
-      --shadow: 0 22px 70px rgba(0,0,0,.42);
-      --radius: 22px;
+    body{
+      background:#110b08;
+      color:#f6ead8;
+      font-family:Arial,sans-serif;
+      max-width:1000px;
+      margin:auto;
+      padding:30px;
+      line-height:1.6;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: Georgia, 'Times New Roman', serif;
-      background:
-        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
-        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
-        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    h1,h2{
+      color:#d9a13d;
     }
 
-    a { color: inherit; text-decoration: none; }
-    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(17,11,8,.88); border-bottom: 1px solid var(--border); }
-    .nav { max-width: 1180px; margin: auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
-    .brand-mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318); color: #190b04; box-shadow: 0 0 0 3px rgba(217,161,61,.18); }
-    .nav-links { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; font-family: Arial, sans-serif; font-size: 13px; }
-    .nav-links a { padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; color: var(--muted); }
-    .nav-links a:hover, .nav-links a.active { border-color: rgba(217,161,61,.38); color: var(--text); background: rgba(217,161,61,.10); }
+    .section{
+      background:#1d1510;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:20px;
+      margin-bottom:24px;
+    }
 
-    main { max-width: 1180px; margin: auto; padding: 56px 18px 76px; }
-    .hero { display: grid; grid-template-columns: 1fr .55fr; gap: 22px; align-items: stretch; margin-bottom: 34px; }
-    .box { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); box-shadow: var(--shadow); padding: 26px; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(217,161,61,.12); border: 1px solid rgba(217,161,61,.30); color: #f5c876; font-family: Arial, sans-serif; font-size: 13px; margin-bottom: 18px; }
-    h1 { margin: 0 0 14px; font-size: clamp(42px, 6vw, 78px); line-height: .92; letter-spacing: -.055em; text-transform: uppercase; }
-    h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; text-transform: uppercase; }
-    h3 { margin: 0 0 8px; font-size: 23px; }
-    p, li, button, label, input { font-family: Arial, sans-serif; }
-    p, li { color: var(--muted); line-height: 1.65; }
-    .hero ul { margin: 10px 0 0; padding-left: 18px; }
+    .item{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:12px;
+      padding:12px;
+      border-radius:12px;
+      background:#281b13;
+    }
 
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
-    .stat { border-radius: 20px; border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 18px; }
-    .stat strong { display: block; color: var(--gold); font-size: 32px; font-family: Arial, sans-serif; line-height: 1; }
-    .stat span { color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; }
+    input[type="checkbox"]{
+      width:20px;
+      height:20px;
+      accent-color:#d9a13d;
+    }
 
-    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 22px; }
-    .filter, .btn { border: 1px solid var(--border); background: rgba(0,0,0,.22); color: var(--muted); padding: 12px 13px; border-radius: 14px; cursor: pointer; font-weight: 800; }
-    .filter.active, .filter:hover, .btn:hover { color: #ffe0a1; border-color: rgba(217,161,61,.42); background: rgba(217,161,61,.12); }
-    .btn.danger:hover { border-color: rgba(142,33,25,.8); background: rgba(142,33,25,.22); }
+    .progress-bar{
+      width:100%;
+      height:24px;
+      background:#281b13;
+      border-radius:999px;
+      overflow:hidden;
+      margin-top:20px;
+    }
 
-    .tracker { border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel); padding: 20px; box-shadow: 0 10px 32px rgba(0,0,0,.20); }
-    .items { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .item { display: grid; grid-template-columns: 34px 1fr auto; gap: 12px; align-items: start; border-radius: 16px; border: 1px solid var(--border); background: rgba(0,0,0,.20); padding: 14px; }
-    .item input { width: 22px; height: 22px; accent-color: var(--gold); margin-top: 2px; }
-    .item.done { opacity: .62; }
-    .item.done h3 { text-decoration: line-through; }
-    .item p { margin: 0; font-size: 13px; line-height: 1.45; }
-    .tag { display: inline-flex; padding: 6px 9px; border-radius: 999px; background: rgba(217,161,61,.11); color: #f0c06f; border: 1px solid rgba(217,161,61,.20); font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; white-space: nowrap; }
-    .progress-wrap { margin: 12px 0 20px; height: 14px; border-radius: 999px; overflow: hidden; background: rgba(255,255,255,.08); border: 1px solid var(--border); }
-    .progress { height: 100%; width: 0%; background: linear-gradient(90deg, var(--gold), #8f4d19); border-radius: 999px; transition: width .25s ease; }
-    .footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--border); color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.6; }
+    .progress{
+      height:100%;
+      width:0%;
+      background:#d9a13d;
+      transition:.3s ease;
+    }
 
-    @media (max-width: 1000px) { .hero { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(2, 1fr); } .nav { align-items: flex-start; flex-direction: column; } .nav-links { justify-content: flex-start; } }
-    @media (max-width: 700px) { main { padding-top: 34px; } .stats, .items { grid-template-columns: 1fr; } .item { grid-template-columns: 30px 1fr; } .item .tag { grid-column: 2; justify-self: start; } }
+    .stats{
+      margin-top:10px;
+      color:#f5c876;
+      font-weight:bold;
+    }
+
+    button{
+      margin-top:20px;
+      padding:12px 18px;
+      border:none;
+      border-radius:12px;
+      background:#d9a13d;
+      color:#140a04;
+      font-weight:bold;
+      cursor:pointer;
+    }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <nav class="nav">
-      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
-      <div class="nav-links">
-        <a href="index.html">Start</a>
-        <a href="unlocks.html">Unlocks</a>
-        <a href="money-guide.html">Penge</a>
-        <a href="ability-cards.html">Ability Cards</a>
-        <a href="activities.html">Aktiviteter</a>
-        <a href="weapons.html">Våben</a>
-        <a href="beginner-roadmap.html">Roadmap</a>
-        <a href="build-generator.html">Build Generator</a>
-        <a href="daily-tracker.html">Daily Tracker</a>
-        <a href="tier-lists.html">Tier Lists</a>
-        <a href="calculators.html">Calculators</a>
-        <a class="active" href="progress-tracker.html">Progress</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="box">
-        <div class="badge">Våben · Roller · Ability Cards · Lokal gemning</div>
-        <h1>Progress tracker</h1>
-        <p>Hold styr på, hvad du allerede har låst op eller købt. Flueben gemmes lokalt i browseren, så du kan bruge siden som personlig checklist.</p>
-      </div>
-      <aside class="box">
-        <h3>Brug den til</h3>
-        <ul>
-          <li>Våben du ejer eller vil købe.</li>
-          <li>Roller du har låst op.</li>
-          <li>Ability cards du bruger.</li>
-          <li>Vigtige progression-mål.</li>
-        </ul>
-      </aside>
-    </section>
+<h1>Progress Tracker</h1>
 
-    <section class="stats">
-      <div class="stat"><strong id="doneCount">0</strong><span>Markeret</span></div>
-      <div class="stat"><strong id="totalCount">0</strong><span>I valgt filter</span></div>
-      <div class="stat"><strong id="percentText">0%</strong><span>Fremskridt</span></div>
-      <div class="stat"><strong id="categoryText">Alle</strong><span>Kategori</span></div>
-    </section>
+<p>
+Track your weapons, roles, unlocks and progression in Red Dead Online.
+All progress is saved locally in your browser.
+</p>
 
-    <section class="tracker">
-      <h2>Din progression</h2>
-      <p>Vælg kategori og markér det du allerede har eller vil betragte som klaret.</p>
-      <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+<div class="section">
+  <h2>Weapons</h2>
 
-      <div class="toolbar">
-        <button class="filter active" data-filter="all">Alle</button>
-        <button class="filter" data-filter="weapon">Våben</button>
-        <button class="filter" data-filter="role">Roller</button>
-        <button class="filter" data-filter="card">Ability Cards</button>
-        <button class="filter" data-filter="goal">Mål</button>
-        <button class="btn danger" id="resetBtn">Nulstil</button>
-      </div>
+  <label class="item">
+    <input type="checkbox" class="track">
+    Lancaster Repeater
+  </label>
 
-      <div class="items" id="items"></div>
-    </section>
+  <label class="item">
+    <input type="checkbox" class="track">
+    Bolt Action Rifle
+  </label>
 
-    <footer class="footer">
-      Data gemmes kun i din browser via localStorage. Hvis du bruger en anden browser/enhed, starter trackeren forfra.
-    </footer>
-  </main>
+  <label class="item">
+    <input type="checkbox" class="track">
+    Pump Action Shotgun
+  </label>
 
-  <script>
-    const STORAGE_KEY = 'rdo_progress_tracker_v1';
+  <label class="item">
+    <input type="checkbox" class="track">
+    Carcano Rifle
+  </label>
+</div>
 
-    const entries = [
-      { id: 'weapon-lancaster', type: 'weapon', title: 'Lancaster Repeater', text: 'Stærkt allround-våben og et af de bedste tidlige køb.' },
-      { id: 'weapon-varmint', type: 'weapon', title: 'Varmint Rifle', text: 'Vigtig til smådyr, fugle og jagt.' },
-      { id: 'weapon-bolt', type: 'weapon', title: 'Bolt Action Rifle', text: 'Meget vigtig til jagt, PvE og range.' },
-      { id: 'weapon-pump', type: 'weapon', title: 'Pump Action Shotgun', text: 'Stærk tæt på i missions og bounties.' },
-      { id: 'weapon-carcano', type: 'weapon', title: 'Carcano Rifle', text: 'Topvalg til sniper og langdistance.' },
-      { id: 'weapon-lemat', type: 'weapon', title: 'LeMat Revolver', text: 'Fleksibel sidearm med shotgun-altfire.' },
-      { id: 'role-bounty', type: 'role', title: 'Bounty Hunter', text: 'Bedste rolle til gold og combat.' },
-      { id: 'role-collector', type: 'role', title: 'Collector', text: 'Bedste solo cash og XP.' },
-      { id: 'role-trader', type: 'role', title: 'Trader', text: 'Passiv cash, jagt og camp progression.' },
-      { id: 'role-moonshiner', type: 'role', title: 'Moonshiner', text: 'Passiv cash og korte salgsruter.' },
-      { id: 'role-naturalist', type: 'role', title: 'Naturalist', text: 'Legendary animals, samples og variation.' },
-      { id: 'card-pib', type: 'card', title: 'Paint It Black', text: 'Stærkt Dead Eye card til præcision og headshots.' },
-      { id: 'card-iron', type: 'card', title: 'Iron Lung', text: 'Solid defensiv base i mange builds.' },
-      { id: 'card-strange', type: 'card', title: 'Strange Medicine', text: 'God sustain i PvE og lange kampe.' },
-      { id: 'card-slow', type: 'card', title: 'Slow and Steady', text: 'Stærkt tank-card.' },
-      { id: 'card-sharp', type: 'card', title: 'Sharpshooter', text: 'Godt til scope/sniper builds.' },
-      { id: 'goal-first-role', type: 'goal', title: 'Lås første specialistrolle op', text: 'Vigtigt spring for penge, gold og progression.' },
-      { id: 'goal-build', type: 'goal', title: 'Lav første faste ability build', text: 'Vælg én retning og opgrader de vigtigste cards.' },
-      { id: 'goal-saddle', type: 'goal', title: 'Køb god saddle/stirrups', text: 'Mobilitet betyder meget i næsten alt indhold.' },
-      { id: 'goal-money-loop', type: 'goal', title: 'Få stabil money-loop', text: 'Kombinér rolle, dailies og collectibles.' }
-    ];
+<div class="section">
+  <h2>Roles</h2>
 
-    const items = document.getElementById('items');
-    const filters = document.querySelectorAll('.filter');
-    const resetBtn = document.getElementById('resetBtn');
-    const doneCount = document.getElementById('doneCount');
-    const totalCount = document.getElementById('totalCount');
-    const percentText = document.getElementById('percentText');
-    const categoryText = document.getElementById('categoryText');
-    const progressBar = document.getElementById('progressBar');
+  <label class="item">
+    <input type="checkbox" class="track">
+    Bounty Hunter
+  </label>
 
-    let state = loadState();
-    let activeFilter = 'all';
+  <label class="item">
+    <input type="checkbox" class="track">
+    Collector
+  </label>
 
-    function loadState() {
-      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-      catch { return {}; }
-    }
+  <label class="item">
+    <input type="checkbox" class="track">
+    Trader
+  </label>
 
-    function saveState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
+  <label class="item">
+    <input type="checkbox" class="track">
+    Moonshiner
+  </label>
+</div>
 
-    function label(type) {
-      return { weapon: 'Våben', role: 'Rolle', card: 'Ability', goal: 'Mål', all: 'Alle' }[type] || type;
-    }
+<div class="section">
+  <h2>Ability Cards</h2>
 
-    function visibleEntries() {
-      return entries.filter(entry => activeFilter === 'all' || entry.type === activeFilter);
-    }
+  <label class="item">
+    <input type="checkbox" class="track">
+    Paint It Black
+  </label>
 
-    function render() {
-      const list = visibleEntries();
-      items.innerHTML = list.map(entry => {
-        const checked = !!state[entry.id];
-        return `
-          <label class="item ${checked ? 'done' : ''}">
-            <input type="checkbox" data-id="${entry.id}" ${checked ? 'checked' : ''}>
-            <span><h3>${entry.title}</h3><p>${entry.text}</p></span>
-            <span class="tag">${label(entry.type)}</span>
-          </label>
-        `;
-      }).join('');
+  <label class="item">
+    <input type="checkbox" class="track">
+    Iron Lung
+  </label>
 
-      document.querySelectorAll('input[type="checkbox"][data-id]').forEach(input => {
-        input.addEventListener('change', () => {
-          state[input.dataset.id] = input.checked;
-          saveState();
-          render();
-        });
-      });
+  <label class="item">
+    <input type="checkbox" class="track">
+    Strange Medicine
+  </label>
 
-      updateStats(list);
-    }
+  <label class="item">
+    <input type="checkbox" class="track">
+    Slow and Steady
+  </label>
+</div>
 
-    function updateStats(list) {
-      const done = list.filter(entry => state[entry.id]).length;
-      const total = list.length;
-      const percent = total ? Math.round((done / total) * 100) : 0;
-      doneCount.textContent = done;
-      totalCount.textContent = total;
-      percentText.textContent = `${percent}%`;
-      categoryText.textContent = label(activeFilter);
-      progressBar.style.width = `${percent}%`;
-    }
+<div class="section">
+  <h2>Progress</h2>
 
-    filters.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filters.forEach(x => x.classList.remove('active'));
-        btn.classList.add('active');
-        activeFilter = btn.dataset.filter;
-        render();
-      });
-    });
+  <div class="progress-bar">
+    <div class="progress" id="progress"></div>
+  </div>
 
-    resetBtn.addEventListener('click', () => {
-      if (!confirm('Vil du nulstille hele progress trackeren?')) return;
-      state = {};
-      saveState();
-      render();
-    });
+  <div class="stats" id="stats">
+    0% completed
+  </div>
 
-    render();
-  </script>
+  <button onclick="resetProgress()">Reset Progress</button>
+</div>
+
+<script>
+const STORAGE_KEY = 'rdo_progress_tracker';
+
+const checkboxes = document.querySelectorAll('.track');
+const progress = document.getElementById('progress');
+const stats = document.getElementById('stats');
+
+function save(){
+  const values = [];
+
+  checkboxes.forEach(box => {
+    values.push(box.checked);
+  });
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
+
+  updateProgress();
+}
+
+function load(){
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  checkboxes.forEach((box,index) => {
+    box.checked = saved[index] || false;
+  });
+
+  updateProgress();
+}
+
+function updateProgress(){
+  const total = checkboxes.length;
+  let completed = 0;
+
+  checkboxes.forEach(box => {
+    if(box.checked) completed++;
+  });
+
+  const percent = Math.round((completed / total) * 100);
+
+  progress.style.width = percent + '%';
+  stats.innerText = `${completed}/${total} completed (${percent}%)`;
+}
+
+function resetProgress(){
+  localStorage.removeItem(STORAGE_KEY);
+
+  checkboxes.forEach(box => {
+    box.checked = false;
+  });
+
+  updateProgress();
+}
+
+checkboxes.forEach(box => {
+  box.addEventListener('change', save);
+});
+
+load();
+</script>
+
 </body>
 </html>
