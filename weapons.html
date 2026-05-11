@@ -1,205 +1,165 @@
 <!doctype html>
-<html lang="da">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Våben | Red Dead Online Guide</title>
-  <meta name="description" content="Dansk våbenguide til Red Dead Online: bedste våben, køb efter level, loadouts til PvE, PvP, jagt og sniper." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Weapons | Red Dead Online Guide</title>
+
   <style>
-    :root {
-      --bg: #110b08;
-      --panel: #1d1510;
-      --text: #f6ead8;
-      --muted: #bca990;
-      --gold: #d9a13d;
-      --red: #8e2119;
-      --border: rgba(255,255,255,.13);
-      --shadow: 0 22px 70px rgba(0,0,0,.42);
-      --radius: 22px;
+    body{
+      background:#110b08;
+      color:#f6ead8;
+      font-family:Arial,sans-serif;
+      max-width:1000px;
+      margin:auto;
+      padding:30px;
+      line-height:1.7;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: Georgia, 'Times New Roman', serif;
-      background:
-        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
-        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
-        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+
+    h1,h2{
+      color:#d9a13d;
     }
-    a { color: inherit; text-decoration: none; }
-    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(17,11,8,.88); border-bottom: 1px solid var(--border); }
-    .nav { max-width: 1180px; margin: auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
-    .brand-mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318); color: #190b04; box-shadow: 0 0 0 3px rgba(217,161,61,.18); }
-    .nav-links { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; font-family: Arial, sans-serif; font-size: 13px; }
-    .nav-links a { padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; color: var(--muted); }
-    .nav-links a:hover, .nav-links a.active { border-color: rgba(217,161,61,.38); color: var(--text); background: rgba(217,161,61,.10); }
-    main { max-width: 1180px; margin: auto; padding: 56px 18px 76px; }
-    .hero { display: grid; grid-template-columns: 1fr .55fr; gap: 22px; align-items: stretch; margin-bottom: 34px; }
-    .box { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); box-shadow: var(--shadow); padding: 26px; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(217,161,61,.12); border: 1px solid rgba(217,161,61,.30); color: #f5c876; font-family: Arial, sans-serif; font-size: 13px; margin-bottom: 18px; }
-    h1 { margin: 0 0 14px; font-size: clamp(42px, 6vw, 78px); line-height: .92; letter-spacing: -.055em; text-transform: uppercase; }
-    h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; text-transform: uppercase; }
-    h3 { margin: 0 0 8px; font-size: 24px; }
-    p, li, button, input, select { font-family: Arial, sans-serif; }
-    p, li { color: var(--muted); line-height: 1.65; }
-    .hero ul { margin: 10px 0 0; padding-left: 18px; }
-    .toolbar { display: grid; grid-template-columns: 1fr 220px; gap: 12px; margin: 18px 0 22px; }
-    input, select { width: 100%; min-height: 48px; padding: 13px 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(0,0,0,.24); color: var(--text); outline: none; }
-    select option { background: #1d1510; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .card { min-height: 270px; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); padding: 20px; box-shadow: 0 10px 32px rgba(0,0,0,.20); display: flex; flex-direction: column; }
-    .card:hover { border-color: rgba(217,161,61,.44); transform: translateY(-2px); }
-    .icon { width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 14px; font-size: 25px; background: rgba(217,161,61,.13); border: 1px solid rgba(217,161,61,.22); }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
-    .tag { display: inline-flex; padding: 6px 9px; border-radius: 999px; background: rgba(217,161,61,.11); color: #f0c06f; border: 1px solid rgba(217,161,61,.20); font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; }
-    .meta { display: grid; gap: 8px; margin-top: auto; padding-top: 14px; font-family: Arial, sans-serif; font-size: 13px; color: var(--muted); }
-    .score { display: flex; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 8px; }
-    .score b { color: var(--gold); }
-    .loadouts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 34px; }
-    .loadout { border-radius: var(--radius); border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 18px; }
-    .loadout ul { margin: 12px 0 0; padding-left: 18px; }
-    .table-wrap { margin-top: 16px; overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel); }
-    table { width: 100%; min-width: 820px; border-collapse: collapse; }
-    th, td { padding: 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; font-family: Arial, sans-serif; font-size: 14px; }
-    th { background: rgba(142,33,25,.38); color: #f5c876; text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
-    td { color: var(--muted); }
-    td b { color: var(--text); }
-    .footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--border); color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.6; }
-    @media (max-width: 1040px) { .loadouts { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 940px) { .hero, .grid { grid-template-columns: 1fr; } .nav { align-items: flex-start; flex-direction: column; } .nav-links { justify-content: flex-start; } }
-    @media (max-width: 620px) { main { padding-top: 34px; } .toolbar, .loadouts { grid-template-columns: 1fr; } }
+
+    .section{
+      background:#1d1510;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:22px;
+      margin-bottom:24px;
+    }
+
+    .weapon{
+      background:#281b13;
+      padding:16px;
+      border-radius:14px;
+      margin-bottom:16px;
+    }
+
+    .title{
+      color:#f5c876;
+      font-weight:bold;
+      font-size:18px;
+      margin-bottom:8px;
+    }
+
+    .tag{
+      display:inline-block;
+      background:#d9a13d;
+      color:#140a04;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+
+    ul{
+      padding-left:20px;
+    }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <nav class="nav">
-      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
-      <div class="nav-links">
-        <a href="index.html">Start</a>
-        <a href="unlocks.html">Unlocks</a>
-        <a href="money-guide.html">Penge</a>
-        <a href="ability-cards.html">Ability Cards</a>
-        <a href="activities.html">Aktiviteter</a>
-        <a class="active" href="weapons.html">Våben</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="box">
-        <div class="badge">Våben · Loadouts · Købsprioritet</div>
-        <h1>Bedste våben i Red Dead Online</h1>
-        <p>Du behøver ikke købe alt. Det vigtigste er at få få, stærke våben der dækker de situationer du faktisk spiller: missions, bounties, jagt, PvP, sniper og close range.</p>
-      </div>
-      <aside class="box">
-        <h3>Kort anbefaling</h3>
-        <ul>
-          <li><b>Allround:</b> Lancaster Repeater</li>
-          <li><b>Jagt/PvE:</b> Bolt Action Rifle</li>
-          <li><b>Close range:</b> Pump Action Shotgun</li>
-          <li><b>Sniper:</b> Carcano Rifle</li>
-          <li><b>Sidearm:</b> Schofield eller LeMat</li>
-        </ul>
-      </aside>
-    </section>
+<h1>Best Weapons in Red Dead Online</h1>
 
-    <section>
-      <h2>Våbendatabase</h2>
-      <p>Søg eller filtrér efter våbentype.</p>
-      <div class="toolbar">
-        <input id="searchInput" type="search" placeholder="Søg fx Lancaster, Bolt Action, Carcano, shotgun...">
-        <select id="typeFilter">
-          <option value="all">Alle typer</option>
-          <option value="repeater">Repeaters</option>
-          <option value="rifle">Rifles</option>
-          <option value="shotgun">Shotguns</option>
-          <option value="sidearm">Sidearms</option>
-          <option value="bow">Bow/melee</option>
-        </select>
-      </div>
-      <div class="grid" id="weaponGrid"></div>
-    </section>
+<p>
+You do not need to buy every weapon. Focus on a few strong weapons that cover
+the situations you actually play: PvE, hunting, bounties, PvP and long-range combat.
+</p>
 
-    <section>
-      <h2>Anbefalede loadouts</h2>
-      <div class="loadouts">
-        <article class="loadout"><h3>PvE allround</h3><ul><li>Lancaster Repeater</li><li>Bolt Action Rifle</li><li>Pump Action Shotgun</li><li>Schofield/LeMat Revolver</li></ul></article>
-        <article class="loadout"><h3>Bounty Hunter</h3><ul><li>Bolt Action Rifle</li><li>Pump Action Shotgun</li><li>Lancaster Repeater</li><li>Stærk revolver</li></ul></article>
-        <article class="loadout"><h3>Sniper/PvP</h3><ul><li>Carcano Rifle</li><li>Lancaster Repeater</li><li>Semi-Auto/Pump Shotgun</li><li>Dual sidearms</li></ul></article>
-        <article class="loadout"><h3>Jagt</h3><ul><li>Varmint Rifle</li><li>Bolt Action Rifle</li><li>Bow</li><li>Lasso/knife til små situationer</li></ul></article>
-      </div>
-    </section>
+<div class="section">
+  <h2>Best Early Weapons</h2>
 
-    <section>
-      <h2>Købsrækkefølge</h2>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Prioritet</th><th>Køb</th><th>Hvorfor</th><th>Spring over tidligt</th></tr></thead>
-          <tbody>
-            <tr><td><b>1</b></td><td>Lancaster Repeater</td><td>Stærk allround og brugbar i næsten alt indhold.</td><td>Litchfield hvis du allerede klarer dig fint.</td></tr>
-            <tr><td><b>2</b></td><td>Varmint Rifle</td><td>God til smådyr, fugle og jagtøkonomi.</td><td>Dyre kosmetiske våbenvarianter.</td></tr>
-            <tr><td><b>3</b></td><td>Bolt Action Rifle</td><td>Meget vigtig til jagt, PvE og mellem/lang distance.</td><td>For mange sidearms.</td></tr>
-            <tr><td><b>4</b></td><td>Pump Action Shotgun</td><td>Stærk tæt på i missions og bounties.</td><td>Semi-Auto Shotgun indtil du har råd.</td></tr>
-            <tr><td><b>5</b></td><td>Carcano Rifle</td><td>Topvalg til sniper og langdistance.</td><td>Sniper-køb hvis du ikke bruger scope.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+  <div class="weapon">
+    <div class="tag">TOP PRIORITY</div>
+    <div class="title">Lancaster Repeater</div>
+    One of the best all-around weapons in Red Dead Online.
+    Great for missions, free roam, PvE and general combat.
+  </div>
 
-    <footer class="footer">
-      Kort sagt: køb ikke alt. Et godt allround-loadout og opgraderede ability cards giver mere værdi end mange våben, du aldrig bruger.
-    </footer>
-  </main>
+  <div class="weapon">
+    <div class="tag">HUNTING</div>
+    <div class="title">Varmint Rifle</div>
+    Essential for small animals and clean hunting.
+    Very useful if you want to make money from pelts.
+  </div>
 
-  <script>
-    const weapons = [
-      { icon: '🔁', name: 'Lancaster Repeater', type: 'repeater', tags: ['Allround', 'PvE', 'PvP'], text: 'Et af de mest stabile og anbefalede våben. God præcision, god fire rate og bred anvendelse.', damage: 7, value: 10, priority: 'Meget høj' },
-      { icon: '🔁', name: 'Litchfield Repeater', type: 'repeater', tags: ['Damage', 'Mid range'], text: 'Højere skade, men mindre behagelig kontrol. Ikke altid bedre end Lancaster.', damage: 8, value: 6, priority: 'Lav/medium' },
-      { icon: '🎯', name: 'Bolt Action Rifle', type: 'rifle', tags: ['Jagt', 'PvE', 'Range'], text: 'Meget stærkt køb til jagt og missions. Godt våben til spillere der vil være effektive.', damage: 8, value: 10, priority: 'Meget høj' },
-      { icon: '🔭', name: 'Carcano Rifle', type: 'rifle', tags: ['Sniper', 'PvP', 'Range'], text: 'Stærk sniper-rifle og et vigtigt mål for langdistance-spillere.', damage: 9, value: 9, priority: 'Høj senere' },
-      { icon: '🔭', name: 'Rolling Block Rifle', type: 'rifle', tags: ['Sniper', 'Tidlig'], text: 'Tidlig sniper-mulighed. God hvis du vil spille scope før Carcano.', damage: 9, value: 7, priority: 'Medium' },
-      { icon: '🦊', name: 'Varmint Rifle', type: 'rifle', tags: ['Jagt', 'Smådyr'], text: 'Vigtigt jagtvåben til små dyr og fugle. Hjælper med bedre pelts og indtjening.', damage: 3, value: 9, priority: 'Høj' },
-      { icon: '💥', name: 'Pump Action Shotgun', type: 'shotgun', tags: ['Close range', 'PvE'], text: 'Rigtig stærk tæt på og ofte nok til det meste shotgun-behov.', damage: 9, value: 9, priority: 'Høj' },
-      { icon: '💥', name: 'Semi-Auto Shotgun', type: 'shotgun', tags: ['Close range', 'Fire rate'], text: 'Høj fire rate og stærk tæt på, men dyrere og ikke altid nødvendig tidligt.', damage: 8, value: 7, priority: 'Medium' },
-      { icon: '🔫', name: 'Schofield Revolver', type: 'sidearm', tags: ['Sidearm', 'Præcision'], text: 'Solid revolver med god balance. Et godt tidligt sidearm-valg.', damage: 7, value: 8, priority: 'Medium/høj' },
-      { icon: '🔫', name: 'LeMat Revolver', type: 'sidearm', tags: ['Sidearm', 'Fleksibel'], text: 'Populær revolver med shotgun-altfire. God fleksibilitet senere.', damage: 8, value: 8, priority: 'Medium' },
-      { icon: '🔫', name: 'Double-Action Revolver', type: 'sidearm', tags: ['Dual-wield', 'Fire rate'], text: 'Hurtig, men ikke nødvendig for alle. Mest relevant til bestemt dual-wield stil.', damage: 5, value: 5, priority: 'Lav' },
-      { icon: '🏹', name: 'Bow', type: 'bow', tags: ['Stealth', 'Jagt'], text: 'God til stille jagt, stealth og variation. Ikke et must til alle, men meget nyttig i bestemte situationer.', damage: 6, value: 7, priority: 'Medium' }
-    ];
+  <div class="weapon">
+    <div class="tag">RIFLE</div>
+    <div class="title">Bolt Action Rifle</div>
+    Excellent for hunting, PvE and medium-to-long range combat.
+    One of the best value purchases.
+  </div>
+</div>
 
-    const grid = document.getElementById('weaponGrid');
-    const search = document.getElementById('searchInput');
-    const filter = document.getElementById('typeFilter');
+<div class="section">
+  <h2>Best Midgame Weapons</h2>
 
-    function render() {
-      const q = search.value.toLowerCase().trim();
-      const type = filter.value;
-      const visible = weapons.filter(w => {
-        const text = `${w.name} ${w.type} ${w.tags.join(' ')} ${w.text} ${w.priority}`.toLowerCase();
-        return (!q || text.includes(q)) && (type === 'all' || w.type === type);
-      });
-      grid.innerHTML = visible.map(w => `
-        <article class="card">
-          <div class="icon">${w.icon}</div>
-          <h3>${w.name}</h3>
-          <div class="tags">${w.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
-          <p>${w.text}</p>
-          <div class="meta">
-            <div class="score"><span>Skade</span><b>${w.damage}/10</b></div>
-            <div class="score"><span>Værdi</span><b>${w.value}/10</b></div>
-            <div class="score"><span>Prioritet</span><b>${w.priority}</b></div>
-          </div>
-        </article>
-      `).join('');
-    }
+  <div class="weapon">
+    <div class="tag">CLOSE RANGE</div>
+    <div class="title">Pump Action Shotgun</div>
+    Very strong in close-range fights, missions and bounties.
+  </div>
 
-    search.addEventListener('input', render);
-    filter.addEventListener('change', render);
-    render();
-  </script>
+  <div class="weapon">
+    <div class="tag">SIDEARM</div>
+    <div class="title">Schofield Revolver</div>
+    Reliable revolver with good damage and accuracy.
+  </div>
+
+  <div class="weapon">
+    <div class="tag">SNIPER</div>
+    <div class="title">Rolling Block Rifle</div>
+    Good early sniper option before you unlock stronger long-range weapons.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Best Late Game Weapons</h2>
+
+  <div class="weapon">
+    <div class="tag">S-TIER</div>
+    <div class="title">Carcano Rifle</div>
+    One of the strongest long-range weapons in the game.
+    Excellent for sniper builds and PvP.
+  </div>
+
+  <div class="weapon">
+    <div class="tag">SIDEARM</div>
+    <div class="title">LeMat Revolver</div>
+    Strong and flexible revolver with an alternate shotgun shot.
+  </div>
+
+  <div class="weapon">
+    <div class="tag">SHOTGUN</div>
+    <div class="title">Semi-Auto Shotgun</div>
+    High fire rate and very dangerous at close range.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Recommended Loadouts</h2>
+
+  <ul>
+    <li><strong>PvE:</strong> Lancaster Repeater, Bolt Action Rifle, Pump Action Shotgun</li>
+    <li><strong>Hunting:</strong> Varmint Rifle, Bolt Action Rifle, Bow</li>
+    <li><strong>Bounty Hunter:</strong> Lancaster Repeater, Bolt Action Rifle, Pump Action Shotgun</li>
+    <li><strong>Sniper:</strong> Carcano Rifle, Lancaster Repeater, strong sidearm</li>
+    <li><strong>PvP:</strong> Lancaster Repeater, Carcano Rifle, shotgun or revolvers</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Weapons To Avoid Early</h2>
+
+  <ul>
+    <li>Expensive weapons you do not actually use</li>
+    <li>Cosmetic weapon variants before core upgrades</li>
+    <li>Too many sidearms early in the game</li>
+    <li>Late-game ammo before you have a stable income</li>
+  </ul>
+</div>
+
 </body>
 </html>
