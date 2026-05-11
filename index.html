@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Build Generator | Red Dead Online Guide</title>
-  <meta name="description" content="Interaktiv build generator til Red Dead Online. Vælg spillestil og få anbefalet våben, ability cards og rolle." />
+  <title>Red Dead Online Guide</title>
+  <meta name="description" content="Dansk guide til Red Dead Redemption 2 Online. Våben, ability cards, penge, XP, roller, beginner roadmap og meget mere." />
+
   <style>
     :root {
       --bg: #110b08;
       --panel: #1d1510;
+      --panel2: #281b13;
       --text: #f6ead8;
       --muted: #bca990;
       --gold: #d9a13d;
@@ -19,19 +21,28 @@
       --radius: 22px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       color: var(--text);
-      font-family: Georgia, 'Times New Roman', serif;
+      font-family: Georgia, "Times New Roman", serif;
       background:
         radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
         radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
         linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .topbar {
       position: sticky;
@@ -86,10 +97,10 @@
       border-radius: 999px;
       border: 1px solid transparent;
       color: var(--muted);
+      transition: .2s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
+    .nav-links a:hover {
       border-color: rgba(217,161,61,.38);
       color: var(--text);
       background: rgba(217,161,61,.10);
@@ -103,18 +114,32 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1fr .55fr;
-      gap: 22px;
+      grid-template-columns: 1fr .52fr;
+      gap: 24px;
       align-items: stretch;
-      margin-bottom: 34px;
+      margin-bottom: 40px;
     }
 
-    .box {
-      border-radius: 28px;
+    .hero-box,
+    .side-box {
+      border-radius: 30px;
       border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)),
+        var(--panel);
       box-shadow: var(--shadow);
-      padding: 26px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(217,161,61,.14), transparent 22rem);
+      pointer-events: none;
     }
 
     .badge {
@@ -132,8 +157,8 @@
     }
 
     h1 {
-      margin: 0 0 14px;
-      font-size: clamp(42px, 6vw, 78px);
+      margin: 0 0 16px;
+      font-size: clamp(48px, 7vw, 90px);
       line-height: .92;
       letter-spacing: -.055em;
       text-transform: uppercase;
@@ -141,211 +166,302 @@
 
     h2 {
       margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 46px);
-      letter-spacing: -.035em;
+      font-size: clamp(30px, 4vw, 52px);
+      line-height: 1;
+      letter-spacing: -.04em;
       text-transform: uppercase;
     }
 
-    h3 { margin: 0 0 8px; font-size: 24px; }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
 
-    p, li, button, select {
+    p,
+    li,
+    button {
       font-family: Arial, sans-serif;
     }
 
-    p, li { color: var(--muted); line-height: 1.65; }
-    .hero ul { margin: 10px 0 0; padding-left: 18px; }
-
-    .generator {
-      display: grid;
-      grid-template-columns: .48fr .52fr;
-      gap: 18px;
-      align-items: start;
+    p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0 0 18px;
     }
 
-    .controls {
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 18px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.primary {
+      background: linear-gradient(180deg, #d9a13d, #9b5d1f);
+      color: #140a04;
+      border: none;
+    }
+
+    .quick-stats {
       display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .stat {
+      padding: 15px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      font-size: 28px;
+      font-family: Arial, sans-serif;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+    }
+
+    .side-box ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+    }
+
+    .side-box li {
+      margin-bottom: 10px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .section {
+      margin-top: 42px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-head p {
+      max-width: 720px;
+      margin: 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
     }
 
-    .control-group {
+    .card {
       border-radius: var(--radius);
       border: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-      padding: 18px;
-    }
-
-    .control-group label {
-      display: block;
-      font-family: Arial, sans-serif;
-      color: #f5c876;
-      font-weight: 900;
-      margin-bottom: 9px;
-    }
-
-    select {
-      width: 100%;
-      min-height: 48px;
-      padding: 13px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.24);
-      color: var(--text);
-      outline: none;
-    }
-
-    select option { background: #1d1510; }
-
-    .result {
-      border-radius: 28px;
-      border: 1px solid rgba(217,161,61,.25);
       background:
-        linear-gradient(145deg, rgba(217,161,61,.12), rgba(142,33,25,.15)),
+        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)),
         var(--panel);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      position: sticky;
-      top: 92px;
-    }
-
-    .result-top {
+      padding: 20px;
+      box-shadow: 0 10px 32px rgba(0,0,0,.20);
+      transition: .2s ease;
       display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: start;
-      margin-bottom: 16px;
+      flex-direction: column;
+      min-height: 245px;
     }
 
-    .score-ring {
-      width: 82px;
-      height: 82px;
-      border-radius: 50%;
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(217,161,61,.42);
+    }
+
+    .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 18px;
       display: grid;
       place-items: center;
-      flex: 0 0 auto;
-      background: radial-gradient(circle, rgba(217,161,61,.22), rgba(142,33,25,.32));
-      border: 1px solid rgba(217,161,61,.35);
-      font-family: Arial, sans-serif;
-      font-size: 25px;
-      font-weight: 900;
-      color: #ffdc92;
+      margin-bottom: 14px;
+      font-size: 26px;
+      background: rgba(217,161,61,.13);
+      border: 1px solid rgba(217,161,61,.22);
     }
 
-    .slots {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin: 16px 0;
+    .card p {
+      margin-bottom: 0;
     }
 
-    .slot {
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.22);
-      padding: 14px;
-      font-family: Arial, sans-serif;
+    .card-footer {
+      margin-top: auto;
+      padding-top: 16px;
     }
 
-    .slot b {
-      display: block;
-      color: var(--gold);
-      margin-bottom: 5px;
-    }
-
-    .slot span {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .loadout {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .weapon {
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(217,161,61,.08);
-      padding: 12px;
-      font-family: Arial, sans-serif;
-      color: var(--text);
-      font-weight: 800;
-    }
-
-    .weapon small {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-weight: 400;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 12px 0;
-    }
-
-    .tag {
+    .mini-btn {
       display: inline-flex;
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: rgba(217,161,61,.11);
-      color: #f0c06f;
-      border: 1px solid rgba(217,161,61,.20);
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(217,161,61,.10);
+      border: 1px solid rgba(217,161,61,.22);
+      color: #f3c878;
       font-family: Arial, sans-serif;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
     }
 
-    .tips {
+    .featured {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 34px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 16px;
     }
 
-    .tip {
-      border-radius: var(--radius);
+    .feature {
+      border-radius: 26px;
       border: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-      padding: 20px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
+        var(--panel2);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .tip p { margin: 0; }
+    .feature::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top right, rgba(217,161,61,.14), transparent 18rem);
+      pointer-events: none;
+    }
+
+    .feature h3 {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .step {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.16);
+      padding: 18px;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--red);
+      color: white;
+      font-family: Arial, sans-serif;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
 
     .footer {
-      margin-top: 54px;
-      padding-top: 26px;
+      margin-top: 70px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
       color: var(--muted);
       font-family: Arial, sans-serif;
       font-size: 13px;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    @media (max-width: 1000px) {
-      .generator, .hero { grid-template-columns: 1fr; }
-      .result { position: static; }
-      .tips { grid-template-columns: 1fr; }
-      .nav { align-items: flex-start; flex-direction: column; }
-      .nav-links { justify-content: flex-start; }
+    @media (max-width: 1040px) {
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .roadmap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .featured {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
     }
 
     @media (max-width: 640px) {
-      main { padding-top: 34px; }
-      .slots, .loadout { grid-template-columns: 1fr; }
-      .result-top { display: block; }
-      .score-ring { margin-top: 14px; }
+      main {
+        padding-top: 34px;
+      }
+
+      .cards,
+      .roadmap,
+      .quick-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <header class="topbar">
     <nav class="nav">
-      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
+      <a class="brand" href="index.html">
+        <span class="brand-mark">★</span>
+        <span>RDO Guide</span>
+      </a>
+
       <div class="nav-links">
         <a href="index.html">Start</a>
         <a href="unlocks.html">Unlocks</a>
@@ -354,258 +470,219 @@
         <a href="activities.html">Aktiviteter</a>
         <a href="weapons.html">Våben</a>
         <a href="beginner-roadmap.html">Roadmap</a>
-        <a class="active" href="build-generator.html">Build Generator</a>
+        <a href="build-generator.html">Build Generator</a>
       </div>
     </nav>
   </header>
 
   <main>
+
     <section class="hero">
-      <div class="box">
-        <div class="badge">Interaktiv · Våben · Ability Cards · Rollevalg</div>
-        <h1>Red Dead Online build generator</h1>
-        <p>Vælg hvordan du spiller, og få et anbefalet setup med ability cards, våben, rolle og fokus. Det er lavet til at give hurtige, praktiske valg — ikke bare en lang liste.</p>
+      <div class="hero-box">
+        <div class="badge">Red Dead Redemption 2 Online Guide</div>
+
+        <h1>Den ultimative danske guide til Red Dead Online</h1>
+
+        <p>
+          Guides til våben, ability cards, penge, XP, roller, beginner roadmap,
+          builds, loadouts og alt det vigtigste i Red Dead Redemption 2 Online.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="btn primary" href="beginner-roadmap.html">Start som begynder</a>
+          <a class="btn" href="money-guide.html">Tjen hurtige penge</a>
+          <a class="btn" href="build-generator.html">Build generator</a>
+        </div>
+
+        <div class="quick-stats">
+          <div class="stat">
+            <strong>50+</strong>
+            <span>Guides og builds</span>
+          </div>
+
+          <div class="stat">
+            <strong>10</strong>
+            <span>Store undersider</span>
+          </div>
+
+          <div class="stat">
+            <strong>100%</strong>
+            <span>Gratis guide</span>
+          </div>
+        </div>
       </div>
-      <aside class="box">
-        <h3>Sådan bruger du den</h3>
+
+      <aside class="side-box">
+        <h3>Hvad finder du her?</h3>
+
         <ul>
-          <li>Vælg om du spiller solo eller posse.</li>
-          <li>Vælg fokus: cash, gold, PvP, PvE eller sniper.</li>
-          <li>Vælg aggressiv eller defensiv stil.</li>
-          <li>Brug resultatet som dit næste mål i spillet.</li>
+          <li>Bedste våben til PvE, PvP og jagt</li>
+          <li>Ability card builds efter spillestil</li>
+          <li>Guide til hurtigst at tjene cash og gold</li>
+          <li>Roadmap fra rank 1–50</li>
+          <li>Roller forklaret: Collector, Trader, Bounty Hunter m.fl.</li>
+          <li>Loadouts, builds og progression</li>
+          <li>Tips til solo og posse gameplay</li>
         </ul>
       </aside>
     </section>
 
-    <section class="generator">
-      <div class="controls">
-        <div class="control-group">
-          <label for="mode">Spiltype</label>
-          <select id="mode">
-            <option value="solo">Solo</option>
-            <option value="posse">Posse</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label for="focus">Primært mål</label>
-          <select id="focus">
-            <option value="pve">PvE / missions</option>
-            <option value="cash">Tjene penge</option>
-            <option value="gold">Tjene gold</option>
-            <option value="pvp">PvP</option>
-            <option value="sniper">Sniper / range</option>
-            <option value="hunting">Jagt</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label for="style">Spillestil</label>
-          <select id="style">
-            <option value="balanced">Balanceret</option>
-            <option value="defensive">Defensiv</option>
-            <option value="aggressive">Aggressiv</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label for="level">Dit niveau</label>
-          <select id="level">
-            <option value="early">Rank 1–20</option>
-            <option value="mid">Rank 21–50</option>
-            <option value="late">Rank 51+</option>
-          </select>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Vigtigste guides</h2>
+          <p>
+            Start med disse sider hvis du er ny eller vil optimere din progression.
+          </p>
         </div>
       </div>
 
-      <aside class="result" id="result"></aside>
+      <div class="cards">
+
+        <article class="card">
+          <div class="icon">🛣️</div>
+          <h3>Beginner Roadmap</h3>
+          <p>
+            Kom hurtigt fra rank 1 til 50 uden at spilde penge på dårlige køb.
+          </p>
+
+          <div class="card-footer">
+            <a class="mini-btn" href="beginner-roadmap.html">Åbn roadmap</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">💰</div>
+          <h3>Penge og Gold</h3>
+          <p>
+            Bedste metoder til cash, gold bars, XP og stabile money-loops.
+          </p>
+
+          <div class="card-footer">
+            <a class="mini-btn" href="money-guide.html">Se money guide</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🎯</div>
+          <h3>Ability Cards</h3>
+          <p>
+            Få anbefalede builds til PvE, PvP, sniper, tank og support.
+          </p>
+
+          <div class="card-footer">
+            <a class="mini-btn" href="ability-cards.html">Se builds</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🔫</div>
+          <h3>Bedste Våben</h3>
+          <p>
+            Hvilke våben der faktisk er værd at købe — og hvilke du kan springe over.
+          </p>
+
+          <div class="card-footer">
+            <a class="mini-btn" href="weapons.html">Våbenguide</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧭</div>
+          <h3>Aktiviteter</h3>
+          <p>
+            Alt du kan lave i Red Dead Online: roller, missions, events og jagt.
+          </p>
+
+          <div class="card-footer">
+            <a class="mini-btn" href="activities.html">Se aktiviteter</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">⚙️</div>
+          <h3>Build Generator</h3>
+          <p>
+            Interaktiv generator der anbefaler våben, role og ability cards.
+          </p>
+
+          <div class="card-footer">
+            <a class="mini-btn" href="build-generator.html">Åbn generator</a>
+          </div>
+        </article>
+
+      </div>
     </section>
 
-    <section class="tips">
-      <article class="tip">
-        <h3>Begynder</h3>
-        <p>Start simpelt: Paint It Black, Lancaster Repeater og Bolt Action Rifle. Det giver meget værdi uden at kræve perfekt timing.</p>
-      </article>
-      <article class="tip">
-        <h3>Økonomi</h3>
-        <p>Hvis du mangler penge, så vælg Collector eller Trader/Moonshiner. Hvis du mangler gold, så vælg Bounty Hunter og dailies.</p>
-      </article>
-      <article class="tip">
-        <h3>PvP</h3>
-        <p>PvP kræver også tonics, ammo, movement og map knowledge. Et build hjælper, men vinder ikke alene.</p>
-      </article>
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Hurtig progression</h2>
+          <p>
+            Den hurtigste vej til en stærk konto handler om at fokusere på få ting ad gangen.
+          </p>
+        </div>
+      </div>
+
+      <div class="roadmap">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Story + Dailies</h3>
+          <p>Start med missions og nemme daily challenges for tidlig cash og gold.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Lancaster + Bolt Action</h3>
+          <p>Køb få stærke våben i stedet for mange middelmådige.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Første rolle</h3>
+          <p>Collector til cash eller Bounty Hunter til gold.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Ability builds</h3>
+          <p>Opgrader dine vigtigste cards før kosmetik og luksuskøb.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="featured">
+
+        <article class="feature">
+          <div class="badge">Bedst til begyndere</div>
+          <h3>Collector + Lancaster</h3>
+          <p>
+            Hvis du vil have den mest stabile start, så fokusér på Collector,
+            treasure maps og Lancaster Repeater. Det giver stærk økonomi og hurtig XP.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="badge">Bedst til action</div>
+          <h3>Bounty Hunter + PvE build</h3>
+          <p>
+            Hvis du vil have combat, gold og action, så gå efter Bounty Hunter,
+            Pump Action Shotgun og et stærkt PvE build.
+          </p>
+        </article>
+
+      </div>
     </section>
 
     <footer class="footer">
-      Build generatoren gemmer ikke data. Den beregner anbefalingen direkte i browseren ud fra dine valg.
+      Red Dead Online Guide er et fanprojekt lavet til spillere der vil forstå progression,
+      økonomi, våben og builds i Red Dead Redemption 2 Online.
     </footer>
+
   </main>
 
-  <script>
-    const mode = document.getElementById('mode');
-    const focus = document.getElementById('focus');
-    const style = document.getElementById('style');
-    const level = document.getElementById('level');
-    const result = document.getElementById('result');
-
-    const cards = {
-      pve: [
-        ['Paint It Black', 'Nem præcision og headshots.'],
-        ['Eye for an Eye', 'Dead Eye tilbage ved headshots.'],
-        ['Iron Lung', 'Stabil defensiv base.'],
-        ['Strange Medicine', 'Healing når du laver skade.']
-      ],
-      tank: [
-        ['Slow and Steady', 'Mere robust Dead Eye-stil.'],
-        ['Iron Lung', 'Reducerer skade ved høj stamina.'],
-        ['Fool Me Once', 'God mod gentagne hits.'],
-        ['Strange Medicine', 'Sustain i lange kampe.']
-      ],
-      pvp: [
-        ['Paint It Black', 'Hurtig markering og præcision.'],
-        ['Winning Streak', 'Mere skade på samme mål.'],
-        ['Iron Lung', 'Defensiv stabilitet.'],
-        ['Never Without One', 'Ekstra beskyttelse med hat.']
-      ],
-      sniper: [
-        ['Slippery Bastard', 'Gør dig sværere at ramme.'],
-        ['Sharpshooter', 'Stærkere med scope.'],
-        ['Peak Condition', 'Mere skade ved høj stamina.'],
-        ['Iron Lung', 'Defense via stamina.']
-      ],
-      support: [
-        ['Quite an Inspiration', 'Healer dig og posse i Dead Eye.'],
-        ['The Unblinking Eye', 'Dead Eye holder længere.'],
-        ['Eye for an Eye', 'Dead Eye tilbage ved headshots.'],
-        ['Iron Lung', 'Stabil defensiv base.']
-      ],
-      hunting: [
-        ['Paint It Black', 'Præcise skud mod dyr/NPCs.'],
-        ['Horseman', 'Mere skade fra hesteryg.'],
-        ['Iron Lung', 'Stabilitet og overlevelse.'],
-        ['Eye for an Eye', 'Dead Eye tilbage ved headshots.']
-      ]
-    };
-
-    function getBuild() {
-      const f = focus.value;
-      const s = style.value;
-      const m = mode.value;
-      const l = level.value;
-
-      let title = 'Solo PvE allround';
-      let buildCards = cards.pve;
-      let role = 'Collector eller Bounty Hunter';
-      let weapons = ['Lancaster Repeater', 'Bolt Action Rifle', 'Pump Action Shotgun'];
-      let tags = ['Allround', 'Begynder-venlig', 'Stabil'];
-      let score = 82;
-      let advice = 'Fokuser på få stærke våben, stabile ability cards og aktiviteter der både giver XP og penge.';
-
-      if (f === 'cash') {
-        title = 'Cash build';
-        role = m === 'solo' ? 'Collector' : 'Trader + Collector';
-        weapons = ['Lancaster Repeater', 'Bolt Action Rifle', 'Varmint Rifle'];
-        buildCards = s === 'defensive' ? cards.tank : cards.pve;
-        tags = ['Cash', 'XP', m === 'solo' ? 'Solo' : 'Posse'];
-        score = 90;
-        advice = 'Saml collectibles på ruter, brug Varmint/Bolt Action til jagt og start passiv produktion hvis du har Trader eller Moonshiner.';
-      }
-
-      if (f === 'gold') {
-        title = 'Gold build';
-        role = 'Bounty Hunter';
-        weapons = ['Lancaster Repeater', 'Bolt Action Rifle', 'Pump Action Shotgun'];
-        buildCards = s === 'defensive' ? cards.tank : cards.pve;
-        tags = ['Gold', 'Bounties', 'Combat'];
-        score = 88;
-        advice = 'Kør bounties, legendary bounties, daily challenges og treasure maps. Dette er den bedste vej til mere gold.';
-      }
-
-      if (f === 'pvp') {
-        title = 'PvP build';
-        role = 'Ikke rolle-afhængig';
-        weapons = ['Lancaster Repeater', 'Carcano Rifle', 'Pump/Semi-Auto Shotgun'];
-        buildCards = s === 'defensive' ? cards.tank : cards.pvp;
-        tags = ['PvP', 'Showdowns', 'Free roam'];
-        score = 86;
-        advice = 'Brug tonics, special ammo og cover. Buildet hjælper, men PvP afhænger meget af timing, position og våbenkontrol.';
-      }
-
-      if (f === 'sniper') {
-        title = 'Sniper build';
-        role = 'Bounty Hunter eller PvP';
-        weapons = ['Carcano Rifle', 'Lancaster Repeater', 'LeMat/Schofield'];
-        buildCards = cards.sniper;
-        tags = ['Sniper', 'Range', 'PvP'];
-        score = 84;
-        advice = 'Prioritér Carcano når du kan. Hold afstand, brug scope og vælg fights på åbne områder.';
-      }
-
-      if (f === 'hunting') {
-        title = 'Jagt build';
-        role = 'Trader eller Naturalist';
-        weapons = ['Varmint Rifle', 'Bolt Action Rifle', 'Bow'];
-        buildCards = cards.hunting;
-        tags = ['Jagt', 'Trader', 'Rolig cash'];
-        score = 80;
-        advice = 'Brug korrekt våben til dyrestørrelse, gå efter perfekte dyr og fyld Trader-campen effektivt.';
-      }
-
-      if (m === 'posse' && f !== 'pvp' && f !== 'sniper') {
-        buildCards = s === 'defensive' ? cards.support : buildCards;
-        if (s === 'defensive') title += ' / posse support';
-      }
-
-      if (s === 'aggressive' && f === 'pve') {
-        weapons = ['Lancaster Repeater', 'Pump Action Shotgun', 'Dual sidearms'];
-        tags = ['Aggressiv', 'Missions', 'Close range'];
-        score = 83;
-        advice = 'Spil tættere på fjenderne, men sørg for tonics og et defensivt card som Iron Lung.';
-      }
-
-      if (l === 'early') {
-        weapons = weapons.map(w => {
-          if (w.includes('Carcano')) return 'Rolling Block eller Bolt Action';
-          if (w.includes('LeMat')) return 'Schofield Revolver';
-          if (w.includes('Semi-Auto')) return 'Pump Action Shotgun';
-          return w;
-        });
-        advice += ' Da du er lav rank, skal du bruge billigere alternativer indtil de bedste våben låses op.';
-      }
-
-      return { title, buildCards, role, weapons, tags, score, advice };
-    }
-
-    function render() {
-      const build = getBuild();
-      result.innerHTML = `
-        <div class="result-top">
-          <div>
-            <div class="badge">Anbefalet build</div>
-            <h2>${build.title}</h2>
-            <p>${build.advice}</p>
-            <div class="tags">${build.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-          </div>
-          <div class="score-ring">${build.score}</div>
-        </div>
-
-        <h3>Ability cards</h3>
-        <div class="slots">
-          ${build.buildCards.map(card => `<div class="slot"><b>${card[0]}</b><span>${card[1]}</span></div>`).join('')}
-        </div>
-
-        <h3>Våben</h3>
-        <div class="loadout">
-          ${build.weapons.map((weapon, index) => `<div class="weapon">${weapon}<small>${['Primær', 'Sekundær', 'Backup'][index] || 'Valg'}</small></div>`).join('')}
-        </div>
-
-        <h3 style="margin-top:18px;">Rolle</h3>
-        <p><b style="color:#f5c876;">${build.role}</b></p>
-      `;
-    }
-
-    [mode, focus, style, level].forEach(el => el.addEventListener('change', render));
-    render();
-  </script>
 </body>
 </html>
