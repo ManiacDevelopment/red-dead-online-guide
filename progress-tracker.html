@@ -1,237 +1,58 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Progress Tracker | Red Dead Online Guide</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress Tracker</title>
 
-  <style>
-    body{
-      background:#110b08;
-      color:#f6ead8;
-      font-family:Arial,sans-serif;
-      max-width:1000px;
-      margin:auto;
-      padding:30px;
-      line-height:1.6;
-    }
+<style>
+body{
+background:#110b08;
+color:#f6ead8;
+font-family:Arial;
+padding:30px;
+max-width:1000px;
+margin:auto;
+}
 
-    h1,h2{
-      color:#d9a13d;
-    }
+.card{
+background:#1d1510;
+padding:20px;
+border-radius:18px;
+margin-bottom:20px;
+}
 
-    .section{
-      background:#1d1510;
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:18px;
-      padding:20px;
-      margin-bottom:24px;
-    }
-
-    .item{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:12px;
-      padding:12px;
-      border-radius:12px;
-      background:#281b13;
-    }
-
-    input[type="checkbox"]{
-      width:20px;
-      height:20px;
-      accent-color:#d9a13d;
-    }
-
-    .progress-bar{
-      width:100%;
-      height:24px;
-      background:#281b13;
-      border-radius:999px;
-      overflow:hidden;
-      margin-top:20px;
-    }
-
-    .progress{
-      height:100%;
-      width:0%;
-      background:#d9a13d;
-      transition:.3s ease;
-    }
-
-    .stats{
-      margin-top:10px;
-      color:#f5c876;
-      font-weight:bold;
-    }
-
-    button{
-      margin-top:20px;
-      padding:12px 18px;
-      border:none;
-      border-radius:12px;
-      background:#d9a13d;
-      color:#140a04;
-      font-weight:bold;
-      cursor:pointer;
-    }
-  </style>
+input{
+margin-right:10px;
+}
+</style>
 </head>
+
 <body>
 
-<h1>Progress Tracker</h1>
+<h1 style="color:#d9a13d;">Progress Tracker</h1>
 
-<p>
-Track your weapons, roles, unlocks and progression in Red Dead Online.
-All progress is saved locally in your browser.
-</p>
+<div class="card">
 
-<div class="section">
-  <h2>Weapons</h2>
+<h2>Roles</h2>
 
-  <label class="item">
-    <input type="checkbox" class="track">
-    Lancaster Repeater
-  </label>
+<label><input type="checkbox">Bounty Hunter</label><br>
+<label><input type="checkbox">Collector</label><br>
+<label><input type="checkbox">Trader</label><br>
+<label><input type="checkbox">Moonshiner</label><br>
+<label><input type="checkbox">Naturalist</label>
 
-  <label class="item">
-    <input type="checkbox" class="track">
-    Bolt Action Rifle
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="track">
-    Pump Action Shotgun
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="track">
-    Carcano Rifle
-  </label>
 </div>
 
-<div class="section">
-  <h2>Roles</h2>
+<div class="card">
 
-  <label class="item">
-    <input type="checkbox" class="track">
-    Bounty Hunter
-  </label>
+<h2>Weapons</h2>
 
-  <label class="item">
-    <input type="checkbox" class="track">
-    Collector
-  </label>
+<label><input type="checkbox">Lancaster Repeater</label><br>
+<label><input type="checkbox">Bolt Action Rifle</label><br>
+<label><input type="checkbox">Carcano Rifle</label>
 
-  <label class="item">
-    <input type="checkbox" class="track">
-    Trader
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="track">
-    Moonshiner
-  </label>
 </div>
-
-<div class="section">
-  <h2>Ability Cards</h2>
-
-  <label class="item">
-    <input type="checkbox" class="track">
-    Paint It Black
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="track">
-    Iron Lung
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="track">
-    Strange Medicine
-  </label>
-
-  <label class="item">
-    <input type="checkbox" class="track">
-    Slow and Steady
-  </label>
-</div>
-
-<div class="section">
-  <h2>Progress</h2>
-
-  <div class="progress-bar">
-    <div class="progress" id="progress"></div>
-  </div>
-
-  <div class="stats" id="stats">
-    0% completed
-  </div>
-
-  <button onclick="resetProgress()">Reset Progress</button>
-</div>
-
-<script>
-const STORAGE_KEY = 'rdo_progress_tracker';
-
-const checkboxes = document.querySelectorAll('.track');
-const progress = document.getElementById('progress');
-const stats = document.getElementById('stats');
-
-function save(){
-  const values = [];
-
-  checkboxes.forEach(box => {
-    values.push(box.checked);
-  });
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(values));
-
-  updateProgress();
-}
-
-function load(){
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-
-  checkboxes.forEach((box,index) => {
-    box.checked = saved[index] || false;
-  });
-
-  updateProgress();
-}
-
-function updateProgress(){
-  const total = checkboxes.length;
-  let completed = 0;
-
-  checkboxes.forEach(box => {
-    if(box.checked) completed++;
-  });
-
-  const percent = Math.round((completed / total) * 100);
-
-  progress.style.width = percent + '%';
-  stats.innerText = `${completed}/${total} completed (${percent}%)`;
-}
-
-function resetProgress(){
-  localStorage.removeItem(STORAGE_KEY);
-
-  checkboxes.forEach(box => {
-    box.checked = false;
-  });
-
-  updateProgress();
-}
-
-checkboxes.forEach(box => {
-  box.addEventListener('change', save);
-});
-
-load();
-</script>
 
 </body>
 </html>
