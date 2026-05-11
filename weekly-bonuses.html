@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Bonuses | Red Dead Online Guide</title>
+  <meta name="description" content="Ugentlige bonusser til Red Dead Online. Hold styr på bonus XP, cash, gold, rabatter og anbefalet fokus denne uge." />
+  <style>
+    :root {
+      --bg: #110b08;
+      --panel: #1d1510;
+      --text: #f6ead8;
+      --muted: #bca990;
+      --gold: #d9a13d;
+      --red: #8e2119;
+      --green: #5e8c4d;
+      --border: rgba(255,255,255,.13);
+      --shadow: 0 22px 70px rgba(0,0,0,.42);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      background:
+        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
+        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
+        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(17,11,8,.88); border-bottom: 1px solid var(--border); }
+    .nav { max-width: 1180px; margin: auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318); color: #190b04; box-shadow: 0 0 0 3px rgba(217,161,61,.18); }
+    .nav-links { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; font-family: Arial, sans-serif; font-size: 13px; }
+    .nav-links a { padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; color: var(--muted); }
+    .nav-links a:hover, .nav-links a.active { border-color: rgba(217,161,61,.38); color: var(--text); background: rgba(217,161,61,.10); }
+
+    main { max-width: 1180px; margin: auto; padding: 56px 18px 76px; }
+    .hero { display: grid; grid-template-columns: 1fr .55fr; gap: 22px; align-items: stretch; margin-bottom: 34px; }
+    .box { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); box-shadow: var(--shadow); padding: 26px; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(217,161,61,.12); border: 1px solid rgba(217,161,61,.30); color: #f5c876; font-family: Arial, sans-serif; font-size: 13px; margin-bottom: 18px; }
+    h1 { margin: 0 0 14px; font-size: clamp(42px, 6vw, 78px); line-height: .92; letter-spacing: -.055em; text-transform: uppercase; }
+    h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; text-transform: uppercase; }
+    h3 { margin: 0 0 8px; font-size: 24px; }
+    p, li, button, input, label, textarea { font-family: Arial, sans-serif; }
+    p, li { color: var(--muted); line-height: 1.65; }
+    .hero ul { margin: 10px 0 0; padding-left: 18px; }
+
+    .layout { display: grid; grid-template-columns: .62fr .38fr; gap: 18px; align-items: start; }
+    .panel { border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel); padding: 20px; box-shadow: 0 10px 32px rgba(0,0,0,.20); }
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 16px; }
+    .bonus { border-radius: 18px; border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 16px; }
+    .bonus .icon { width: 48px; height: 48px; border-radius: 15px; display: grid; place-items: center; margin-bottom: 12px; font-size: 23px; background: rgba(217,161,61,.13); border: 1px solid rgba(217,161,61,.22); }
+    .bonus p { margin: 0; font-size: 14px; }
+    .tag { display: inline-flex; padding: 6px 9px; border-radius: 999px; background: rgba(217,161,61,.11); color: #f0c06f; border: 1px solid rgba(217,161,61,.20); font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; margin-bottom: 10px; }
+    .focus-list { display: grid; gap: 10px; margin-top: 14px; }
+    .focus { border-radius: 16px; border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 14px; }
+    .focus b { display: block; color: var(--gold); font-family: Arial, sans-serif; margin-bottom: 4px; }
+    .focus span { color: var(--muted); font-family: Arial, sans-serif; font-size: 14px; line-height: 1.45; }
+    .editor { display: grid; gap: 12px; margin-top: 14px; }
+    .field label { display: block; color: #f5c876; font-weight: 900; margin-bottom: 7px; }
+    input, textarea { width: 100%; padding: 13px 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(0,0,0,.24); color: var(--text); outline: none; }
+    textarea { min-height: 130px; resize: vertical; }
+    .btn { border: 1px solid rgba(217,161,61,.35); background: rgba(217,161,61,.12); color: #ffe0a1; padding: 12px 14px; border-radius: 14px; cursor: pointer; font-weight: 900; }
+    .btn:hover { background: rgba(217,161,61,.18); }
+    .note { border-left: 5px solid var(--gold); border-radius: 18px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); background: rgba(217,161,61,.09); padding: 16px; margin-top: 16px; }
+    .note p { margin: 0; }
+    .footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--border); color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.6; }
+
+    @media (max-width: 1000px) { .hero, .layout { grid-template-columns: 1fr; } .nav { align-items: flex-start; flex-direction: column; } .nav-links { justify-content: flex-start; } }
+    @media (max-width: 640px) { main { padding-top: 34px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
+      <div class="nav-links">
+        <a href="index.html">Start</a>
+        <a href="unlocks.html">Unlocks</a>
+        <a href="money-guide.html">Penge</a>
+        <a href="ability-cards.html">Ability Cards</a>
+        <a href="activities.html">Aktiviteter</a>
+        <a href="weapons.html">Våben</a>
+        <a href="beginner-roadmap.html">Roadmap</a>
+        <a href="build-generator.html">Build Generator</a>
+        <a href="daily-tracker.html">Daily Tracker</a>
+        <a href="tier-lists.html">Tier Lists</a>
+        <a href="calculators.html">Calculators</a>
+        <a href="progress-tracker.html">Progress</a>
+        <a class="active" href="weekly-bonuses.html">Weekly</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="box">
+        <div class="badge">Ugentlige bonusser · Rabatter · Fokus</div>
+        <h1>Weekly bonuses</h1>
+        <p>Brug denne side til manuelt at skrive ugens vigtigste bonusser, rabatter og anbefalede aktiviteter ind. Senere kan den udvides til nyheder og automatisk opdatering.</p>
+      </div>
+      <aside class="box">
+        <h3>Hver uge bør du tjekke</h3>
+        <ul>
+          <li>Bonus på roller eller events.</li>
+          <li>Rabatter på våben, heste og pamphlets.</li>
+          <li>Gratis items eller login rewards.</li>
+          <li>Om ugens bonus ændrer bedste money farm.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="layout">
+      <div class="panel">
+        <div class="badge" id="weekLabel">Denne uge</div>
+        <h2 id="headline">Opdater ugens bonusser</h2>
+        <p id="summary">Skriv ugens bonusser i boksen til højre. De gemmes lokalt i browseren.</p>
+
+        <div class="grid" id="bonusGrid"></div>
+
+        <div class="note">
+          <h3>Hvad bør jeg spille?</h3>
+          <p id="recommendation">Hvis der er bonus på Collector, Trader, Moonshiner, Bounty Hunter eller Call to Arms, bør den aktivitet normalt prioriteres den uge.</p>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h2>Redigér uge</h2>
+        <p>Dette er en simpel manuel løsning. Den gemmer kun på din egen enhed.</p>
+
+        <div class="editor">
+          <div class="field">
+            <label for="weekInput">Uge/periode</label>
+            <input id="weekInput" value="Denne uge">
+          </div>
+
+          <div class="field">
+            <label for="headlineInput">Overskrift</label>
+            <input id="headlineInput" value="Opdater ugens bonusser">
+          </div>
+
+          <div class="field">
+            <label for="summaryInput">Kort opsummering</label>
+            <textarea id="summaryInput">Skriv ugens bonusser i boksen til højre. De gemmes lokalt i browseren.</textarea>
+          </div>
+
+          <div class="field">
+            <label for="bonusInput">Bonusser — én pr. linje</label>
+            <textarea id="bonusInput">2x XP på udvalgte aktiviteter
+Rabatter på våben og udstyr
+Ekstra payout på en rolle
+Gratis item eller login reward</textarea>
+          </div>
+
+          <div class="field">
+            <label for="recommendationInput">Anbefalet fokus</label>
+            <textarea id="recommendationInput">Hvis der er bonus på Collector, Trader, Moonshiner, Bounty Hunter eller Call to Arms, bør den aktivitet normalt prioriteres den uge.</textarea>
+          </div>
+
+          <button class="btn" id="saveBtn">Gem uge</button>
+          <button class="btn" id="resetBtn">Nulstil standard</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="panel" style="margin-top:18px;">
+      <h2>Standard ugentlig beslutning</h2>
+      <div class="focus-list">
+        <div class="focus"><b>Bonus på Collector</b><span>Fokusér på sets, XP og cash. God uge til solo-grind.</span></div>
+        <div class="focus"><b>Bonus på Bounty Hunter</b><span>Fokusér på gold, legendary bounties og combat.</span></div>
+        <div class="focus"><b>Bonus på Trader/Moonshiner</b><span>Start produktion tidligt og lav andre aktiviteter imens.</span></div>
+        <div class="focus"><b>Bonus på Call to Arms</b><span>Spil med posse, brug tonics og stærke ability cards.</span></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Tip: Når du opdaterer denne side offentligt, kan du ændre standardteksten direkte i HTML-filen på GitHub, så alle besøgende ser den samme ugentlige information.
+    </footer>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'rdo_weekly_bonuses_v1';
+
+    const defaultData = {
+      week: 'Denne uge',
+      headline: 'Opdater ugens bonusser',
+      summary: 'Skriv ugens bonusser i boksen til højre. De gemmes lokalt i browseren.',
+      bonuses: '2x XP på udvalgte aktiviteter\nRabatter på våben og udstyr\nEkstra payout på en rolle\nGratis item eller login reward',
+      recommendation: 'Hvis der er bonus på Collector, Trader, Moonshiner, Bounty Hunter eller Call to Arms, bør den aktivitet normalt prioriteres den uge.'
+    };
+
+    const icons = ['💰', '⭐', '🎯', '🎁', '🧭', '🔫', '🥃', '🦌'];
+
+    const weekInput = document.getElementById('weekInput');
+    const headlineInput = document.getElementById('headlineInput');
+    const summaryInput = document.getElementById('summaryInput');
+    const bonusInput = document.getElementById('bonusInput');
+    const recommendationInput = document.getElementById('recommendationInput');
+    const saveBtn = document.getElementById('saveBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const weekLabel = document.getElementById('weekLabel');
+    const headline = document.getElementById('headline');
+    const summary = document.getElementById('summary');
+    const bonusGrid = document.getElementById('bonusGrid');
+    const recommendation = document.getElementById('recommendation');
+
+    function loadData() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultData; }
+      catch { return defaultData; }
+    }
+
+    function saveData(data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function render(data) {
+      weekInput.value = data.week;
+      headlineInput.value = data.headline;
+      summaryInput.value = data.summary;
+      bonusInput.value = data.bonuses;
+      recommendationInput.value = data.recommendation;
+
+      weekLabel.textContent = data.week;
+      headline.textContent = data.headline;
+      summary.textContent = data.summary;
+      recommendation.textContent = data.recommendation;
+
+      const lines = data.bonuses.split('\n').map(x => x.trim()).filter(Boolean);
+      bonusGrid.innerHTML = lines.map((line, index) => `
+        <article class="bonus">
+          <div class="icon">${icons[index % icons.length]}</div>
+          <span class="tag">Bonus ${index + 1}</span>
+          <h3>${line}</h3>
+          <p>Tilføj detaljer direkte i teksten, hvis der er bestemte roller, datoer eller rabatter.</p>
+        </article>
+      `).join('');
+    }
+
+    saveBtn.addEventListener('click', () => {
+      const data = {
+        week: weekInput.value.trim() || defaultData.week,
+        headline: headlineInput.value.trim() || defaultData.headline,
+        summary: summaryInput.value.trim() || defaultData.summary,
+        bonuses: bonusInput.value.trim() || defaultData.bonuses,
+        recommendation: recommendationInput.value.trim() || defaultData.recommendation
+      };
+      saveData(data);
+      render(data);
+    });
+
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY);
+      render(defaultData);
+    });
+
+    render(loadData());
+  </script>
+</body>
+</html>
