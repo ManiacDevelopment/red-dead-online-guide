@@ -1,239 +1,203 @@
 <!doctype html>
-<html lang="da">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculators | Red Dead Online Guide</title>
-  <meta name="description" content="Red Dead Online calculators: gold calculator, cash planner, XP planner og role anbefaling." />
+  <meta name="description" content="Red Dead Online calculators for gold, cash, XP and role planning." />
+
   <style>
-    :root {
-      --bg: #110b08;
-      --panel: #1d1510;
-      --text: #f6ead8;
-      --muted: #bca990;
-      --gold: #d9a13d;
-      --red: #8e2119;
-      --green: #5e8c4d;
-      --border: rgba(255,255,255,.13);
-      --shadow: 0 22px 70px rgba(0,0,0,.42);
-      --radius: 22px;
+    body{
+      background:#110b08;
+      color:#f6ead8;
+      font-family:Arial,sans-serif;
+      max-width:900px;
+      margin:auto;
+      padding:30px;
+      line-height:1.6;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: Georgia, 'Times New Roman', serif;
-      background:
-        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
-        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
-        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    h1,h2{
+      color:#d9a13d;
     }
 
-    a { color: inherit; text-decoration: none; }
-    .topbar { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(17,11,8,.88); border-bottom: 1px solid var(--border); }
-    .nav { max-width: 1180px; margin: auto; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; }
-    .brand-mark { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318); color: #190b04; box-shadow: 0 0 0 3px rgba(217,161,61,.18); }
-    .nav-links { display: flex; gap: 9px; flex-wrap: wrap; justify-content: flex-end; font-family: Arial, sans-serif; font-size: 13px; }
-    .nav-links a { padding: 8px 10px; border-radius: 999px; border: 1px solid transparent; color: var(--muted); }
-    .nav-links a:hover, .nav-links a.active { border-color: rgba(217,161,61,.38); color: var(--text); background: rgba(217,161,61,.10); }
+    .box{
+      background:#1d1510;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:20px;
+      margin-bottom:20px;
+    }
 
-    main { max-width: 1180px; margin: auto; padding: 56px 18px 76px; }
-    .hero { display: grid; grid-template-columns: 1fr .55fr; gap: 22px; align-items: stretch; margin-bottom: 34px; }
-    .box { border-radius: 28px; border: 1px solid var(--border); background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel); box-shadow: var(--shadow); padding: 26px; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(217,161,61,.12); border: 1px solid rgba(217,161,61,.30); color: #f5c876; font-family: Arial, sans-serif; font-size: 13px; margin-bottom: 18px; }
-    h1 { margin: 0 0 14px; font-size: clamp(42px, 6vw, 78px); line-height: .92; letter-spacing: -.055em; text-transform: uppercase; }
-    h2 { margin: 0 0 12px; font-size: clamp(28px, 4vw, 46px); letter-spacing: -.035em; text-transform: uppercase; }
-    h3 { margin: 0 0 8px; font-size: 24px; }
-    p, li, button, input, select, label { font-family: Arial, sans-serif; }
-    p, li { color: var(--muted); line-height: 1.65; }
-    .hero ul { margin: 10px 0 0; padding-left: 18px; }
+    input,select{
+      width:100%;
+      padding:12px;
+      margin-top:6px;
+      margin-bottom:14px;
+      border-radius:10px;
+      border:none;
+      background:#2a1e16;
+      color:#fff;
+    }
 
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .calc { border-radius: var(--radius); border: 1px solid var(--border); background: var(--panel); padding: 20px; box-shadow: 0 10px 32px rgba(0,0,0,.20); }
-    .form { display: grid; gap: 12px; margin: 16px 0; }
-    .field label { display: block; color: #f5c876; font-weight: 900; margin-bottom: 7px; }
-    input, select { width: 100%; min-height: 48px; padding: 13px 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(0,0,0,.24); color: var(--text); outline: none; }
-    select option { background: #1d1510; }
-    .result { border-radius: 18px; border: 1px solid rgba(217,161,61,.25); background: rgba(217,161,61,.09); padding: 16px; margin-top: 14px; }
-    .result strong { display: block; color: var(--gold); font-size: 32px; font-family: Arial, sans-serif; margin-bottom: 4px; }
-    .result span { color: var(--muted); font-family: Arial, sans-serif; line-height: 1.55; }
-    .btn { border: 1px solid rgba(217,161,61,.35); background: rgba(217,161,61,.12); color: #ffe0a1; padding: 12px 14px; border-radius: 14px; cursor: pointer; font-weight: 900; }
-    .btn:hover { background: rgba(217,161,61,.18); }
-    .tips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
-    .tip { border-radius: var(--radius); border: 1px solid var(--border); background: rgba(0,0,0,.18); padding: 20px; }
-    .tip p { margin: 0; }
-    .footer { margin-top: 54px; padding-top: 26px; border-top: 1px solid var(--border); color: var(--muted); font-family: Arial, sans-serif; font-size: 13px; line-height: 1.6; }
+    button{
+      padding:12px 18px;
+      background:#d9a13d;
+      color:#140a04;
+      border:none;
+      border-radius:12px;
+      font-weight:bold;
+      cursor:pointer;
+    }
 
-    @media (max-width: 1000px) { .hero, .grid, .tips { grid-template-columns: 1fr; } .nav { align-items: flex-start; flex-direction: column; } .nav-links { justify-content: flex-start; } }
-    @media (max-width: 640px) { main { padding-top: 34px; } }
+    .result{
+      margin-top:15px;
+      color:#f5c876;
+      font-weight:bold;
+    }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <nav class="nav">
-      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
-      <div class="nav-links">
-        <a href="index.html">Start</a>
-        <a href="unlocks.html">Unlocks</a>
-        <a href="money-guide.html">Penge</a>
-        <a href="ability-cards.html">Ability Cards</a>
-        <a href="activities.html">Aktiviteter</a>
-        <a href="weapons.html">Våben</a>
-        <a href="beginner-roadmap.html">Roadmap</a>
-        <a href="build-generator.html">Build Generator</a>
-        <a href="daily-tracker.html">Daily Tracker</a>
-        <a href="tier-lists.html">Tier Lists</a>
-        <a class="active" href="calculators.html">Calculators</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="box">
-        <div class="badge">Gold · Cash · XP · Role planner</div>
-        <h1>Red Dead Online calculators</h1>
-        <p>Brug disse simple beregnere til at planlægge gold, dollars, XP og hvilken rolle der passer bedst til dit mål. Tallene er estimater, så brug dem som rettesnor.</p>
-      </div>
-      <aside class="box">
-        <h3>Vigtig note</h3>
-        <ul>
-          <li>Bonus-uger kan ændre alt.</li>
-          <li>Payout afhænger af mission, tid og aktivitet.</li>
-          <li>Brug beregnerne til planlægning, ikke præcist facit.</li>
-        </ul>
-      </aside>
-    </section>
+<h1>Red Dead Online Calculators</h1>
 
-    <section class="grid">
-      <article class="calc">
-        <h2>Gold planner</h2>
-        <p>Beregn cirka hvor mange dage du skal spille for at nå dit gold-mål.</p>
-        <div class="form">
-          <div class="field"><label for="goldCurrent">Gold du har nu</label><input id="goldCurrent" type="number" value="2" min="0" step="0.1"></div>
-          <div class="field"><label for="goldTarget">Gold mål</label><input id="goldTarget" type="number" value="15" min="0" step="0.1"></div>
-          <div class="field"><label for="goldDaily">Forventet gold pr. dag</label><input id="goldDaily" type="number" value="0.5" min="0.1" step="0.1"></div>
-        </div>
-        <button class="btn" onclick="calcGold()">Beregn gold</button>
-        <div class="result"><strong id="goldResult">-</strong><span id="goldText">Indtast tal og beregn.</span></div>
-      </article>
+<p>
+Use these tools to estimate gold farming, XP progression and role planning.
+</p>
 
-      <article class="calc">
-        <h2>Cash planner</h2>
-        <p>Planlæg hvor mange runs du cirka skal lave for at købe et våben, saddle eller card upgrade.</p>
-        <div class="form">
-          <div class="field"><label for="cashCurrent">Dollars du har nu</label><input id="cashCurrent" type="number" value="150" min="0"></div>
-          <div class="field"><label for="cashTarget">Pris på det du vil købe</label><input id="cashTarget" type="number" value="500" min="0"></div>
-          <div class="field"><label for="cashRun">Dollars pr. run/session</label><input id="cashRun" type="number" value="100" min="1"></div>
-        </div>
-        <button class="btn" onclick="calcCash()">Beregn cash</button>
-        <div class="result"><strong id="cashResult">-</strong><span id="cashText">Indtast tal og beregn.</span></div>
-      </article>
+<div class="box">
+  <h2>Gold Planner</h2>
 
-      <article class="calc">
-        <h2>XP planner</h2>
-        <p>Lav et groft estimat for hvor mange sessions du skal bruge for at nå næste mål.</p>
-        <div class="form">
-          <div class="field"><label for="xpNeed">XP du mangler</label><input id="xpNeed" type="number" value="5000" min="0"></div>
-          <div class="field"><label for="xpSession">XP pr. session</label><input id="xpSession" type="number" value="900" min="1"></div>
-          <div class="field"><label for="xpBonus">Bonus multiplier</label><select id="xpBonus"><option value="1">Ingen bonus</option><option value="1.5">1.5x bonus</option><option value="2">2x bonus</option><option value="3">3x bonus</option></select></div>
-        </div>
-        <button class="btn" onclick="calcXp()">Beregn XP</button>
-        <div class="result"><strong id="xpResult">-</strong><span id="xpText">Indtast tal og beregn.</span></div>
-      </article>
+  <label>Current Gold</label>
+  <input type="number" id="goldCurrent" value="2">
 
-      <article class="calc">
-        <h2>Role recommender</h2>
-        <p>Vælg dit vigtigste mål, og få anbefalet næste rolle.</p>
-        <div class="form">
-          <div class="field"><label for="roleGoal">Hvad vil du mest?</label><select id="roleGoal"><option value="gold">Tjene gold</option><option value="cash">Tjene cash solo</option><option value="passive">Passiv indkomst</option><option value="combat">Combat/action</option><option value="hunting">Jagt og dyr</option></select></div>
-          <div class="field"><label for="roleStyle">Hvordan spiller du?</label><select id="roleStyle"><option value="solo">Solo</option><option value="posse">Med posse</option><option value="mixed">Begge dele</option></select></div>
-        </div>
-        <button class="btn" onclick="calcRole()">Anbefal rolle</button>
-        <div class="result"><strong id="roleResult">-</strong><span id="roleText">Vælg mål og beregn.</span></div>
-      </article>
-    </section>
+  <label>Target Gold</label>
+  <input type="number" id="goldTarget" value="15">
 
-    <section class="tips">
-      <article class="tip"><h3>Gold</h3><p>Bounty Hunter, dailies og treasure maps er den mest naturlige vej til gold uden at købe det.</p></article>
-      <article class="tip"><h3>Cash</h3><p>Collector er stærk solo, mens Trader og Moonshiner er gode som passiv indkomst.</p></article>
-      <article class="tip"><h3>XP</h3><p>Collector, bonus-events, missions og headshot-bonusser hjælper dig hurtigt frem.</p></article>
-    </section>
+  <label>Gold Earned Per Day</label>
+  <input type="number" id="goldPerDay" value="0.5" step="0.1">
 
-    <footer class="footer">
-      Beregnerne bruger simple estimater. Justér tallene efter din egen erfaring og ugens bonusser.
-    </footer>
-  </main>
+  <button onclick="calcGold()">Calculate</button>
 
-  <script>
-    function val(id) {
-      return Number(document.getElementById(id).value || 0);
-    }
+  <div class="result" id="goldResult"></div>
+</div>
 
-    function calcGold() {
-      const current = val('goldCurrent');
-      const target = val('goldTarget');
-      const daily = Math.max(val('goldDaily'), 0.1);
-      const missing = Math.max(target - current, 0);
-      const days = Math.ceil(missing / daily);
-      document.getElementById('goldResult').textContent = days === 0 ? 'Klar nu' : `${days} dage`;
-      document.getElementById('goldText').textContent = missing === 0 ? 'Du har allerede gold nok.' : `Du mangler cirka ${missing.toFixed(1)} gold. Ved ${daily.toFixed(1)} gold pr. dag tager det cirka ${days} dage.`;
-    }
+<div class="box">
+  <h2>Cash Planner</h2>
 
-    function calcCash() {
-      const current = val('cashCurrent');
-      const target = val('cashTarget');
-      const run = Math.max(val('cashRun'), 1);
-      const missing = Math.max(target - current, 0);
-      const runs = Math.ceil(missing / run);
-      document.getElementById('cashResult').textContent = runs === 0 ? 'Klar nu' : `${runs} runs`;
-      document.getElementById('cashText').textContent = missing === 0 ? 'Du har allerede dollars nok.' : `Du mangler cirka $${missing}. Ved $${run} pr. run skal du bruge cirka ${runs} runs.`;
-    }
+  <label>Current Cash</label>
+  <input type="number" id="cashCurrent" value="150">
 
-    function calcXp() {
-      const need = val('xpNeed');
-      const session = Math.max(val('xpSession'), 1);
-      const bonus = Number(document.getElementById('xpBonus').value);
-      const effective = session * bonus;
-      const sessions = Math.ceil(need / effective);
-      document.getElementById('xpResult').textContent = need === 0 ? 'Klar nu' : `${sessions} sessions`;
-      document.getElementById('xpText').textContent = `Med cirka ${Math.round(effective)} XP pr. session skal du bruge cirka ${sessions} sessions.`;
-    }
+  <label>Target Item Price</label>
+  <input type="number" id="cashTarget" value="500">
 
-    function calcRole() {
-      const goal = document.getElementById('roleGoal').value;
-      const style = document.getElementById('roleStyle').value;
-      let role = 'Bounty Hunter';
-      let text = 'Bedste valg hvis du vil have gold og combat.';
+  <label>Cash Per Session</label>
+  <input type="number" id="cashSession" value="100">
 
-      if (goal === 'cash') {
-        role = 'Collector';
-        text = 'Bedst til solo cash og XP. God hvis du vil farme effektivt uden konstant kamp.';
-      }
-      if (goal === 'passive') {
-        role = style === 'posse' ? 'Trader' : 'Moonshiner';
-        text = style === 'posse' ? 'Trader passer godt til posse, jagt og deliveries.' : 'Moonshiner er god passiv cash ved siden af andre aktiviteter.';
-      }
-      if (goal === 'combat') {
-        role = 'Bounty Hunter';
-        text = 'Bounty Hunter giver combat, gold, cash og XP i samme loop.';
-      }
-      if (goal === 'hunting') {
-        role = 'Trader';
-        text = 'Trader er bedst hvis du kan lide jagt og vil omsætte dyr til stabil indkomst.';
-      }
+  <button onclick="calcCash()">Calculate</button>
 
-      document.getElementById('roleResult').textContent = role;
-      document.getElementById('roleText').textContent = text;
-    }
+  <div class="result" id="cashResult"></div>
+</div>
 
-    calcGold();
-    calcCash();
-    calcXp();
-    calcRole();
-  </script>
+<div class="box">
+  <h2>XP Planner</h2>
+
+  <label>XP Needed</label>
+  <input type="number" id="xpNeed" value="5000">
+
+  <label>XP Per Session</label>
+  <input type="number" id="xpSession" value="900">
+
+  <button onclick="calcXP()">Calculate</button>
+
+  <div class="result" id="xpResult"></div>
+</div>
+
+<div class="box">
+  <h2>Role Recommender</h2>
+
+  <label>What do you want most?</label>
+
+  <select id="goal">
+    <option value="gold">Gold</option>
+    <option value="cash">Cash</option>
+    <option value="combat">Combat</option>
+    <option value="passive">Passive Income</option>
+    <option value="hunting">Hunting</option>
+  </select>
+
+  <button onclick="recommendRole()">Recommend</button>
+
+  <div class="result" id="roleResult"></div>
+</div>
+
+<script>
+function calcGold(){
+  const current = Number(document.getElementById('goldCurrent').value);
+  const target = Number(document.getElementById('goldTarget').value);
+  const perDay = Number(document.getElementById('goldPerDay').value);
+
+  const missing = Math.max(target - current, 0);
+  const days = Math.ceil(missing / perDay);
+
+  document.getElementById('goldResult').innerText =
+    missing === 0
+      ? 'You already have enough gold.'
+      : `You need about ${days} days to reach your goal.`;
+}
+
+function calcCash(){
+  const current = Number(document.getElementById('cashCurrent').value);
+  const target = Number(document.getElementById('cashTarget').value);
+  const session = Number(document.getElementById('cashSession').value);
+
+  const missing = Math.max(target - current, 0);
+  const sessions = Math.ceil(missing / session);
+
+  document.getElementById('cashResult').innerText =
+    missing === 0
+      ? 'You already have enough cash.'
+      : `You need about ${sessions} sessions.`;
+}
+
+function calcXP(){
+  const need = Number(document.getElementById('xpNeed').value);
+  const session = Number(document.getElementById('xpSession').value);
+
+  const sessions = Math.ceil(need / session);
+
+  document.getElementById('xpResult').innerText =
+    `You need about ${sessions} sessions.`;
+}
+
+function recommendRole(){
+  const goal = document.getElementById('goal').value;
+
+  let result = '';
+
+  if(goal === 'gold'){
+    result = 'Bounty Hunter — best for gold and combat.';
+  }
+
+  if(goal === 'cash'){
+    result = 'Collector — best solo cash and XP.';
+  }
+
+  if(goal === 'combat'){
+    result = 'Bounty Hunter — action-focused role.';
+  }
+
+  if(goal === 'passive'){
+    result = 'Moonshiner — strong passive income.';
+  }
+
+  if(goal === 'hunting'){
+    result = 'Trader — perfect for hunting gameplay.';
+  }
+
+  document.getElementById('roleResult').innerText = result;
+}
+</script>
+
 </body>
 </html>
