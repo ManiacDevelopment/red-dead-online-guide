@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Tracker | Red Dead Online Guide</title>
+  <meta name="description" content="Daily challenge tracker til Red Dead Online. Checkliste til dailies, gold, cash, XP, roller og daglig progression." />
+  <style>
+    :root {
+      --bg: #110b08;
+      --panel: #1d1510;
+      --text: #f6ead8;
+      --muted: #bca990;
+      --gold: #d9a13d;
+      --red: #8e2119;
+      --green: #5e8c4d;
+      --border: rgba(255,255,255,.13);
+      --shadow: 0 22px 70px rgba(0,0,0,.42);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Georgia, 'Times New Roman', serif;
+      background:
+        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
+        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
+        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(17,11,8,.88);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318);
+      color: #190b04;
+      box-shadow: 0 0 0 3px rgba(217,161,61,.18);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    .nav-links a {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      border-color: rgba(217,161,61,.38);
+      color: var(--text);
+      background: rgba(217,161,61,.10);
+    }
+
+    main {
+      max-width: 1180px;
+      margin: auto;
+      padding: 56px 18px 76px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr .55fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 34px;
+    }
+
+    .box {
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel);
+      box-shadow: var(--shadow);
+      padding: 26px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(217,161,61,.12);
+      border: 1px solid rgba(217,161,61,.30);
+      color: #f5c876;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: .92;
+      letter-spacing: -.055em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 46px);
+      letter-spacing: -.035em;
+      text-transform: uppercase;
+    }
+
+    h3 { margin: 0 0 8px; font-size: 24px; }
+
+    p, li, button, label, input, select {
+      font-family: Arial, sans-serif;
+    }
+
+    p, li { color: var(--muted); line-height: 1.65; }
+    .hero ul { margin: 10px 0 0; padding-left: 18px; }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .stat {
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      font-size: 32px;
+      font-family: Arial, sans-serif;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+    }
+
+    .tracker-layout {
+      display: grid;
+      grid-template-columns: .72fr .28fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--panel);
+      padding: 20px;
+      box-shadow: 0 10px 32px rgba(0,0,0,.20);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .filter,
+    .btn {
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.22);
+      color: var(--muted);
+      padding: 12px 13px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .filter.active,
+    .filter:hover,
+    .btn:hover {
+      color: #ffe0a1;
+      border-color: rgba(217,161,61,.42);
+      background: rgba(217,161,61,.12);
+    }
+
+    .btn.danger:hover {
+      border-color: rgba(142,33,25,.8);
+      background: rgba(142,33,25,.22);
+    }
+
+    .tasks {
+      display: grid;
+      gap: 10px;
+    }
+
+    .task {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      gap: 12px;
+      align-items: start;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.20);
+      padding: 14px;
+    }
+
+    .task input {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--gold);
+      margin-top: 2px;
+    }
+
+    .task h3 {
+      font-size: 18px;
+      margin: 0 0 4px;
+    }
+
+    .task p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .task.done {
+      opacity: .62;
+    }
+
+    .task.done h3 {
+      text-decoration: line-through;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(217,161,61,.11);
+      color: #f0c06f;
+      border: 1px solid rgba(217,161,61,.20);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 92px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .progress-wrap {
+      margin: 14px 0 10px;
+      height: 14px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+      border: 1px solid var(--border);
+    }
+
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--gold), #8f4d19);
+      border-radius: 999px;
+      transition: width .25s ease;
+    }
+
+    .routine {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .routine-item {
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      padding: 12px;
+      font-family: Arial, sans-serif;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .routine-item b {
+      display: block;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      margin-top: 54px;
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1000px) {
+      .hero,
+      .tracker-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar { position: static; }
+      .dashboard { grid-template-columns: repeat(2, 1fr); }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      main { padding-top: 34px; }
+      .dashboard { grid-template-columns: 1fr; }
+      .task { grid-template-columns: 30px 1fr; }
+      .task .tag { grid-column: 2; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
+      <div class="nav-links">
+        <a href="index.html">Start</a>
+        <a href="unlocks.html">Unlocks</a>
+        <a href="money-guide.html">Penge</a>
+        <a href="ability-cards.html">Ability Cards</a>
+        <a href="activities.html">Aktiviteter</a>
+        <a href="weapons.html">Våben</a>
+        <a href="beginner-roadmap.html">Roadmap</a>
+        <a href="build-generator.html">Build Generator</a>
+        <a class="active" href="daily-tracker.html">Daily Tracker</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="box">
+        <div class="badge">Checkliste · Gold · XP · Lokal gemning</div>
+        <h1>Daily tracker til Red Dead Online</h1>
+        <p>Brug denne side som daglig checkliste. Den gemmer dine flueben i browseren, så du kan lukke siden og komme tilbage senere samme dag.</p>
+      </div>
+      <aside class="box">
+        <h3>Daglig prioritet</h3>
+        <ul>
+          <li>Lav mindst én nem daily for gold-rutinen.</li>
+          <li>Brug treasure maps når du har dem.</li>
+          <li>Kombinér dailies med den rolle du allerede spiller.</li>
+          <li>Stop når du ikke hygger dig — grind skal ikke ødelægge spillet.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="dashboard">
+      <div class="stat"><strong id="doneCount">0</strong><span>Udført</span></div>
+      <div class="stat"><strong id="totalCount">0</strong><span>Opgaver i filter</span></div>
+      <div class="stat"><strong id="goldCount">0</strong><span>Gold-fokus udført</span></div>
+      <div class="stat"><strong id="progressText">0%</strong><span>Dagens fremskridt</span></div>
+    </section>
+
+    <section class="tracker-layout">
+      <div class="panel">
+        <h2>Dagens checkliste</h2>
+        <p>Filtrér efter mål, eller brug “Alle” som en samlet daglig rutine.</p>
+
+        <div class="toolbar">
+          <button class="filter active" data-filter="all">Alle</button>
+          <button class="filter" data-filter="gold">Gold</button>
+          <button class="filter" data-filter="cash">Cash</button>
+          <button class="filter" data-filter="xp">XP</button>
+          <button class="filter" data-filter="role">Roller</button>
+          <button class="filter" data-filter="quick">Hurtig</button>
+          <button class="btn danger" id="resetBtn">Nulstil</button>
+        </div>
+
+        <div class="tasks" id="taskList"></div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="panel">
+          <h3>Progress</h3>
+          <p id="summaryText">Vælg nogle opgaver for at se fremskridt.</p>
+          <div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+        </div>
+
+        <div class="panel">
+          <h3>Anbefalet daglig rutine</h3>
+          <div class="routine">
+            <div class="routine-item"><b>10 minutter</b>Lav én nem daily + brug treasure map hvis du har en.</div>
+            <div class="routine-item"><b>30 minutter</b>Lav dailies, én bounty og saml collectibles på vejen.</div>
+            <div class="routine-item"><b>60 minutter</b>Start passiv produktion, lav gold-aktiviteter og afslut med salg.</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      Dine flueben gemmes kun lokalt i browseren via localStorage. De sendes ikke nogen steder.
+    </footer>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'rdo_daily_tracker_v1';
+
+    const tasks = [
+      { id: 'daily-general-1', title: 'Lav mindst én general daily challenge', text: 'Den nemmeste måde at holde gold-rutinen i gang.', tags: ['gold', 'quick'] },
+      { id: 'daily-general-3', title: 'Lav tre general daily challenges', text: 'Godt mål hvis du kun spiller kort tid.', tags: ['gold', 'xp'] },
+      { id: 'role-daily-1', title: 'Lav én role daily challenge', text: 'Vælg den rolle du alligevel spiller i dag.', tags: ['gold', 'role', 'quick'] },
+      { id: 'role-daily-3', title: 'Lav tre role daily challenges', text: 'God balance mellem gold, XP og progression.', tags: ['gold', 'role', 'xp'] },
+      { id: 'bounty', title: 'Gennemfør en bounty', text: 'Bounty Hunter er stærk hvis du vil tjene gold og have combat.', tags: ['gold', 'role', 'xp'] },
+      { id: 'legendary-bounty', title: 'Gennemfør en legendary bounty', text: 'God aktivitet når du vil have action og payout.', tags: ['gold', 'cash', 'role'] },
+      { id: 'collector-set', title: 'Saml mindst 5 collectibles', text: 'God XP og cash, især hvis du samler hele sets over tid.', tags: ['cash', 'xp', 'quick'] },
+      { id: 'sell-collector', title: 'Sælg et komplet collector set', text: 'Hele sets giver bedre værdi end enkeltdele.', tags: ['cash', 'xp', 'role'] },
+      { id: 'trader-materials', title: 'Fyld Trader materialer', text: 'Jagt 3-stjernede dyr og hold produktionen kørende.', tags: ['cash', 'role'] },
+      { id: 'trader-sale', title: 'Lav Trader delivery', text: 'Lokalt salg er sikrere; long distance betaler mere.', tags: ['cash', 'role'] },
+      { id: 'moonshine-start', title: 'Start moonshine produktion', text: 'Start batchen tidligt, så den arbejder mens du laver andet.', tags: ['cash', 'role', 'quick'] },
+      { id: 'moonshine-sale', title: 'Sælg moonshine batch', text: 'Stabil cash når produktionen er klar.', tags: ['cash', 'role'] },
+      { id: 'treasure-map', title: 'Brug et treasure map', text: 'Stærk kilde til både cash og gold, især tidligt.', tags: ['gold', 'cash'] },
+      { id: 'free-roam-event', title: 'Deltag i et free roam event', text: 'Kan være meget værd, især ved ugentlige bonusser.', tags: ['xp', 'gold'] },
+      { id: 'call-to-arms', title: 'Spil Call to Arms', text: 'Godt med posse og stærke våben/builds.', tags: ['cash', 'gold', 'xp'] },
+      { id: 'hunt-perfect', title: 'Skaf tre perfekte pelts', text: 'God rutine til Trader, jagt og cash.', tags: ['cash', 'quick'] },
+      { id: 'upgrade-card', title: 'Sæt penge af til ability card upgrade', text: 'Cards er ofte bedre investering end kosmetik.', tags: ['xp', 'cash'] },
+      { id: 'clean-weapons', title: 'Rens dine vigtigste våben', text: 'Høj condition hjælper i missions, bounties og PvP.', tags: ['quick'] }
+    ];
+
+    const taskList = document.getElementById('taskList');
+    const filters = document.querySelectorAll('.filter');
+    const resetBtn = document.getElementById('resetBtn');
+    const doneCount = document.getElementById('doneCount');
+    const totalCount = document.getElementById('totalCount');
+    const goldCount = document.getElementById('goldCount');
+    const progressText = document.getElementById('progressText');
+    const progressBar = document.getElementById('progressBar');
+    const summaryText = document.getElementById('summaryText');
+
+    let activeFilter = 'all';
+    let state = loadState();
+
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function visibleTasks() {
+      return tasks.filter(task => activeFilter === 'all' || task.tags.includes(activeFilter));
+    }
+
+    function render() {
+      const list = visibleTasks();
+      taskList.innerHTML = list.map(task => {
+        const checked = !!state[task.id];
+        return `
+          <label class="task ${checked ? 'done' : ''}">
+            <input type="checkbox" data-id="${task.id}" ${checked ? 'checked' : ''}>
+            <span>
+              <h3>${task.title}</h3>
+              <p>${task.text}</p>
+            </span>
+            <span class="tag">${task.tags[0]}</span>
+          </label>
+        `;
+      }).join('');
+
+      document.querySelectorAll('input[type="checkbox"][data-id]').forEach(input => {
+        input.addEventListener('change', () => {
+          state[input.dataset.id] = input.checked;
+          saveState();
+          render();
+        });
+      });
+
+      updateStats(list);
+    }
+
+    function updateStats(list) {
+      const doneVisible = list.filter(task => state[task.id]).length;
+      const totalVisible = list.length;
+      const allGoldDone = tasks.filter(task => task.tags.includes('gold') && state[task.id]).length;
+      const percent = totalVisible ? Math.round((doneVisible / totalVisible) * 100) : 0;
+
+      doneCount.textContent = doneVisible;
+      totalCount.textContent = totalVisible;
+      goldCount.textContent = allGoldDone;
+      progressText.textContent = `${percent}%`;
+      progressBar.style.width = `${percent}%`;
+
+      if (percent === 0) summaryText.textContent = 'Ingen opgaver udført endnu. Start med én nem daily.';
+      else if (percent < 35) summaryText.textContent = 'God start. Lav én gold-opgave mere, hvis du kan.';
+      else if (percent < 75) summaryText.textContent = 'Stærk daglig progression. Du er godt i gang.';
+      else if (percent < 100) summaryText.textContent = 'Næsten færdig. Tag de sidste opgaver hvis du stadig hygger dig.';
+      else summaryText.textContent = 'Alt i dette filter er klaret. Flot arbejde, partner.';
+    }
+
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filters.forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    resetBtn.addEventListener('click', () => {
+      const ok = confirm('Vil du nulstille dagens tracker?');
+      if (!ok) return;
+      state = {};
+      saveState();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
