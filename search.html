@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search</title>
+
+<style>
+body{
+background:#110b08;
+color:#f6ead8;
+font-family:Arial;
+padding:30px;
+max-width:1000px;
+margin:auto;
+}
+
+input{
+width:100%;
+padding:14px;
+border:none;
+border-radius:14px;
+background:#281b13;
+color:#f6ead8;
+font-size:18px;
+}
+
+.result{
+background:#1d1510;
+padding:16px;
+border-radius:16px;
+margin-top:16px;
+}
+
+a{
+color:#f5c876;
+font-weight:bold;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<h1 style="color:#d9a13d;">Search Guides</h1>
+
+<input
+type="text"
+id="search"
+placeholder="Search guides..."
+onkeyup="searchGuides()">
+
+<div id="results"></div>
+
+<script>
+
+const guides = [
+
+{name:'Weapons Guide',link:'weapons.html'},
+{name:'Money Guide',link:'money-guide.html'},
+{name:'Gold Guide',link:'gold-guide.html'},
+{name:'Collector Guide',link:'collector-guide.html'},
+{name:'Trader Guide',link:'trader-guide.html'},
+{name:'Ability Cards',link:'ability-cards.html'},
+{name:'PvP Guide',link:'pvp-guide.html'},
+{name:'Beginner Roadmap',link:'beginner-roadmap.html'}
+
+];
+
+function searchGuides(){
+
+const query =
+document.getElementById('search')
+.value.toLowerCase();
+
+const results =
+document.getElementById('results');
+
+results.innerHTML = '';
+
+guides.forEach(guide => {
+
+if(
+guide.name.toLowerCase().includes(query)
+){
+
+results.innerHTML += `
+<div class="result">
+<a href="${guide.link}">
+${guide.name}
+</a>
+</div>
+`;
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
