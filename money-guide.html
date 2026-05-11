@@ -1,553 +1,171 @@
 <!doctype html>
-<html lang="da">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pengeguide | Red Dead Online Guide</title>
-  <meta name="description" content="Dansk guide til hurtige penge og gold i Red Dead Online. Collector, Trader, Moonshiner, Bounty Hunter, treasure maps og dailies." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Money Guide | Red Dead Online Guide</title>
+
   <style>
-    :root {
-      --bg: #110b08;
-      --panel: #1d1510;
-      --text: #f6ead8;
-      --muted: #bca990;
-      --gold: #d9a13d;
-      --red: #8e2119;
-      --green: #5e8c4d;
-      --border: rgba(255,255,255,.13);
-      --shadow: 0 22px 70px rgba(0,0,0,.42);
-      --radius: 22px;
+    body{
+      background:#110b08;
+      color:#f6ead8;
+      font-family:Arial,sans-serif;
+      max-width:1000px;
+      margin:auto;
+      padding:30px;
+      line-height:1.7;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: Georgia, 'Times New Roman', serif;
-      background:
-        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
-        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
-        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+    h1,h2{
+      color:#d9a13d;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(17, 11, 8, .88);
-      border-bottom: 1px solid var(--border);
+    .section{
+      background:#1d1510;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:22px;
+      margin-bottom:24px;
     }
 
-    .nav {
-      max-width: 1180px;
-      margin: auto;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+    .method{
+      background:#281b13;
+      padding:16px;
+      border-radius:14px;
+      margin-bottom:14px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: .05em;
-      text-transform: uppercase;
+    .highlight{
+      color:#f5c876;
+      font-weight:bold;
     }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318);
-      color: #190b04;
-      box-shadow: 0 0 0 3px rgba(217,161,61,.18);
+    ul{
+      padding-left:20px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-    }
-
-    .nav-links a {
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--muted);
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      border-color: rgba(217,161,61,.38);
-      color: var(--text);
-      background: rgba(217,161,61,.10);
-    }
-
-    main {
-      max-width: 1180px;
-      margin: auto;
-      padding: 56px 18px 76px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr .55fr;
-      gap: 22px;
-      align-items: stretch;
-      margin-bottom: 34px;
-    }
-
-    .box {
-      border-radius: 28px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel);
-      box-shadow: var(--shadow);
-      padding: 26px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(217,161,61,.12);
-      border: 1px solid rgba(217,161,61,.30);
-      color: #f5c876;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      margin: 0 0 14px;
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: .92;
-      letter-spacing: -.055em;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin: 0 0 12px;
-      font-size: clamp(28px, 4vw, 46px);
-      letter-spacing: -.035em;
-      text-transform: uppercase;
-    }
-
-    h3 { margin: 0 0 8px; font-size: 24px; }
-
-    p, li, td, button, select {
-      font-family: Arial, sans-serif;
-    }
-
-    p, li { color: var(--muted); line-height: 1.65; }
-
-    .hero ul { margin: 10px 0 0; padding-left: 18px; }
-
-    .selector {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin: 18px 0 22px;
-    }
-
-    .choice {
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.22);
-      color: var(--muted);
-      padding: 13px 12px;
-      border-radius: 14px;
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    .choice.active,
-    .choice:hover {
-      color: #ffe0a1;
-      border-color: rgba(217,161,61,.42);
-      background: rgba(217,161,61,.12);
-    }
-
-    .recommendation {
-      border-left: 5px solid var(--gold);
-      border-radius: 18px;
-      border-top: 1px solid var(--border);
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: rgba(217,161,61,.09);
-      padding: 18px;
-      margin-bottom: 34px;
-    }
-
-    .recommendation h3 { color: var(--text); }
-    .recommendation p { margin: 0; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .card {
-      min-height: 255px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)), var(--panel);
-      padding: 20px;
-      box-shadow: 0 10px 32px rgba(0,0,0,.20);
-    }
-
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 14px;
-      font-size: 25px;
-      background: rgba(217,161,61,.13);
-      border: 1px solid rgba(217,161,61,.22);
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 12px 0;
-    }
-
-    .tag {
-      display: inline-flex;
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: rgba(217,161,61,.11);
-      color: #f0c06f;
-      border: 1px solid rgba(217,161,61,.20);
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .rating {
-      display: grid;
-      gap: 9px;
-      margin-top: 14px;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .bar-row {
-      display: grid;
-      grid-template-columns: 74px 1fr;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .bar {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-
-    .bar span {
-      display: block;
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), #8f4d19);
-      border-radius: 999px;
-    }
-
-    .steps {
-      display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 58px 1fr;
-      gap: 14px;
-      align-items: start;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-      padding: 16px;
-    }
-
-    .num {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: var(--red);
-      color: white;
-      font-family: Arial, sans-serif;
-      font-weight: 900;
-      font-size: 20px;
-    }
-
-    .step p { margin: 0; }
-
-    .table-wrap {
-      margin-top: 16px;
-      overflow-x: auto;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background: var(--panel);
-    }
-
-    table {
-      width: 100%;
-      min-width: 820px;
-      border-collapse: collapse;
-    }
-
-    th, td {
-      padding: 14px;
-      border-bottom: 1px solid var(--border);
-      text-align: left;
-      vertical-align: top;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-    }
-
-    th {
-      background: rgba(142,33,25,.38);
-      color: #f5c876;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-size: 12px;
-    }
-
-    td { color: var(--muted); }
-    td b { color: var(--text); }
-
-    .footer {
-      margin-top: 54px;
-      padding-top: 26px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    @media (max-width: 940px) {
-      .hero, .grid { grid-template-columns: 1fr; }
-      .selector { grid-template-columns: repeat(2, 1fr); }
-      .nav { align-items: flex-start; flex-direction: column; }
-      .nav-links { justify-content: flex-start; }
-    }
-
-    @media (max-width: 620px) {
-      main { padding-top: 34px; }
-      .selector { grid-template-columns: 1fr; }
-      .step { grid-template-columns: 1fr; }
+    .tier{
+      display:inline-block;
+      background:#d9a13d;
+      color:#140a04;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:10px;
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <nav class="nav">
-      <a class="brand" href="index.html"><span class="brand-mark">★</span><span>RDO Guide</span></a>
-      <div class="nav-links">
-        <a href="index.html">Start</a>
-        <a href="unlocks.html">Unlocks</a>
-        <a class="active" href="money-guide.html">Penge</a>
-        <a href="ability-cards.html">Ability Cards</a>
-        <a href="activities.html">Aktiviteter</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="box">
-        <div class="badge">Dollars · Gold · Roles · Solo grind</div>
-        <h1>Hurtigste penge i Red Dead Online</h1>
-        <p>Den bedste metode afhænger af, om du vil spille solo, med posse, aktivt eller passivt. Den stærkeste strategi er ofte at kombinere flere roller, så du tjener penge mens andre aktiviteter kører i baggrunden.</p>
-      </div>
-      <aside class="box">
-        <h3>Kort anbefaling</h3>
-        <ul>
-          <li><b>Cash solo:</b> Collector</li>
-          <li><b>Gold:</b> Bounty Hunter + dailies</li>
-          <li><b>Passiv cash:</b> Trader og Moonshiner</li>
-          <li><b>Begynder:</b> Treasure maps, story missions og dailies</li>
-          <li><b>Undgå:</b> at bruge alle penge på kosmetik tidligt</li>
-        </ul>
-      </aside>
-    </section>
+<h1>Money & Gold Guide</h1>
 
-    <section>
-      <h2>Vælg din spillestil</h2>
-      <p>Tryk på den måde du helst vil spille, så får du en anbefalet money-route.</p>
-      <div class="selector">
-        <button class="choice active" data-style="solo">Solo</button>
-        <button class="choice" data-style="gold">Gold</button>
-        <button class="choice" data-style="passive">Passiv indkomst</button>
-        <button class="choice" data-style="combat">Combat</button>
-      </div>
-      <div class="recommendation" id="recommendation"></div>
-    </section>
+<p>
+Learn the best methods for earning cash, gold and XP in Red Dead Online.
+Different methods work better depending on your rank, role and playstyle.
+</p>
 
-    <section>
-      <h2>Bedste money-metoder</h2>
-      <div class="grid">
-        <article class="card">
-          <div class="icon">🧭</div>
-          <h3>Collector</h3>
-          <div class="tags"><span class="tag">Bedst solo</span><span class="tag">Cash</span><span class="tag">XP</span></div>
-          <p>Saml tarotkort, smykker, alkoholflasker, mønter og andre collectibles. Hele sets betaler bedst og giver god XP.</p>
-          <div class="rating">
-            <div class="bar-row"><span>Cash</span><div class="bar"><span style="width:95%"></span></div></div>
-            <div class="bar-row"><span>Gold</span><div class="bar"><span style="width:20%"></span></div></div>
-            <div class="bar-row"><span>Solo</span><div class="bar"><span style="width:100%"></span></div></div>
-          </div>
-        </article>
+<div class="section">
+  <h2>Best Beginner Money Methods</h2>
 
-        <article class="card">
-          <div class="icon">🎯</div>
-          <h3>Bounty Hunter</h3>
-          <div class="tags"><span class="tag">Gold</span><span class="tag">Combat</span><span class="tag">XP</span></div>
-          <p>Den vigtigste rolle hvis du mangler gold. Du får combat, XP, cash og gold i samme loop.</p>
-          <div class="rating">
-            <div class="bar-row"><span>Cash</span><div class="bar"><span style="width:65%"></span></div></div>
-            <div class="bar-row"><span>Gold</span><div class="bar"><span style="width:95%"></span></div></div>
-            <div class="bar-row"><span>Solo</span><div class="bar"><span style="width:75%"></span></div></div>
-          </div>
-        </article>
+  <div class="method">
+    <div class="tier">BEST STARTER METHOD</div>
 
-        <article class="card">
-          <div class="icon">🦌</div>
-          <h3>Trader</h3>
-          <div class="tags"><span class="tag">Passivt</span><span class="tag">Jagt</span><span class="tag">Posse</span></div>
-          <p>Fyld campen med materialer, lad Cripps producere varer og sælg deliveries. Lokale salg er sikrere; lange salg betaler mere.</p>
-          <div class="rating">
-            <div class="bar-row"><span>Cash</span><div class="bar"><span style="width:85%"></span></div></div>
-            <div class="bar-row"><span>Gold</span><div class="bar"><span style="width:15%"></span></div></div>
-            <div class="bar-row"><span>Solo</span><div class="bar"><span style="width:70%"></span></div></div>
-          </div>
-        </article>
+    <div class="highlight">Daily Challenges</div>
 
-        <article class="card">
-          <div class="icon">🥃</div>
-          <h3>Moonshiner</h3>
-          <div class="tags"><span class="tag">Passivt</span><span class="tag">Cash</span><span class="tag">Story</span></div>
-          <p>Start produktion, lav missions for billigere mash, og sælg når batchen er klar. God sammen med Collector eller Bounty Hunter.</p>
-          <div class="rating">
-            <div class="bar-row"><span>Cash</span><div class="bar"><span style="width:80%"></span></div></div>
-            <div class="bar-row"><span>Gold</span><div class="bar"><span style="width:10%"></span></div></div>
-            <div class="bar-row"><span>Solo</span><div class="bar"><span style="width:80%"></span></div></div>
-          </div>
-        </article>
+    Complete at least one easy daily every day.
+    This is one of the safest and easiest ways to build gold early.
+  </div>
 
-        <article class="card">
-          <div class="icon">🗺️</div>
-          <h3>Treasure Maps</h3>
-          <div class="tags"><span class="tag">Begynder</span><span class="tag">Gold</span><span class="tag">Bonus</span></div>
-          <p>Treasure maps er en af de bedste tidlige boosts. De giver både dollars og gold og kræver ikke dyre roller.</p>
-          <div class="rating">
-            <div class="bar-row"><span>Cash</span><div class="bar"><span style="width:70%"></span></div></div>
-            <div class="bar-row"><span>Gold</span><div class="bar"><span style="width:75%"></span></div></div>
-            <div class="bar-row"><span>Solo</span><div class="bar"><span style="width:100%"></span></div></div>
-          </div>
-        </article>
+  <div class="method">
+    <div class="highlight">Treasure Maps</div>
 
-        <article class="card">
-          <div class="icon">📋</div>
-          <h3>Daily Challenges</h3>
-          <div class="tags"><span class="tag">Gold</span><span class="tag">Rutine</span><span class="tag">Nemt</span></div>
-          <p>Lav de nemmeste daglige challenges hver gang du spiller. Det er ikke altid spændende, men det bygger gold op over tid.</p>
-          <div class="rating">
-            <div class="bar-row"><span>Cash</span><div class="bar"><span style="width:20%"></span></div></div>
-            <div class="bar-row"><span>Gold</span><div class="bar"><span style="width:85%"></span></div></div>
-            <div class="bar-row"><span>Solo</span><div class="bar"><span style="width:95%"></span></div></div>
-          </div>
-        </article>
-      </div>
-    </section>
+    Treasure maps give gold and cash rewards.
+    Always complete them as soon as possible.
+  </div>
 
-    <section>
-      <h2>Bedste money-loop</h2>
-      <div class="steps">
-        <div class="step"><div class="num">1</div><div><h3>Start produktion</h3><p>Hvis du har Trader eller Moonshiner, så start produktionen først. Så tjener du passivt, mens du laver noget andet.</p></div></div>
-        <div class="step"><div class="num">2</div><div><h3>Lav en bounty eller daily</h3><p>Brug ventetiden på gold-aktiviteter. Bounties og dailies gør, at du ikke kun tjener dollars.</p></div></div>
-        <div class="step"><div class="num">3</div><div><h3>Saml collectibles på ruten</h3><p>Når du rider mellem aktiviteter, så saml collectibles. Det er gratis ekstra cash og XP.</p></div></div>
-        <div class="step"><div class="num">4</div><div><h3>Sælg når lageret er klart</h3><p>Afslut med Trader delivery eller Moonshine sale. Vælg lokale salg hvis du vil undgå risiko.</p></div></div>
-      </div>
-    </section>
+  <div class="method">
+    <div class="highlight">Stranger Missions</div>
 
-    <section>
-      <h2>Hvad skal du købe først?</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>Prioritet</th><th>Køb</th><th>Hvorfor</th><th>Vent med</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><b>1</b></td><td>Lancaster Repeater / Bolt Action Rifle</td><td>Gør missions, jagt og combat meget lettere.</td><td>Dyre pistoler du ikke bruger.</td></tr>
-            <tr><td><b>2</b></td><td>Ability card upgrades</td><td>Stærke cards giver mere effekt end små våbenopgraderinger.</td><td>Kosmetisk tøj.</td></tr>
-            <tr><td><b>3</b></td><td>Første rolle</td><td>Roller åbner de rigtige penge-loops.</td><td>Flere heste kun for udseende.</td></tr>
-            <tr><td><b>4</b></td><td>God saddle/stirrups</td><td>Du rider konstant, så mobilitet betaler sig.</td><td>Camp pynt.</td></tr>
-            <tr><td><b>5</b></td><td>Pamphlets du faktisk bruger</td><td>Special ammo og crafting bliver stærkt senere.</td><td>Endgame ammo for tidligt.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+    Good early-game option for money and XP.
+  </div>
+</div>
 
-    <footer class="footer">
-      Kort sagt: Collector er bedst til solo cash, Bounty Hunter er bedst til gold, Trader/Moonshiner er bedst til passiv indkomst. Kombinér dem for bedste resultat.
-    </footer>
-  </main>
+<div class="section">
+  <h2>Best Roles For Money</h2>
 
-  <script>
-    const recommendations = {
-      solo: {
-        title: 'Bedste solo-route: Collector først',
-        text: 'Spil Collector som hovedaktivitet, lav treasure maps når du får dem, og tag nemme dailies undervejs. Når du har nok gold, tilføj Bounty Hunter for gold eller Trader for passiv cash.'
-      },
-      gold: {
-        title: 'Bedste gold-route: Bounty Hunter + dailies',
-        text: 'Hvis du mangler gold bars, er Bounty Hunter den vigtigste rolle. Kombinér almindelige bounties, legendary bounties, daily challenges og treasure maps.'
-      },
-      passive: {
-        title: 'Bedste passive route: Trader + Moonshiner',
-        text: 'Start Trader eller Moonshiner produktion, og brug ventetiden på Collector-ruter, bounties eller dailies. Sælg når lager eller batch er klar.'
-      },
-      combat: {
-        title: 'Bedste combat-route: Bounty Hunter og Call to Arms',
-        text: 'Hvis du helst vil skyde og lave action, så spil Bounty Hunter, legendary bounties, Call to Arms og combat-baserede free roam events. Husk tonics og ability cards.'
-      }
-    };
+  <div class="method">
+    <div class="tier">S-TIER</div>
 
-    const buttons = document.querySelectorAll('.choice');
-    const box = document.getElementById('recommendation');
+    <div class="highlight">Collector</div>
 
-    function setRecommendation(style) {
-      const rec = recommendations[style];
-      box.innerHTML = `<h3>${rec.title}</h3><p>${rec.text}</p>`;
-      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.style === style));
-    }
+    Best solo money and XP role in the game.
+    Very strong if you enjoy exploring the map.
+  </div>
 
-    buttons.forEach(btn => btn.addEventListener('click', () => setRecommendation(btn.dataset.style)));
-    setRecommendation('solo');
-  </script>
+  <div class="method">
+    <div class="tier">S-TIER</div>
+
+    <div class="highlight">Bounty Hunter</div>
+
+    Best role for gold farming.
+    Great for combat-focused players.
+  </div>
+
+  <div class="method">
+    <div class="tier">A-TIER</div>
+
+    <div class="highlight">Trader</div>
+
+    Excellent passive money role if you enjoy hunting.
+  </div>
+
+  <div class="method">
+    <div class="tier">A-TIER</div>
+
+    <div class="highlight">Moonshiner</div>
+
+    Strong passive income with shorter deliveries.
+  </div>
+</div>
+
+<div class="section">
+  <h2>Best XP Methods</h2>
+
+  <ul>
+    <li>Collector runs</li>
+    <li>Featured Series bonuses</li>
+    <li>Legendary Bounties</li>
+    <li>Trader deliveries</li>
+    <li>Call to Arms</li>
+    <li>Daily challenges</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Best Gold Farming Methods</h2>
+
+  <ul>
+    <li>Daily challenges</li>
+    <li>Bounty Hunter missions</li>
+    <li>Treasure maps</li>
+    <li>Award resets</li>
+    <li>Weekly bonus events</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>Money Tips</h2>
+
+  <ul>
+    <li>Do not waste money on cosmetic items early.</li>
+    <li>Prioritize weapons and roles first.</li>
+    <li>Buy ability cards slowly and level them over time.</li>
+    <li>Always check weekly discounts before buying gear.</li>
+    <li>Combine passive roles with active farming.</li>
+  </ul>
+</div>
+
 </body>
 </html>
-
