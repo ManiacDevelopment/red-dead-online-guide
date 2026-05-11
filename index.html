@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Red Dead Online Guide</title>
-  <meta name="description" content="Dansk guide til Red Dead Redemption 2 Online. Våben, ability cards, penge, XP, roller, beginner roadmap og meget mere." />
+  <meta name="description" content="Dansk guide til Red Dead Redemption 2 Online. Våben, ability cards, penge, XP, roller, builds, trackers og meget mere." />
 
   <style>
     :root {
@@ -223,7 +223,7 @@
 
     .quick-stats {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       margin-top: 18px;
     }
@@ -293,7 +293,7 @@
       transition: .2s ease;
       display: flex;
       flex-direction: column;
-      min-height: 245px;
+      min-height: 250px;
     }
 
     .card:hover {
@@ -336,65 +336,6 @@
       font-weight: 700;
     }
 
-    .featured {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      margin-top: 16px;
-    }
-
-    .feature {
-      border-radius: 26px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)),
-        var(--panel2);
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(217,161,61,.14), transparent 18rem);
-      pointer-events: none;
-    }
-
-    .feature h3 {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
-
-    .roadmap {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .step {
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.16);
-      padding: 18px;
-    }
-
-    .step-number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: var(--red);
-      color: white;
-      font-family: Arial, sans-serif;
-      font-weight: 900;
-      margin-bottom: 12px;
-    }
-
     .footer {
       margin-top: 70px;
       padding-top: 24px;
@@ -409,15 +350,10 @@
       .cards {
         grid-template-columns: repeat(2, 1fr);
       }
-
-      .roadmap {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
 
     @media (max-width: 900px) {
-      .hero,
-      .featured {
+      .hero {
         grid-template-columns: 1fr;
       }
 
@@ -437,7 +373,6 @@
       }
 
       .cards,
-      .roadmap,
       .quick-stats {
         grid-template-columns: 1fr;
       }
@@ -471,6 +406,11 @@
         <a href="weapons.html">Våben</a>
         <a href="beginner-roadmap.html">Roadmap</a>
         <a href="build-generator.html">Build Generator</a>
+        <a href="daily-tracker.html">Daily Tracker</a>
+        <a href="tier-lists.html">Tier Lists</a>
+        <a href="calculators.html">Calculators</a>
+        <a href="progress-tracker.html">Progress</a>
+        <a href="weekly-bonuses.html">Weekly</a>
       </div>
     </nav>
   </header>
@@ -479,35 +419,41 @@
 
     <section class="hero">
       <div class="hero-box">
-        <div class="badge">Red Dead Redemption 2 Online Guide</div>
+        <div class="badge">Ultimate Red Dead Online Hub</div>
 
         <h1>Den ultimative danske guide til Red Dead Online</h1>
 
         <p>
-          Guides til våben, ability cards, penge, XP, roller, beginner roadmap,
-          builds, loadouts og alt det vigtigste i Red Dead Redemption 2 Online.
+          Guides, builds, trackers, calculators, våben, roller,
+          ability cards, money farming og progression til
+          Red Dead Redemption 2 Online.
         </p>
 
         <div class="hero-buttons">
           <a class="btn primary" href="beginner-roadmap.html">Start som begynder</a>
-          <a class="btn" href="money-guide.html">Tjen hurtige penge</a>
-          <a class="btn" href="build-generator.html">Build generator</a>
+          <a class="btn" href="build-generator.html">Build Generator</a>
+          <a class="btn" href="daily-tracker.html">Daily Tracker</a>
         </div>
 
         <div class="quick-stats">
+          <div class="stat">
+            <strong>12+</strong>
+            <span>Undersider</span>
+          </div>
+
+          <div class="stat">
+            <strong>5</strong>
+            <span>Interaktive værktøjer</span>
+          </div>
+
           <div class="stat">
             <strong>50+</strong>
             <span>Guides og builds</span>
           </div>
 
           <div class="stat">
-            <strong>10</strong>
-            <span>Store undersider</span>
-          </div>
-
-          <div class="stat">
             <strong>100%</strong>
-            <span>Gratis guide</span>
+            <span>Gratis</span>
           </div>
         </div>
       </div>
@@ -516,13 +462,14 @@
         <h3>Hvad finder du her?</h3>
 
         <ul>
-          <li>Bedste våben til PvE, PvP og jagt</li>
-          <li>Ability card builds efter spillestil</li>
-          <li>Guide til hurtigst at tjene cash og gold</li>
-          <li>Roadmap fra rank 1–50</li>
-          <li>Roller forklaret: Collector, Trader, Bounty Hunter m.fl.</li>
-          <li>Loadouts, builds og progression</li>
-          <li>Tips til solo og posse gameplay</li>
+          <li>Beginner roadmap fra rank 1–50</li>
+          <li>Bedste våben og loadouts</li>
+          <li>Ability card builds til alle spillestile</li>
+          <li>Gold, cash og XP guides</li>
+          <li>Tier lists til våben, roller og cards</li>
+          <li>Daily tracker og progress tracker</li>
+          <li>Build generator og calculators</li>
+          <li>Weekly bonuses og anbefalinger</li>
         </ul>
       </aside>
     </section>
@@ -530,9 +477,9 @@
     <section class="section">
       <div class="section-head">
         <div>
-          <h2>Vigtigste guides</h2>
+          <h2>Guides & værktøjer</h2>
           <p>
-            Start med disse sider hvis du er ny eller vil optimere din progression.
+            Alt samlet ét sted — både guides og interaktive værktøjer.
           </p>
         </div>
       </div>
@@ -542,10 +489,7 @@
         <article class="card">
           <div class="icon">🛣️</div>
           <h3>Beginner Roadmap</h3>
-          <p>
-            Kom hurtigt fra rank 1 til 50 uden at spilde penge på dårlige køb.
-          </p>
-
+          <p>Kom hurtigt fra rank 1 til 50 uden dårlige køb.</p>
           <div class="card-footer">
             <a class="mini-btn" href="beginner-roadmap.html">Åbn roadmap</a>
           </div>
@@ -553,23 +497,17 @@
 
         <article class="card">
           <div class="icon">💰</div>
-          <h3>Penge og Gold</h3>
-          <p>
-            Bedste metoder til cash, gold bars, XP og stabile money-loops.
-          </p>
-
+          <h3>Penge & Gold</h3>
+          <p>De bedste money loops til cash, gold og XP.</p>
           <div class="card-footer">
-            <a class="mini-btn" href="money-guide.html">Se money guide</a>
+            <a class="mini-btn" href="money-guide.html">Money guide</a>
           </div>
         </article>
 
         <article class="card">
           <div class="icon">🎯</div>
           <h3>Ability Cards</h3>
-          <p>
-            Få anbefalede builds til PvE, PvP, sniper, tank og support.
-          </p>
-
+          <p>Builds til PvE, PvP, sniper, support og tank.</p>
           <div class="card-footer">
             <a class="mini-btn" href="ability-cards.html">Se builds</a>
           </div>
@@ -577,109 +515,91 @@
 
         <article class="card">
           <div class="icon">🔫</div>
-          <h3>Bedste Våben</h3>
-          <p>
-            Hvilke våben der faktisk er værd at købe — og hvilke du kan springe over.
-          </p>
-
+          <h3>Våben</h3>
+          <p>Hvilke våben der er værd at købe — og hvilke der ikke er.</p>
           <div class="card-footer">
             <a class="mini-btn" href="weapons.html">Våbenguide</a>
           </div>
         </article>
 
         <article class="card">
-          <div class="icon">🧭</div>
-          <h3>Aktiviteter</h3>
-          <p>
-            Alt du kan lave i Red Dead Online: roller, missions, events og jagt.
-          </p>
-
-          <div class="card-footer">
-            <a class="mini-btn" href="activities.html">Se aktiviteter</a>
-          </div>
-        </article>
-
-        <article class="card">
           <div class="icon">⚙️</div>
           <h3>Build Generator</h3>
-          <p>
-            Interaktiv generator der anbefaler våben, role og ability cards.
-          </p>
-
+          <p>Interaktiv generator til våben, builds og roller.</p>
           <div class="card-footer">
             <a class="mini-btn" href="build-generator.html">Åbn generator</a>
           </div>
         </article>
 
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>Hurtig progression</h2>
-          <p>
-            Den hurtigste vej til en stærk konto handler om at fokusere på få ting ad gangen.
-          </p>
-        </div>
-      </div>
-
-      <div class="roadmap">
-
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Story + Dailies</h3>
-          <p>Start med missions og nemme daily challenges for tidlig cash og gold.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Lancaster + Bolt Action</h3>
-          <p>Køb få stærke våben i stedet for mange middelmådige.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Første rolle</h3>
-          <p>Collector til cash eller Bounty Hunter til gold.</p>
-        </div>
-
-        <div class="step">
-          <div class="step-number">4</div>
-          <h3>Ability builds</h3>
-          <p>Opgrader dine vigtigste cards før kosmetik og luksuskøb.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="featured">
-
-        <article class="feature">
-          <div class="badge">Bedst til begyndere</div>
-          <h3>Collector + Lancaster</h3>
-          <p>
-            Hvis du vil have den mest stabile start, så fokusér på Collector,
-            treasure maps og Lancaster Repeater. Det giver stærk økonomi og hurtig XP.
-          </p>
+        <article class="card">
+          <div class="icon">📋</div>
+          <h3>Daily Tracker</h3>
+          <p>Daglig checkliste med lokal gemning i browseren.</p>
+          <div class="card-footer">
+            <a class="mini-btn" href="daily-tracker.html">Åbn tracker</a>
+          </div>
         </article>
 
-        <article class="feature">
-          <div class="badge">Bedst til action</div>
-          <h3>Bounty Hunter + PvE build</h3>
-          <p>
-            Hvis du vil have combat, gold og action, så gå efter Bounty Hunter,
-            Pump Action Shotgun og et stærkt PvE build.
-          </p>
+        <article class="card">
+          <div class="icon">🏆</div>
+          <h3>Tier Lists</h3>
+          <p>Tier lists til våben, roller, heste og ability cards.</p>
+          <div class="card-footer">
+            <a class="mini-btn" href="tier-lists.html">Se tiers</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧮</div>
+          <h3>Calculators</h3>
+          <p>Gold planner, XP planner og role recommender.</p>
+          <div class="card-footer">
+            <a class="mini-btn" href="calculators.html">Åbn calculators</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">📈</div>
+          <h3>Progress Tracker</h3>
+          <p>Hold styr på våben, roller og unlocks.</p>
+          <div class="card-footer">
+            <a class="mini-btn" href="progress-tracker.html">Se progression</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">⭐</div>
+          <h3>Weekly Bonuses</h3>
+          <p>Ugentlige bonusser, rabatter og anbefalet fokus.</p>
+          <div class="card-footer">
+            <a class="mini-btn" href="weekly-bonuses.html">Se ugebonus</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">🧭</div>
+          <h3>Aktiviteter</h3>
+          <p>Guide til roller, missions, events og ting man kan lave.</p>
+          <div class="card-footer">
+            <a class="mini-btn" href="activities.html">Aktiviteter</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="icon">📦</div>
+          <h3>Unlocks</h3>
+          <p>Se hvilke levels der unlocker våben, items og gear.</p>
+          <div class="card-footer">
+            <a class="mini-btn" href="unlocks.html">Se unlocks</a>
+          </div>
         </article>
 
       </div>
     </section>
 
     <footer class="footer">
-      Red Dead Online Guide er et fanprojekt lavet til spillere der vil forstå progression,
-      økonomi, våben og builds i Red Dead Redemption 2 Online.
+      Red Dead Online Guide er et fanprojekt lavet til spillere der vil forstå
+      progression, økonomi, builds og effektiv farming i Red Dead Redemption 2 Online.
     </footer>
 
   </main>
