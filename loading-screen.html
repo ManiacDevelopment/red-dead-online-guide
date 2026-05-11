@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading</title>
+
+<style>
+
+body{
+margin:0;
+background:#110b08;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Arial;
+color:#f6ead8;
+flex-direction:column;
+}
+
+.loader{
+width:80px;
+height:80px;
+border:8px solid #281b13;
+border-top:8px solid #d9a13d;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="loader"></div>
+
+<h2>Loading Red Dead Online Guide...</h2>
+
+</body>
+</html>
