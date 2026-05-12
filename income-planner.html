@@ -1,462 +1,403 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Income Planner | Red Dead Online Guide</title>
+
+<title>Income Planner</title>
+
+<link rel="stylesheet" href="style.css">
 
 <style>
-body{
-  background:#110b08;
-  color:#f6ead8;
-  font-family:Arial,sans-serif;
-  margin:0;
-  line-height:1.7;
-}
-
-.container{
-  max-width:1150px;
-  margin:auto;
-  padding:30px;
-}
-
-.navbar{
-  background:#140d09;
-  padding:18px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.navbar a{
-  color:#f6ead8;
-  text-decoration:none;
-  margin-right:18px;
-  font-weight:bold;
-}
-
-h1,h2,h3{
-  color:#d9a13d;
-}
-
-.card{
-  background:#1d1510;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
-  padding:20px;
-  margin-bottom:20px;
-}
 
 .grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:18px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+margin-top:20px;
 }
 
-label{
-  display:block;
-  margin-top:12px;
-  color:#f5c876;
-  font-weight:bold;
-}
-
-select,input{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  border:none;
-  border-radius:12px;
-  background:#281b13;
-  color:#f6ead8;
-}
-
-button{
-  background:#d9a13d;
-  color:#140a04;
-  border:none;
-  padding:12px 18px;
-  border-radius:12px;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:12px;
-  margin-right:8px;
-}
-
-button.secondary{
-  background:#281b13;
-  color:#f6ead8;
-  border:1px solid rgba(255,255,255,.12);
-}
-
-button.danger{
-  background:#8e2119;
-  color:#fff;
+.timer-box{
+background:#1d1510;
+padding:20px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.08);
 }
 
 .timer{
-  font-size:34px;
-  font-weight:bold;
-  color:#f5c876;
+font-size:34px;
+font-weight:bold;
+color:#f5c876;
+margin:16px 0;
 }
 
-.status{
-  color:#c9b8a2;
+label{
+display:block;
+margin-top:12px;
+margin-bottom:8px;
+font-weight:bold;
+color:#f5c876;
 }
 
-.ready{
-  color:#69d27c;
-  font-weight:bold;
+select{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#281b13;
+color:#f6ead8;
 }
 
-.paused{
-  color:#ffcc66;
-  font-weight:bold;
+button{
+margin-top:14px;
+padding:12px 18px;
+border:none;
+border-radius:12px;
+background:#d9a13d;
+color:#140a04;
+font-weight:bold;
+cursor:pointer;
 }
 
 .plan-step{
-  background:#281b13;
-  border-radius:14px;
-  padding:14px;
-  margin-bottom:12px;
+background:#281b13;
+padding:16px;
+border-radius:14px;
+margin-bottom:14px;
 }
 
-.footer{
-  margin-top:40px;
-  padding:30px;
-  text-align:center;
-  background:#140d09;
-  color:#c9b8a2;
+.active{
+color:#69d27c;
+font-weight:bold;
 }
+
+.paused{
+color:#ffcc66;
+font-weight:bold;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="navbar">
-  <a href="index.html">Home</a>
-  <a href="money-guide.html">Money</a>
-  <a href="trader-guide.html">Trader</a>
-  <a href="moonshiner-guide.html">Moonshiner</a>
-  <a href="bounty-hunter-guide.html">Bounty Hunter</a>
+
+<a href="index.html">Home</a>
+<a href="money-guide.html">Money</a>
+<a href="trader-guide.html">Trader</a>
+<a href="moonshiner-guide.html">Moonshine</a>
+<a href="bounty-hunter-guide.html">Bounty</a>
+
 </div>
 
 <div class="container">
 
-<h1>Red Dead Online Income Planner</h1>
+<h1>Income Planner</h1>
 
 <p>
-Plan Trader Wagon, Moonshine and Legendary Bounty timing.  
-The planner pauses production timers when you start a Legendary Bounty and recommends the best income rotation.
+Track Trader Wagon, Moonshine and Legendary Bounty timing automatically.
+The planner recommends optimal money rotations.
 </p>
 
 <div class="grid">
 
-<div class="card">
+<div class="timer-box">
+
 <h2>Trader Wagon</h2>
 
-<label for="wagonSize">Wagon Size</label>
-<select id="wagonSize">
-  <option value="50">Small Wagon — 25 goods / approx. 50 min</option>
-  <option value="100">Medium Wagon — 50 goods / approx. 100 min</option>
-  <option value="200">Large Wagon — 100 goods / approx. 200 min</option>
+<label>Wagon Size</label>
+
+<select id="wagon">
+
+<option value="50">Small Wagon</option>
+<option value="100">Medium Wagon</option>
+<option value="200">Large Wagon</option>
+
 </select>
 
-<button onclick="startTrader()">Start Trader Timer</button>
-<button class="secondary" onclick="resetTrader()">Reset</button>
+<button onclick="startTrader()">
+Start Trader
+</button>
 
-<p class="status">Trader ready in:</p>
-<div class="timer" id="traderTimer">Not started</div>
-<p id="traderStatus"></p>
+<div class="timer" id="traderTimer">
+Not Running
 </div>
 
-<div class="card">
+<div id="traderStatus"></div>
+
+</div>
+
+<div class="timer-box">
+
 <h2>Moonshine</h2>
 
-<label for="moonshineStrength">Moonshine Strength</label>
-<select id="moonshineStrength">
-  <option value="30">Weak Moonshine — approx. 30 min</option>
-  <option value="45">Average Moonshine — approx. 45 min</option>
-  <option value="60">Strong Moonshine — approx. 60 min</option>
+<label>Moonshine Strength</label>
+
+<select id="moonshine">
+
+<option value="30">Weak</option>
+<option value="45">Average</option>
+<option value="60">Strong</option>
+
 </select>
 
-<button onclick="startMoonshine()">Start Moonshine Timer</button>
-<button class="secondary" onclick="resetMoonshine()">Reset</button>
+<button onclick="startMoonshine()">
+Start Moonshine
+</button>
 
-<p class="status">Moonshine ready in:</p>
-<div class="timer" id="moonshineTimer">Not started</div>
-<p id="moonshineStatus"></p>
+<div class="timer" id="moonshineTimer">
+Not Running
 </div>
 
-<div class="card">
+<div id="moonshineStatus"></div>
+
+</div>
+
+<div class="timer-box">
+
 <h2>Legendary Bounty</h2>
 
 <p>
-Use this when you start a Legendary Bounty.  
-Trader and Moonshine timers pause while bounty mode is active.
+Pause production timers while bounty is active.
 </p>
 
-<button onclick="startBounty()">Start Legendary Bounty</button>
-<button class="danger" onclick="endBounty()">End Bounty / Resume</button>
+<button onclick="startBounty()">
+Start Bounty
+</button>
 
-<p class="status">Bounty timer:</p>
-<div class="timer" id="bountyTimer">Not active</div>
-<p id="bountyStatus"></p>
+<button onclick="stopBounty()">
+End Bounty
+</button>
+
+<div class="timer" id="bountyTimer">
+Inactive
+</div>
+
+<div id="bountyStatus"></div>
+
 </div>
 
 </div>
 
 <div class="card">
+
 <h2>Optimal Income Plan</h2>
 
 <div id="plan"></div>
 
-<button onclick="updatePlan()">Refresh Plan</button>
-</div>
-
-<div class="card">
-<h2>How To Use</h2>
-
-<ul>
-  <li>Select your Trader Wagon size.</li>
-  <li>Select your Moonshine strength.</li>
-  <li>Start both timers when production begins.</li>
-  <li>Start Legendary Bounty when you enter bounty mission.</li>
-  <li>End bounty when you return to free roam.</li>
-  <li>The planner will pause and resume timers automatically.</li>
-</ul>
 </div>
 
 </div>
 
 <div class="footer">
-Red Dead Online Guide — Income Planner Tool
+
+<p>
+Red Dead Online Guide — Income Planner
+</p>
+
 </div>
 
 <script>
+
 let traderEnd = null;
 let moonshineEnd = null;
 let bountyStart = null;
-let bountyActive = false;
-let pauseStart = null;
+let paused = false;
+let pauseStarted = null;
 
 function minutesToMs(min){
-  return min * 60 * 1000;
+return min * 60 * 1000;
 }
 
-function formatTime(ms){
-  if(ms <= 0) return "Ready";
+function format(ms){
 
-  const totalSeconds = Math.floor(ms / 1000);
-  const h = Math.floor(totalSeconds / 3600);
-  const m = Math.floor((totalSeconds % 3600) / 60);
-  const s = totalSeconds % 60;
+if(ms <= 0){
+return "Ready";
+}
 
-  if(h > 0){
-    return `${h}h ${m}m ${s}s`;
-  }
+const total = Math.floor(ms / 1000);
 
-  return `${m}m ${s}s`;
+const h = Math.floor(total / 3600);
+const m = Math.floor((total % 3600) / 60);
+const s = total % 60;
+
+if(h > 0){
+return `${h}h ${m}m ${s}s`;
+}
+
+return `${m}m ${s}s`;
+
 }
 
 function startTrader(){
-  const minutes = Number(document.getElementById("wagonSize").value);
-  traderEnd = Date.now() + minutesToMs(minutes);
-  localStorage.setItem("traderEnd", traderEnd);
-  updatePlan();
-}
 
-function resetTrader(){
-  traderEnd = null;
-  localStorage.removeItem("traderEnd");
-  document.getElementById("traderTimer").innerText = "Not started";
-  document.getElementById("traderStatus").innerText = "";
-  updatePlan();
+const size = Number(
+document.getElementById("wagon").value
+);
+
+traderEnd = Date.now() + minutesToMs(size);
+
 }
 
 function startMoonshine(){
-  const minutes = Number(document.getElementById("moonshineStrength").value);
-  moonshineEnd = Date.now() + minutesToMs(minutes);
-  localStorage.setItem("moonshineEnd", moonshineEnd);
-  updatePlan();
-}
 
-function resetMoonshine(){
-  moonshineEnd = null;
-  localStorage.removeItem("moonshineEnd");
-  document.getElementById("moonshineTimer").innerText = "Not started";
-  document.getElementById("moonshineStatus").innerText = "";
-  updatePlan();
+const strength = Number(
+document.getElementById("moonshine").value
+);
+
+moonshineEnd = Date.now() + minutesToMs(strength);
+
 }
 
 function startBounty(){
-  if(bountyActive) return;
 
-  bountyActive = true;
-  bountyStart = Date.now();
-  pauseStart = Date.now();
+if(paused) return;
 
-  localStorage.setItem("bountyActive", "true");
-  localStorage.setItem("bountyStart", bountyStart);
-  localStorage.setItem("pauseStart", pauseStart);
+paused = true;
+pauseStarted = Date.now();
+bountyStart = Date.now();
 
-  updatePlan();
 }
 
-function endBounty(){
-  if(!bountyActive) return;
+function stopBounty(){
 
-  const pauseDuration = Date.now() - pauseStart;
+if(!paused) return;
 
-  if(traderEnd){
-    traderEnd += pauseDuration;
-    localStorage.setItem("traderEnd", traderEnd);
-  }
+const pauseLength = Date.now() - pauseStarted;
 
-  if(moonshineEnd){
-    moonshineEnd += pauseDuration;
-    localStorage.setItem("moonshineEnd", moonshineEnd);
-  }
-
-  bountyActive = false;
-  bountyStart = null;
-  pauseStart = null;
-
-  localStorage.removeItem("bountyActive");
-  localStorage.removeItem("bountyStart");
-  localStorage.removeItem("pauseStart");
-
-  updatePlan();
+if(traderEnd){
+traderEnd += pauseLength;
 }
 
-function updateTimers(){
-  const now = Date.now();
+if(moonshineEnd){
+moonshineEnd += pauseLength;
+}
 
-  if(traderEnd){
-    const left = traderEnd - now;
+paused = false;
+pauseStarted = null;
 
-    document.getElementById("traderTimer").innerText =
-      left <= 0 ? "Ready" : formatTime(left);
+}
 
-    document.getElementById("traderStatus").innerHTML =
-      left <= 0
-      ? '<span class="ready">Trader wagon is ready to sell.</span>'
-      : bountyActive
-      ? '<span class="paused">Paused during Legendary Bounty.</span>'
-      : "Production running.";
-  }
+function update(){
 
-  if(moonshineEnd){
-    const left = moonshineEnd - now;
+const now = Date.now();
 
-    document.getElementById("moonshineTimer").innerText =
-      left <= 0 ? "Ready" : formatTime(left);
+if(traderEnd){
 
-    document.getElementById("moonshineStatus").innerHTML =
-      left <= 0
-      ? '<span class="ready">Moonshine is ready to sell.</span>'
-      : bountyActive
-      ? '<span class="paused">Paused during Legendary Bounty.</span>'
-      : "Production running.";
-  }
+const left = traderEnd - now;
 
-  if(bountyActive && bountyStart){
-    const running = now - bountyStart;
+document.getElementById("traderTimer").innerText =
+format(left);
 
-    document.getElementById("bountyTimer").innerText =
-      formatTime(running);
+document.getElementById("traderStatus").innerHTML =
+left <= 0
+? '<span class="active">Trader Ready</span>'
+: paused
+? '<span class="paused">Paused During Bounty</span>'
+: 'Production Running';
 
-    document.getElementById("bountyStatus").innerHTML =
-      '<span class="paused">Legendary Bounty active. Production timers paused.</span>';
-  }
-  else{
-    document.getElementById("bountyTimer").innerText = "Not active";
-    document.getElementById("bountyStatus").innerText = "";
-  }
+}
+
+if(moonshineEnd){
+
+const left = moonshineEnd - now;
+
+document.getElementById("moonshineTimer").innerText =
+format(left);
+
+document.getElementById("moonshineStatus").innerHTML =
+left <= 0
+? '<span class="active">Moonshine Ready</span>'
+: paused
+? '<span class="paused">Paused During Bounty</span>'
+: 'Production Running';
+
+}
+
+if(paused){
+
+const run = now - bountyStart;
+
+document.getElementById("bountyTimer").innerText =
+format(run);
+
+document.getElementById("bountyStatus").innerHTML =
+'<span class="paused">Legendary Bounty Active</span>';
+
+}
+else{
+
+document.getElementById("bountyTimer").innerText =
+"Inactive";
+
+document.getElementById("bountyStatus").innerHTML =
+"";
+
+}
+
+updatePlan();
+
 }
 
 function updatePlan(){
-  const now = Date.now();
-  const plan = document.getElementById("plan");
 
-  let steps = [];
+const plan = document.getElementById("plan");
 
-  const traderLeft = traderEnd ? traderEnd - now : null;
-  const moonshineLeft = moonshineEnd ? moonshineEnd - now : null;
+let html = "";
 
-  if(bountyActive){
-    steps.push("Finish the Legendary Bounty first. Trader and Moonshine timers are paused.");
-  }
-  else{
-    if(!traderEnd){
-      steps.push("Start Trader production if you have materials available.");
-    }
+if(paused){
 
-    if(!moonshineEnd){
-      steps.push("Start Moonshine production immediately. It is one of the best passive income loops.");
-    }
+html += `
+<div class="plan-step">
+Finish the Legendary Bounty before continuing production.
+</div>
+`;
 
-    if(traderLeft !== null && traderLeft <= 0){
-      steps.push("Sell your Trader wagon now before starting another long activity.");
-    }
+}
+else{
 
-    if(moonshineLeft !== null && moonshineLeft <= 0){
-      steps.push("Sell Moonshine now. It is ready and should not sit idle.");
-    }
+if(!traderEnd){
 
-    if(
-      traderLeft !== null &&
-      moonshineLeft !== null &&
-      traderLeft > 0 &&
-      moonshineLeft > 0
-    ){
-      if(moonshineLeft < traderLeft){
-        steps.push("Do short activities until Moonshine is ready.");
-        steps.push("Recommended: Daily Challenges, Collector items, short Bounty missions.");
-      }
-      else{
-        steps.push("Trader wagon is the next major payout. Keep materials full and do active income meanwhile.");
-      }
-    }
+html += `
+<div class="plan-step">
+Start Trader production immediately.
+</div>
+`;
 
-    if(
-      traderLeft !== null &&
-      moonshineLeft !== null &&
-      traderLeft > minutesToMs(30) &&
-      moonshineLeft > minutesToMs(20)
-    ){
-      steps.push("Good window for a Legendary Bounty. Start it now, then resume production timers afterwards.");
-    }
-  }
-
-  if(steps.length === 0){
-    steps.push("Start Trader and Moonshine timers to generate an optimal income plan.");
-  }
-
-  plan.innerHTML = steps.map((step,index) => `
-    <div class="plan-step">
-      <strong>Step ${index + 1}</strong><br>
-      ${step}
-    </div>
-  `).join("");
 }
 
-function loadSaved(){
-  traderEnd = Number(localStorage.getItem("traderEnd")) || null;
-  moonshineEnd = Number(localStorage.getItem("moonshineEnd")) || null;
+if(!moonshineEnd){
 
-  bountyActive = localStorage.getItem("bountyActive") === "true";
-  bountyStart = Number(localStorage.getItem("bountyStart")) || null;
-  pauseStart = Number(localStorage.getItem("pauseStart")) || null;
+html += `
+<div class="plan-step">
+Start Moonshine production immediately.
+</div>
+`;
+
 }
 
-loadSaved();
-updatePlan();
+if(traderEnd && moonshineEnd){
 
-setInterval(() => {
-  updateTimers();
-}, 1000);
+html += `
+<div class="plan-step">
+Recommended:
+Run Collector routes or Daily Challenges while waiting.
+</div>
+`;
 
-setInterval(() => {
-  updatePlan();
-}, 15000);
+}
+
+}
+
+plan.innerHTML = html;
+
+}
+
+setInterval(update,1000);
+
 </script>
 
 </body>
