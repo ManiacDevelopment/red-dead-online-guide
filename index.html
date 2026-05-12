@@ -1,319 +1,359 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Red Dead Online Guide</title>
-  <meta name="description" content="Ultimate Red Dead Redemption 2 Online guide. Weapons, ability cards, money, XP, roles, builds, trackers and more." />
 
-  <style>
-    :root {
-      --bg: #110b08;
-      --panel: #1d1510;
-      --text: #f6ead8;
-      --muted: #bca990;
-      --gold: #d9a13d;
-      --border: rgba(255,255,255,.13);
-      --shadow: 0 22px 70px rgba(0,0,0,.42);
-      --radius: 22px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * {
-      box-sizing: border-box;
-    }
+<title>Red Dead Online Guide</title>
 
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
-        radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
-        linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
-    }
+<meta name="description" content="Complete Red Dead Online guide with money farming, gold farming, weapons, roles, builds, trackers, calculators and tools.">
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+<style>
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(17,11,8,.88);
-      border-bottom: 1px solid var(--border);
-    }
+:root{
+  --bg:#110b08;
+  --panel:#1d1510;
+  --panel2:#281b13;
+  --text:#f6ead8;
+  --muted:#bca990;
+  --gold:#d9a13d;
+  --border:rgba(255,255,255,.13);
+  --shadow:0 22px 70px rgba(0,0,0,.42);
+  --radius:22px;
+}
 
-    .nav {
-      max-width: 1180px;
-      margin: auto;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-    }
+body{
+  margin:0;
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(217,161,61,.20), transparent 32rem),
+    radial-gradient(circle at top right, rgba(142,33,25,.18), transparent 35rem),
+    linear-gradient(180deg, #180f0a 0%, var(--bg) 48%, #070403 100%);
+  line-height:1.7;
+}
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle, #ffd37b, var(--gold) 50%, #7b4318);
-      color: #190b04;
-      box-shadow: 0 0 0 3px rgba(217,161,61,.18);
-    }
+a{
+  color:inherit;
+  text-decoration:none;
+}
 
-    .nav-links {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-    }
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(16px);
+  background:rgba(17,11,8,.92);
+  border-bottom:1px solid var(--border);
+}
 
-    .nav-links a {
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--muted);
-      transition: .2s ease;
-    }
+.nav{
+  max-width:1180px;
+  margin:auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
 
-    .nav-links a:hover {
-      border-color: rgba(217,161,61,.38);
-      color: var(--text);
-      background: rgba(217,161,61,.10);
-    }
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
 
-    main {
-      max-width: 1180px;
-      margin: auto;
-      padding: 56px 18px 76px;
-    }
+.brand-mark{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle,#ffd37b,var(--gold) 50%,#7b4318);
+  color:#190b04;
+  box-shadow:0 0 0 3px rgba(217,161,61,.18);
+}
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr .52fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 40px;
-    }
+.nav-links{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  font-size:13px;
+}
 
-    .hero-box,
-    .side-box {
-      border-radius: 30px;
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)),
-        var(--panel);
-      box-shadow: var(--shadow);
-      padding: 28px;
-    }
+.nav-links a{
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid transparent;
+  color:var(--muted);
+}
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(217,161,61,.12);
-      border: 1px solid rgba(217,161,61,.30);
-      color: #f5c876;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
+.nav-links a:hover{
+  border-color:rgba(217,161,61,.38);
+  color:var(--text);
+  background:rgba(217,161,61,.10);
+}
 
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(48px, 7vw, 90px);
-      line-height: .92;
-      letter-spacing: -.055em;
-      text-transform: uppercase;
-    }
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:56px 18px 76px;
+}
 
-    h2 {
-      margin: 0 0 12px;
-      font-size: clamp(30px, 4vw, 52px);
-      line-height: 1;
-      letter-spacing: -.04em;
-      text-transform: uppercase;
-    }
+.hero{
+  display:grid;
+  grid-template-columns:1fr .52fr;
+  gap:24px;
+  align-items:stretch;
+  margin-bottom:42px;
+}
 
-    h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
-    }
+.hero-box,
+.side-box{
+  border-radius:30px;
+  border:1px solid var(--border);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015)),
+    var(--panel);
+  box-shadow:var(--shadow);
+  padding:28px;
+}
 
-    p,
-    li,
-    button {
-      font-family: Arial, sans-serif;
-    }
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(217,161,61,.12);
+  border:1px solid rgba(217,161,61,.30);
+  color:#f5c876;
+  font-size:13px;
+  margin-bottom:18px;
+  font-weight:700;
+}
 
-    p {
-      color: var(--muted);
-      line-height: 1.75;
-      margin: 0 0 18px;
-    }
+h1{
+  margin:0 0 16px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(46px,7vw,88px);
+  line-height:.92;
+  letter-spacing:-.055em;
+  text-transform:uppercase;
+}
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
+h2{
+  margin:0 0 14px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(30px,4vw,50px);
+  line-height:1;
+  letter-spacing:-.04em;
+  text-transform:uppercase;
+}
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 50px;
-      padding: 0 18px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-    }
+h3{
+  margin:0 0 8px;
+  font-size:24px;
+  color:var(--text);
+}
 
-    .btn.primary {
-      background: linear-gradient(180deg, #d9a13d, #9b5d1f);
-      color: #140a04;
-      border: none;
-    }
+p,
+li{
+  color:var(--muted);
+}
 
-    .quick-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 18px;
-    }
+.hero-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
 
-    .stat {
-      padding: 15px;
-      border-radius: 18px;
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-    }
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  padding:0 18px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  font-weight:700;
+  transition:.2s ease;
+}
 
-    .stat strong {
-      display: block;
-      color: var(--gold);
-      font-size: 28px;
-      font-family: Arial, sans-serif;
-    }
+.btn:hover{
+  transform:translateY(-2px);
+  border-color:rgba(217,161,61,.45);
+}
 
-    .stat span {
-      color: var(--muted);
-      font-size: 13px;
-      font-family: Arial, sans-serif;
-    }
+.btn.primary{
+  background:linear-gradient(180deg,#d9a13d,#9b5d1f);
+  color:#140a04;
+  border:none;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
+.quick-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:22px;
+}
 
-    .card {
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015)),
-        var(--panel);
-      padding: 20px;
-      box-shadow: 0 10px 32px rgba(0,0,0,.20);
-      display: flex;
-      flex-direction: column;
-      min-height: 250px;
-    }
+.stat{
+  padding:15px;
+  border-radius:18px;
+  border:1px solid var(--border);
+  background:rgba(0,0,0,.18);
+}
 
-    .icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 14px;
-      font-size: 26px;
-      background: rgba(217,161,61,.13);
-      border: 1px solid rgba(217,161,61,.22);
-    }
+.stat strong{
+  display:block;
+  color:var(--gold);
+  font-size:28px;
+}
 
-    .mini-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      background: rgba(217,161,61,.10);
-      border: 1px solid rgba(217,161,61,.22);
-      color: #f3c878;
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-    }
+.stat span{
+  color:var(--muted);
+  font-size:13px;
+}
 
-    .footer {
-      margin-top: 70px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-family: Arial, sans-serif;
-      font-size: 13px;
-      line-height: 1.7;
-    }
+.side-box ul{
+  margin:12px 0 0;
+  padding-left:18px;
+}
 
-    @media (max-width: 1040px) {
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+.section{
+  margin-top:44px;
+}
 
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
+.section-head{
+  margin-bottom:18px;
+}
 
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
 
-      .nav-links {
-        justify-content: flex-start;
-      }
-    }
+.card{
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015)),
+    var(--panel);
+  padding:20px;
+  box-shadow:0 10px 32px rgba(0,0,0,.20);
+  transition:.2s ease;
+  display:flex;
+  flex-direction:column;
+  min-height:250px;
+}
 
-    @media (max-width: 640px) {
-      .cards,
-      .quick-stats {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(217,161,61,.42);
+}
+
+.icon{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+  display:grid;
+  place-items:center;
+  margin-bottom:14px;
+  font-size:26px;
+  background:rgba(217,161,61,.13);
+  border:1px solid rgba(217,161,61,.22);
+}
+
+.card p{
+  margin-bottom:0;
+}
+
+.card-footer{
+  margin-top:auto;
+  padding-top:16px;
+}
+
+.mini-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(217,161,61,.10);
+  border:1px solid rgba(217,161,61,.22);
+  color:#f3c878;
+  font-size:13px;
+  font-weight:700;
+}
+
+.footer{
+  margin-top:70px;
+  padding-top:24px;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+@media(max-width:1040px){
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:900px){
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .nav{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .nav-links{
+    justify-content:flex-start;
+  }
+}
+
+@media(max-width:640px){
+  main{
+    padding-top:34px;
+  }
+
+  .cards,
+  .quick-stats{
+    grid-template-columns:1fr;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+  }
+}
+
+</style>
+
 </head>
 
 <body>
 
 <header class="topbar">
   <nav class="nav">
+
     <a class="brand" href="index.html">
       <span class="brand-mark">★</span>
       <span>RDO Guide</span>
@@ -329,58 +369,66 @@
       <a href="beginner-roadmap.html">Roadmap</a>
       <a href="build-generator.html">Build Generator</a>
       <a href="daily-tracker.html">Daily Tracker</a>
+      <a href="income-planner.html">Income Planner</a>
       <a href="tier-lists.html">Tier Lists</a>
       <a href="calculators.html">Calculators</a>
       <a href="progress-tracker.html">Progress</a>
       <a href="weekly-bonuses.html">Weekly</a>
     </div>
+
   </nav>
 </header>
 
 <main>
 
 <section class="hero">
+
   <div class="hero-box">
+
     <div class="badge">Ultimate Red Dead Online Hub</div>
 
     <h1>The Ultimate Red Dead Online Guide</h1>
 
     <p>
-      Guides, builds, trackers, calculators, weapons,
-      roles, ability cards, money farming and progression
-      for Red Dead Redemption 2 Online.
+      Guides, builds, trackers, calculators, weapons, roles, ability cards,
+      money farming and progression tools for Red Dead Redemption 2 Online.
     </p>
 
     <div class="hero-buttons">
       <a class="btn primary" href="beginner-roadmap.html">Beginner Roadmap</a>
+      <a class="btn" href="income-planner.html">Income Planner</a>
       <a class="btn" href="build-generator.html">Build Generator</a>
       <a class="btn" href="daily-tracker.html">Daily Tracker</a>
     </div>
 
     <div class="quick-stats">
+
       <div class="stat">
-        <strong>12+</strong>
-        <span>Pages</span>
+        <strong>30+</strong>
+        <span>Guide pages</span>
+      </div>
+
+      <div class="stat">
+        <strong>8+</strong>
+        <span>Tools & trackers</span>
       </div>
 
       <div class="stat">
         <strong>5</strong>
-        <span>Interactive tools</span>
-      </div>
-
-      <div class="stat">
-        <strong>50+</strong>
-        <span>Guides & builds</span>
+        <span>Role guides</span>
       </div>
 
       <div class="stat">
         <strong>100%</strong>
         <span>Free</span>
       </div>
+
     </div>
+
   </div>
 
   <aside class="side-box">
+
     <h3>What you'll find here</h3>
 
     <ul>
@@ -388,100 +436,187 @@
       <li>Best weapons and loadouts</li>
       <li>Ability card builds for every playstyle</li>
       <li>Gold, cash and XP guides</li>
-      <li>Weapon, role and card tier lists</li>
+      <li>Trader, Moonshiner and Bounty planning tools</li>
       <li>Daily tracker and progress tracker</li>
-      <li>Build generator and calculators</li>
-      <li>Weekly bonuses and recommendations</li>
+      <li>Tier lists, calculators and weekly bonuses</li>
     </ul>
+
   </aside>
+
 </section>
 
-<section>
-  <h2>Guides & Tools</h2>
+<section class="section">
+
+  <div class="section-head">
+    <h2>Featured Tools</h2>
+    <p>Interactive tools to help you plan progression and income.</p>
+  </div>
+
+  <div class="cards">
+
+    <article class="card">
+      <div class="icon">⏱️</div>
+      <h3>Income Planner</h3>
+      <p>Track Trader Wagon, Moonshine and Legendary Bounty timing in one place.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="income-planner.html">Open planner</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">📋</div>
+      <h3>Daily Tracker</h3>
+      <p>Daily checklist for gold, role tasks, routines and efficient grinding.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="daily-tracker.html">Open tracker</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">⚙️</div>
+      <h3>Build Generator</h3>
+      <p>Generate recommended builds based on your playstyle and rank.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="build-generator.html">Open generator</a>
+      </div>
+    </article>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-head">
+    <h2>Guides</h2>
+    <p>Core guides for progression, money, weapons, roles and builds.</p>
+  </div>
 
   <div class="cards">
 
     <article class="card">
       <div class="icon">🛣️</div>
       <h3>Beginner Roadmap</h3>
-      <p>Level from rank 1–50 without wasting money.</p>
-      <br>
-      <a class="mini-btn" href="beginner-roadmap.html">Open roadmap</a>
+      <p>Level from rank 1–50 without wasting money or gold.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="beginner-roadmap.html">Open roadmap</a>
+      </div>
     </article>
 
     <article class="card">
       <div class="icon">💰</div>
       <h3>Money & Gold</h3>
-      <p>The best money farming methods for cash, gold and XP.</p>
-      <br>
-      <a class="mini-btn" href="money-guide.html">Money guide</a>
+      <p>The best methods for cash, gold and XP farming.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="money-guide.html">Money guide</a>
+      </div>
     </article>
 
     <article class="card">
       <div class="icon">🎯</div>
       <h3>Ability Cards</h3>
-      <p>Builds for PvE, PvP, sniper, support and tank playstyles.</p>
-      <br>
-      <a class="mini-btn" href="ability-cards.html">View builds</a>
+      <p>Builds for PvE, PvP, sniper, tank and support playstyles.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="ability-cards.html">View builds</a>
+      </div>
     </article>
 
     <article class="card">
       <div class="icon">🔫</div>
       <h3>Weapons</h3>
-      <p>Which weapons are worth buying — and which are not.</p>
-      <br>
-      <a class="mini-btn" href="weapons.html">Weapon guide</a>
-    </article>
-
-    <article class="card">
-      <div class="icon">⚙️</div>
-      <h3>Build Generator</h3>
-      <p>Interactive generator for builds, weapons and roles.</p>
-      <br>
-      <a class="mini-btn" href="build-generator.html">Open generator</a>
-    </article>
-
-    <article class="card">
-      <div class="icon">📋</div>
-      <h3>Daily Tracker</h3>
-      <p>Daily checklist with local browser saving.</p>
-      <br>
-      <a class="mini-btn" href="daily-tracker.html">Open tracker</a>
+      <p>Which weapons are worth buying and which to avoid early.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="weapons.html">Weapon guide</a>
+      </div>
     </article>
 
     <article class="card">
       <div class="icon">🏆</div>
       <h3>Tier Lists</h3>
       <p>Tier lists for weapons, roles, horses and ability cards.</p>
-      <br>
-      <a class="mini-btn" href="tier-lists.html">View tiers</a>
-    </article>
-
-    <article class="card">
-      <div class="icon">🧮</div>
-      <h3>Calculators</h3>
-      <p>Gold planner, XP planner and role recommender.</p>
-      <br>
-      <a class="mini-btn" href="calculators.html">Open calculators</a>
-    </article>
-
-    <article class="card">
-      <div class="icon">📈</div>
-      <h3>Progress Tracker</h3>
-      <p>Track weapons, roles and important unlocks.</p>
-      <br>
-      <a class="mini-btn" href="progress-tracker.html">Track progress</a>
+      <div class="card-footer">
+        <a class="mini-btn" href="tier-lists.html">View tiers</a>
+      </div>
     </article>
 
     <article class="card">
       <div class="icon">⭐</div>
       <h3>Weekly Bonuses</h3>
-      <p>Weekly bonuses, discounts and recommended activities.</p>
-      <br>
-      <a class="mini-btn" href="weekly-bonuses.html">Weekly bonuses</a>
+      <p>Weekly bonus planning, discounts and recommended focus.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="weekly-bonuses.html">View weekly</a>
+      </div>
     </article>
 
   </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-head">
+    <h2>Role Guides</h2>
+    <p>Master every Red Dead Online specialist role.</p>
+  </div>
+
+  <div class="cards">
+
+    <article class="card">
+      <div class="icon">🎖️</div>
+      <h3>Bounty Hunter</h3>
+      <p>Best role for gold, combat and legendary bounty gameplay.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="bounty-hunter-guide.html">Open guide</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🃏</div>
+      <h3>Collector</h3>
+      <p>One of the strongest solo money and XP methods.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="collector-guide.html">Open guide</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🦌</div>
+      <h3>Trader</h3>
+      <p>Passive income through hunting, camp production and deliveries.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="trader-guide.html">Open guide</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🥃</div>
+      <h3>Moonshiner</h3>
+      <p>Passive cash with moonshine production and short deliveries.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="moonshiner-guide.html">Open guide</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🐾</div>
+      <h3>Naturalist</h3>
+      <p>Animal samples, legendary animals and exploration gameplay.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="naturalist-guide.html">Open guide</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="icon">🗺️</div>
+      <h3>Madam Nazar</h3>
+      <p>Live links and guide for finding Madam Nazar and collector maps.</p>
+      <div class="card-footer">
+        <a class="mini-btn" href="madam-nazar.html">Open map</a>
+      </div>
+    </article>
+
+  </div>
+
 </section>
 
 <footer class="footer">
