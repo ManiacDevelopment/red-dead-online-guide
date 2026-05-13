@@ -39,8 +39,8 @@ button.secondary{background:#281b13;color:#f6ead8;border:1px solid rgba(255,255,
 <h1>Income Planner</h1>
 
 <p>
-Track Trader Wagon, Cripps resupply, Moonshine and Legendary Bounty timing.
-Use the bounty timer to wait for the best turn-in window before delivering the target.
+Track Trader Wagon, Cripps resupply, Moonshine and Regular Bounty timing.
+Regular bounties are recommended because Trader and Moonshine keep running while you play.
 </p>
 
 <div class="grid">
@@ -85,7 +85,7 @@ Use the bounty timer to wait for the best turn-in window before delivering the t
 <option value="30">Weak Moonshine — ~30 Minutes</option>
 <option value="45">Average Moonshine — ~45 Minutes</option>
 <option value="48">Strong Moonshine — ~48 Minutes</option>
-<option value="60">Strong Moonshine fallback — ~60 Minutes</option>
+<option value="60">Custom/Fallback — ~60 Minutes</option>
 </select>
 
 <label>Custom Moonshine Minutes</label>
@@ -99,17 +99,20 @@ Use the bounty timer to wait for the best turn-in window before delivering the t
 </div>
 
 <div class="timer-box">
-<h2>Legendary Bounty</h2>
+<h2>Regular Bounty Timer</h2>
+
+<p>
+Use this for normal bounty board missions. Trader and Moonshine keep running while this timer is active.
+</p>
 
 <label>Turn-in Strategy</label>
 <select id="bountyGoal">
 <option value="12">Efficient Gold — turn in after 12 min</option>
-<option value="10">Efficient Cash/XP — turn in after 10 min</option>
-<option value="30">Max Payout — turn in after 30 min</option>
+<option value="10">Fast Cash/XP — turn in after 10 min</option>
+<option value="15">Balanced — turn in after 15 min</option>
 </select>
 
-<button onclick="startBounty()">Start Bounty</button>
-<button class="secondary" onclick="stopBounty()">End Bounty</button>
+<button onclick="startBounty()">Start Regular Bounty</button>
 <button class="secondary" onclick="resetBounty()">Reset Bounty</button>
 
 <div class="timer" id="bountyTimer">Inactive</div>
@@ -124,6 +127,17 @@ Use the bounty timer to wait for the best turn-in window before delivering the t
 <div id="plan"></div>
 </div>
 
+<div class="card">
+<h2>Recommended Strategy</h2>
+<ul>
+<li>Keep Moonshine running as often as possible.</li>
+<li>Keep Trader production running and check Cripps every hour.</li>
+<li>Use regular bounties while Trader and Moonshine produce in the background.</li>
+<li>Turn in normal bounties around 10–12 minutes for efficient payouts.</li>
+<li>Only use Legendary Bounties for variety, role XP, or challenge runs.</li>
+</ul>
+</div>
+
 </div>
 
 <div class="footer">
@@ -135,46 +149,64 @@ let traderEnd = null;
 let moonshineEnd = null;
 let crippsEnd = null;
 let bountyStart = null;
-let paused = false;
-let pauseStarted = null;
+let bountyActive = false;
 
-function minutesToMs(min){ return min * 60 * 1000; }
+function minutesToMs(min){
+return min * 60 * 1000;
+}
 
 function format(ms){
+if(ms === null || ms === undefined) return "Not Running";
 if(ms <= 0) return "Ready";
+
 const total = Math.floor(ms / 1000);
 const h = Math.floor(total / 3600);
 const m = Math.floor((total % 3600) / 60);
 const s = total % 60;
-if(h > 0) return `${h}h ${m}m ${s}s`;
+
+if(h > 0){
+return `${h}h ${m}m ${s}s`;
+}
+
 return `${m}m ${s}s`;
 }
 
 function saveState(){
 localStorage.setItem("rdoIncomePlanner", JSON.stringify({
-traderEnd, moonshineEnd, crippsEnd, paused, bountyStart, pauseStarted
+traderEnd,
+moonshineEnd,
+crippsEnd,
+bountyStart,
+bountyActive
 }));
 }
 
 function loadState(){
 const saved = JSON.parse(localStorage.getItem("rdoIncomePlanner") || "{}");
+
 traderEnd = saved.traderEnd || null;
 moonshineEnd = saved.moonshineEnd || null;
 crippsEnd = saved.crippsEnd || null;
-paused = saved.paused || false;
 bountyStart = saved.bountyStart || null;
-pauseStarted = saved.pauseStarted || null;
+bountyActive = saved.bountyActive || false;
 }
 
 function startTrader(){
 const wagonCapacity = Number(document.getElementById("wagon").value);
 let currentGoods = Number(document.getElementById("currentGoods").value);
+
 if(currentGoods < 0) currentGoods = 0;
 if(currentGoods > wagonCapacity) currentGoods = wagonCapacity;
+
 const goodsNeeded = wagonCapacity - currentGoods;
 const minutesNeeded = goodsNeeded * 2;
+
 traderEnd = Date.now() + minutesToMs(minutesNeeded);
-if(!crippsEnd) crippsEnd = Date.now() + minutesToMs(60);
+
+if(!crippsEnd){
+crippsEnd = Date.now() + minutesToMs(60);
+}
+
 saveState();
 update();
 }
@@ -184,6 +216,7 @@ traderEnd = null;
 document.getElementById("traderTimer").innerText = "Not Running";
 document.getElementById("traderStatus").innerHTML = "";
 saveState();
+update();
 }
 
 function startCripps(){
@@ -197,12 +230,15 @@ crippsEnd = null;
 document.getElementById("crippsTimer").innerText = "Not Running";
 document.getElementById("crippsStatus").innerHTML = "";
 saveState();
+update();
 }
 
 function startMoonshine(){
 const custom = Number(document.getElementById("customMoonshine").value);
 const strength = custom > 0 ? custom : Number(document.getElementById("moonshine").value);
+
 moonshineEnd = Date.now() + minutesToMs(strength);
+
 saveState();
 update();
 }
@@ -212,37 +248,24 @@ moonshineEnd = null;
 document.getElementById("moonshineTimer").innerText = "Not Running";
 document.getElementById("moonshineStatus").innerHTML = "";
 saveState();
+update();
 }
 
 function startBounty(){
-if(paused) return;
-paused = true;
-pauseStarted = Date.now();
+bountyActive = true;
 bountyStart = Date.now();
 saveState();
 update();
 }
 
-function stopBounty(){
-if(!paused) return;
-const pauseLength = Date.now() - pauseStarted;
-if(traderEnd) traderEnd += pauseLength;
-if(moonshineEnd) moonshineEnd += pauseLength;
-if(crippsEnd) crippsEnd += pauseLength;
-paused = false;
-pauseStarted = null;
-saveState();
-update();
-}
-
 function resetBounty(){
-paused = false;
+bountyActive = false;
 bountyStart = null;
-pauseStarted = null;
 document.getElementById("bountyTimer").innerText = "Inactive";
 document.getElementById("bountyStatus").innerHTML = "";
 document.getElementById("bountyAdvice").innerHTML = "";
 saveState();
+update();
 }
 
 function update(){
@@ -250,40 +273,47 @@ const now = Date.now();
 
 if(traderEnd){
 const left = traderEnd - now;
+
 document.getElementById("traderTimer").innerText = format(left);
+
 document.getElementById("traderStatus").innerHTML =
-left <= 0 ? '<span class="active">Trader Wagon Ready</span>' :
-paused ? '<span class="paused">Paused During Bounty</span>' :
-'Production Running';
+left <= 0
+? '<span class="active">Trader Wagon Ready</span>'
+: 'Production Running';
 }
 
 if(crippsEnd){
 const left = crippsEnd - now;
+
 document.getElementById("crippsTimer").innerText = format(left);
+
 document.getElementById("crippsStatus").innerHTML =
-left <= 0 ? '<span class="warning">Cripps needs refill/resupply check</span>' :
-paused ? '<span class="paused">Paused During Bounty</span>' :
-'Cripps timer running';
+left <= 0
+? '<span class="warning">Cripps needs refill/resupply check</span>'
+: 'Cripps timer running';
 }
 
 if(moonshineEnd){
 const left = moonshineEnd - now;
+
 document.getElementById("moonshineTimer").innerText = format(left);
+
 document.getElementById("moonshineStatus").innerHTML =
-left <= 0 ? '<span class="active">Moonshine Ready</span>' :
-paused ? '<span class="paused">Paused During Bounty</span>' :
-'Production Running';
+left <= 0
+? '<span class="active">Moonshine Ready</span>'
+: 'Production Running';
 }
 
-if(paused && bountyStart){
+if(bountyActive && bountyStart){
 const elapsed = now - bountyStart;
 const target = Number(document.getElementById("bountyGoal").value);
 const targetMs = minutesToMs(target);
 const leftToTarget = targetMs - elapsed;
 
 document.getElementById("bountyTimer").innerText = format(elapsed);
+
 document.getElementById("bountyStatus").innerHTML =
-'<span class="paused">Legendary Bounty Active — production timers paused</span>';
+'<span class="active">Regular Bounty Active — Trader and Moonshine keep running</span>';
 
 document.getElementById("bountyAdvice").innerHTML =
 leftToTarget > 0
@@ -301,30 +331,115 @@ updatePlan();
 function updatePlan(){
 const plan = document.getElementById("plan");
 let html = "";
+
 const now = Date.now();
 const traderLeft = traderEnd ? traderEnd - now : null;
 const moonshineLeft = moonshineEnd ? moonshineEnd - now : null;
 const crippsLeft = crippsEnd ? crippsEnd - now : null;
 
-if(paused){
-html += `<div class="plan-step"><strong>Priority:</strong><br>Wait for the selected bounty payout timer, then turn in. Trader, Cripps and Moonshine are paused.</div>`;
-}
-else{
-if(!moonshineEnd) html += `<div class="plan-step"><strong>Step 1:</strong><br>Start Moonshine production immediately.</div>`;
-if(!traderEnd) html += `<div class="plan-step"><strong>Step 2:</strong><br>Enter current goods and start Trader production.</div>`;
-if(!crippsEnd) html += `<div class="plan-step"><strong>Step 3:</strong><br>Start the 1-hour Cripps refill/resupply timer.</div>`;
-if(crippsLeft !== null && crippsLeft <= 0) html += `<div class="plan-step"><strong>Priority:</strong><br>Cripps needs attention. Refill materials or resupply before a long activity.</div>`;
-if(moonshineLeft !== null && moonshineLeft <= 0) html += `<div class="plan-step"><strong>Priority:</strong><br>Moonshine is ready. Sell it and restart production.</div>`;
-if(traderLeft !== null && traderLeft <= 0) html += `<div class="plan-step"><strong>Priority:</strong><br>Trader Wagon is ready. Sell it before starting another long loop.</div>`;
-if(traderLeft !== null && moonshineLeft !== null && crippsLeft !== null && traderLeft > minutesToMs(30) && moonshineLeft > minutesToMs(20) && crippsLeft > minutesToMs(20)){
-html += `<div class="plan-step"><strong>Good Window:</strong><br>Start a Legendary Bounty now and use the bounty timer for optimal turn-in.</div>`;
-}
-if(traderLeft !== null && moonshineLeft !== null && traderLeft > 0 && moonshineLeft > 0){
-html += `<div class="plan-step"><strong>While Waiting:</strong><br>Run Collector routes, short bounties or Daily Challenges until the next timer is ready.</div>`;
-}
+if(!moonshineEnd){
+html += `
+<div class="plan-step">
+<strong>Step 1:</strong><br>
+Start Moonshine production immediately.
+</div>
+`;
 }
 
-if(html === "") html = `<div class="plan-step">Start Trader, Cripps and Moonshine timers to generate an optimal plan.</div>`;
+if(!traderEnd){
+html += `
+<div class="plan-step">
+<strong>Step 2:</strong><br>
+Enter current goods and start Trader production.
+</div>
+`;
+}
+
+if(!crippsEnd){
+html += `
+<div class="plan-step">
+<strong>Step 3:</strong><br>
+Start the 1-hour Cripps refill/resupply timer.
+</div>
+`;
+}
+
+if(crippsLeft !== null && crippsLeft <= 0){
+html += `
+<div class="plan-step">
+<strong>Priority:</strong><br>
+Cripps needs attention. Refill materials or resupply before starting another activity.
+</div>
+`;
+}
+
+if(moonshineLeft !== null && moonshineLeft <= 0){
+html += `
+<div class="plan-step">
+<strong>Priority:</strong><br>
+Moonshine is ready. Sell it now and restart production.
+</div>
+`;
+}
+
+if(traderLeft !== null && traderLeft <= 0){
+html += `
+<div class="plan-step">
+<strong>Priority:</strong><br>
+Trader Wagon is ready. Sell it before starting another loop.
+</div>
+`;
+}
+
+if(bountyActive){
+html += `
+<div class="plan-step">
+<strong>Current Activity:</strong><br>
+Finish the regular bounty when the bounty timer reaches your selected target. Passive production is still running.
+</div>
+`;
+}
+
+if(
+!bountyActive &&
+traderLeft !== null &&
+moonshineLeft !== null &&
+crippsLeft !== null &&
+traderLeft > minutesToMs(12) &&
+moonshineLeft > minutesToMs(12) &&
+crippsLeft > minutesToMs(12)
+){
+html += `
+<div class="plan-step">
+<strong>Best Next Move:</strong><br>
+Start a regular bounty now. Trader, Moonshine and Cripps all have enough time left.
+</div>
+`;
+}
+
+if(
+!bountyActive &&
+traderLeft !== null &&
+moonshineLeft !== null &&
+traderLeft > 0 &&
+moonshineLeft > 0
+){
+html += `
+<div class="plan-step">
+<strong>While Waiting:</strong><br>
+Run regular bounties, Collector routes or Daily Challenges until the next passive timer is ready.
+</div>
+`;
+}
+
+if(html === ""){
+html = `
+<div class="plan-step">
+Start Trader, Cripps and Moonshine timers to generate an optimal plan.
+</div>
+`;
+}
+
 plan.innerHTML = html;
 }
 
